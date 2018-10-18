@@ -1,27 +1,53 @@
 # plan4ba
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.0 and the @nativescript/schematics collection for [NativeScript](https://github.com/NativeScript/NativeScript) support.
+It's using the [Code-Sharing] support of NativeScript with Angular. This allows us to keep the code for the web and mobile apps in one place.
 
-## Development server
+## Requirements
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Follow the [installation guide](https://docs.nativescript.org/angular/start/quick-setup) at the nativescript documentation.
 
-## Code scaffolding
+- [Node.js](https://nodejs.org/en/download/) and npm (included in the Node.js installation)
+- [Nativescript CLI](https://github.com/NativeScript/nativescript-cli) with `npm install -g nativescript`
+- [iOS or Android requirements](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
+- [Angular CLI](https://github.com/angular/angular-cli) (recommended) with `npm install -g @angular/cli`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Run
+
+You can run a development web server with the Angular CLI using `ng serve`. Or you run the app on an iOS or Android device using `tns run ios --bundle` or `tns run android --bundle`.
 
 ## Build
 
+### Web
+
+To build the web app run `ng build --prod`.
+
+### Mobile
+
+Building for mobile is more difficult. In the Nativescript documentation, you can read up on [iOS Publishing](https://docs.nativescript.org/tooling/publishing/publishing-ios-apps) and [Android Publishing](https://docs.nativescript.org/tooling/publishing/publishing-android-apps). You may also consider using [NativeScript Sidekick](https://www.nativescript.org/nativescript-sidekick) for cloud builds.
+
+## Angular CLI auto-generated readme
+
+### Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+### Build
+
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
