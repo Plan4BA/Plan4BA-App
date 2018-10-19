@@ -1,7 +1,10 @@
 {
   "name": "plan4ba",
   "nativescript": {
-    "id": "org.nativescript.plan4ba"
+    "id": "org.nativescript.plan4ba",
+    "tns-android": {
+      "version": "4.2.0"
+    }
   },
   "version": "0.0.0",
   "scripts": {
