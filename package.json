@@ -1,7 +1,7 @@
 {
   "name": "plan4ba",
   "nativescript": {
-    "id": "org.nativescript.plan4ba",
+    "id": "de.baleipzig.plan4ba",
     "tns-android": {
       "version": "4.2.0"
     }
