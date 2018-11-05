@@ -1,1 +1,5 @@
 @import 'app.component.tns';
+
+.sideTitleStackLayout {
+    padding-top: $status-bar-height-ios;
+}
