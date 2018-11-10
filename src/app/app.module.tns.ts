@@ -6,6 +6,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { setStatusBarColors } from './shared';
+import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './login/login.component';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -19,6 +21,8 @@ setStatusBarColors();
   declarations: [
     AppComponent,
     HomeComponent,
+    SettingsComponent,
+    LoginComponent,
   ],
   imports: [
     NativeScriptModule,

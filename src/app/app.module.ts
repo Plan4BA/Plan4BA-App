@@ -7,6 +7,8 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './settings/settings.component';
+import { LoginComponent } from './login/login.component';
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -15,6 +17,8 @@ library.add(faCoffee);
   declarations: [
     AppComponent,
     HomeComponent,
+    SettingsComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
