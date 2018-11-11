@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../shared/sidenav/sidenav.service';
 
 @Component({
   selector: 'p4ba-settings',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private sidenavService: SidenavService,
+  ) { }
 
   ngOnInit() {
   }

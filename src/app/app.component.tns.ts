@@ -1,9 +1,10 @@
+import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { RouterExtensions } from "nativescript-angular/router";
-import { DrawerTransitionBase, RadSideDrawer, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
+import { DrawerTransitionBase, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
 import { filter } from "rxjs/operators";
-import * as app from "tns-core-modules/application";
+import { SidenavService } from './shared/sidenav/sidenav.service';
 
 @Component({
   selector: 'p4ba-root',
@@ -11,11 +12,19 @@ import * as app from "tns-core-modules/application";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  private _activatedUrl: string;
+
+    // some code for the RadSideDrawer has been copied from https://github.com/NativeScript/template-drawer-navigation-ng
+
+    @ViewChild(RadSideDrawerComponent) private drawerComponent: RadSideDrawerComponent;
+
+    private _activatedUrl: string;
     private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(private router: Router, private routerExtensions: RouterExtensions) {
-        // Use the component constructor to inject services.
+    constructor(
+        private router: Router,
+        private routerExtensions: RouterExtensions,
+        private sidenavService: SidenavService,
+        ) {
     }
 
     ngOnInit(): void {
@@ -24,7 +33,12 @@ export class AppComponent implements OnInit {
 
         this.router.events
         .pipe(filter((event: any) => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => this._activatedUrl = event.urlAfterRedirects);
+        .subscribe((event: NavigationEnd) => {
+            this.drawerComponent.sideDrawer.gesturesEnabled = event.urlAfterRedirects !== '/login';
+            this._activatedUrl = event.urlAfterRedirects;
+        });
+        
+        this.sidenavService.open.subscribe(() => {this.drawerComponent.sideDrawer.showDrawer(); });
     }
 
     get sideDrawerTransition(): DrawerTransitionBase {
@@ -42,7 +56,6 @@ export class AppComponent implements OnInit {
             }
         });
 
-        const sideDrawer = <RadSideDrawer>app.getRootView();
-        sideDrawer.closeDrawer();
+        this.drawerComponent.sideDrawer.closeDrawer();
     }
 }

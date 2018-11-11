@@ -1,1 +1,23 @@
-<router-outlet></router-outlet>
+<div class="toolbar-sidenav-container" [class.is-mobile]="mobileQuery.matches" [class.login-route]="router.url === '/login'">
+  <!-- usage of mat-toolbar and mat-sidenav inspired by
+    https://stackblitz.com/angular/pymganppqmm?file=app%2Fsidenav-responsive-example.ts -->
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button class="menu-button" (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="app-name">plan4ba</h1>
+    <button mat-button *ngFor="let navItem of navItems" class="toolbar-nav-button" [routerLink]="navItem.url">{{ navItem.label }}</button>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches && router.url !== '/login' ? 56 : 0">
+    <mat-sidenav class="sidenav" mode="over"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" role="navigation">
+      <mat-nav-list>
+          <a *ngFor="let navItem of navItems" mat-list-item [routerLink]='navItem.url' (click)="snav.close()">{{ navItem.label }}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content role="main">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

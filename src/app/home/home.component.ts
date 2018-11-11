@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../shared/sidenav/sidenav.service';
 
 @Component({
   selector: 'p4ba-home',
@@ -8,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   title = 'plan4ba';
 
-  constructor() { }
+  constructor(
+    private sidenavService: SidenavService,
+  ) { }
 
   ngOnInit() {
   }

@@ -1,4 +1,19 @@
-<ActionBar class="action-bar" title="Settings"></ActionBar>
+<ActionBar class="action-bar" title="Settings" android.icon="res://icon" android.iconVisibility="always">
+    <!-- has not been tested yet on ios -->
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="sidenavService.open.emit()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="sidenavService.open.emit()" ios.position="left"></ActionItem>
+    <ActionItem icon="res://icon" android:visibility="collapsed" ios.position="left"></ActionItem>
+</ActionBar>
 <StackLayout  class="page p-20">
-    <Button text="settings works!" class="btn btn-primary"></Button>
+    <!-- placeholder for navigation after logout -->
+    <Button text="logout" class="btn btn-primary" [nsRouterLink]="['/login']"></Button>
 </StackLayout>

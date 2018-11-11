@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { setStatusBarColors } from './shared';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
+import { SidenavService } from './shared/sidenav/sidenav.service';
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -29,7 +30,9 @@ setStatusBarColors();
     AppRoutingModule,
     NativeScriptUISideDrawerModule,
   ],
-  providers: [],
+  providers: [
+    SidenavService
+  ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
