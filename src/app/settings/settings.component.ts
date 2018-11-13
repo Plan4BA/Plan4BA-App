@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { SidenavService } from '../shared/sidenav/sidenav.service';
 
 @Component({
-  selector: 'p4ba-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  selector: 'p4ba-settings',
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.scss']
 })
-export class HomeComponent implements OnInit {
-  title = 'plan4ba';
+export class SettingsComponent implements OnInit {
 
   constructor(
     private sidenavService: SidenavService,
@@ -15,4 +14,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+
 }

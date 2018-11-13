@@ -1,4 +1,4 @@
-<ActionBar class="action-bar" title="Home" android.icon="res://icon" android.iconVisibility="always">
+<ActionBar class="action-bar" title="Settings" android.icon="res://icon" android.iconVisibility="always">
     <!-- has not been tested yet on ios -->
     <!-- 
     Use the NavigationButton as a side-drawer button in Android
@@ -14,7 +14,6 @@
     <ActionItem icon="res://icon" android:visibility="collapsed" ios.position="left"></ActionItem>
 </ActionBar>
 <StackLayout  class="page p-20">
-    <!-- placeholder content -->
-    <Label text="Welcome to {{ title }}!" class="h1 text-center" textWrap="true"></Label>
-    <Label text="&#xf0f4;" class="fa"></Label>
+    <!-- placeholder for navigation after logout -->
+    <Button text="logout" class="btn btn-primary" [nsRouterLink]="['/login']"></Button>
 </StackLayout>
