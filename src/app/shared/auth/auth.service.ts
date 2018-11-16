@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import * as  base64 from 'base-64';
@@ -37,7 +37,7 @@ export class AuthService {
     return !!this._loginData && !!this._loginData.token && !!this._loginData.validTo && this._loginData.validTo > (new Date()).getTime();
   }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<LoginData|HttpErrorResponse> {
     return this.http.get<LoginData>(
       environment.apiUrl + 'login',
       { headers: {
@@ -54,12 +54,12 @@ export class AuthService {
     );
   }
 
-  logout() {
+  logout(): void {
     this._loginData = undefined;
     removeString('login');
   }
 
-  private handleErrors(error: HttpErrorResponse) {
+  private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
     console.log(JSON.stringify(error));
     return throwError(error);
   }

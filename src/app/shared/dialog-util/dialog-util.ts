@@ -1,3 +1,3 @@
-export function alert(message: string) {
+export function alert(message: string): void {
   window.alert(message);
 }

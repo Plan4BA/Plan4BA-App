@@ -12,22 +12,22 @@ export const authProviders = [
 
 export const routes: Routes = [
   {
-      path: '',
-      redirectTo: '/home',
-      pathMatch: 'full',
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
   {
-      path: 'home',
-      component: HomeComponent,
-      canActivate: [AuthGuard],
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
   },
   {
-      path: 'settings',
-      component: SettingsComponent,
-      canActivate: [AuthGuard],
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuard],
   },
   {
-      path: 'login',
-      component: LoginComponent,
+    path: 'login',
+    component: LoginComponent,
   },
 ];
