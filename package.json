@@ -33,6 +33,7 @@
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "base-64": "^0.1.0",
     "core-js": "^2.5.4",
     "nativescript-angular": "~6.1.0",
     "nativescript-theme-core": "~1.0.4",
@@ -40,6 +41,7 @@
     "reflect-metadata": "~0.1.8",
     "rxjs": "^6.0.0",
     "tns-core-modules": "^5.0.2",
+    "utf8": "^3.0.0",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {

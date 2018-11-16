@@ -14,15 +14,23 @@ Follow the [installation guide](https://docs.nativescript.org/angular/start/quic
 
 ## Run
 
-You can run a development web server with the Angular CLI using `ng serve`. Or you run the app on an iOS or Android device using `tns run ios --bundle` or `tns run android --bundle`.
+### Run for Web
+
+You can run a development web server with the Angular CLI using `ng serve`.
+To send api requests to the backend, you can use the [integrated proxy](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md). This is necessary, because the browser tries to prevent XSS-Attacks. After writing the address of the api server to the proxy.conf.json file, you can start the development web server with the proxy by executing `ng serve --proxy-config proxy.conf.json`.
+
+### Run for Mobile
+
+You can run the app on an iOS or Android device using `tns run ios --bundle` or `tns run android --bundle`.
+To send api requests from the phone, you need to set the address of the api server in the environment.tns.ts file.
 
 ## Build
 
-### Web
+### Build for Web
 
 To build the web app run `ng build --prod`.
 
-### Mobile
+### Build for Mobile
 
 Building for mobile is more difficult. In the Nativescript documentation, you can read up on [iOS Publishing](https://docs.nativescript.org/tooling/publishing/publishing-ios-apps) and [Android Publishing](https://docs.nativescript.org/tooling/publishing/publishing-android-apps). You may also consider using [NativeScript Sidekick](https://www.nativescript.org/nativescript-sidekick) for cloud builds.
 
