@@ -6,7 +6,7 @@ import { alert } from '../shared/dialog-util/dialog-util';
 
 export class LoginCommonComponent {
 
-  isAuthenticating = false;
+  private _isAuthenticating = false;
 
   // username and password will be set with forms
   username = '';
