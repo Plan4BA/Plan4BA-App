@@ -4,4 +4,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+}
+
+.logo {
+    width: 180px;
+    margin-left: auto;
+    margin-right: auto;
 }

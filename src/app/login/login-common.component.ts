@@ -17,7 +17,19 @@ export class LoginCommonComponent {
     protected router: Router,
     ) { }
 
+  get isAuthenticating(): boolean {
+    return this._isAuthenticating;
+  }
+
+  set isAuthenticating(isAuthenticating: boolean) {
+    this._isAuthenticating = isAuthenticating;
+  }
+
   login() {
+    if (!this.username || !this.password) {
+      alert('Please enter a username and a password!');
+      return;
+    }
     this.isAuthenticating = true;
     this.authService.login(this.username, this.password)
       .subscribe(

@@ -1,7 +1,6 @@
 <FlexboxLayout class="page">
     <StackLayout class="form" shadow="6">
-        <!-- <Image class="logo" src="~/images/logo.png"></Image> -->
-        <Label class="header" text="Plan4BA"></Label>
+        <Image src="~/assets/logo.png" stretch="none" class="logo"></Image>
 
         <StackLayout class="input-field">
             <TextField class="input" hint="Username" autocorrect="false" autocapitalizationType="none" [(ngModel)]="username" returnKeyType="next" (returnPress)="focusPassword()"></TextField>
