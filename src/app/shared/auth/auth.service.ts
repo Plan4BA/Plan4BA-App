@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import * as  base64 from 'base-64';
@@ -13,7 +13,7 @@ import { LoginData } from './login-data.model';
 })
 export class AuthService {
 
-  private _loginData: LoginData;
+  private loginData = new BehaviorSubject<LoginData>(undefined);
 
   constructor(
     private http: HttpClient,
@@ -22,19 +22,20 @@ export class AuthService {
     const storedLoginData = getString('login');
     if (!!storedLoginData) {
       try {
-        this._loginData = JSON.parse(storedLoginData);
+        this.loginData.next(JSON.parse(storedLoginData));
       } catch (e) {
         removeString('login');
       }
     }
   }
 
-  get loginData(): LoginData {
-    return this._loginData;
+  getLoginData(): BehaviorSubject<LoginData> {
+    return this.loginData;
   }
 
   isLoggedIn(): boolean {
-    return !!this._loginData && !!this._loginData.token && !!this._loginData.validTo && this._loginData.validTo > (new Date()).getTime();
+    const loginData = this.loginData.getValue();
+    return !!loginData && !!loginData.token && !!loginData.validTo && loginData.validTo > (new Date()).getTime();
   }
 
   login(username: string, password: string): Observable<LoginData|HttpErrorResponse> {
@@ -46,7 +47,7 @@ export class AuthService {
       } }
     )
     .pipe(
-      tap((data: LoginData) => this._loginData = data),
+      tap((data: LoginData) => this.loginData.next(data)),
       tap((data: LoginData) => {
         setString('login', JSON.stringify(data));
       }),
@@ -55,7 +56,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this._loginData = undefined;
+    this.loginData.next(undefined);
     removeString('login');
   }
 
