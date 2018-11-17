@@ -1,1 +1,42 @@
 /* Add mobile styles for the component here.  */
+.page {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+}
+
+.form {
+    background-color: white;
+    width: 300;
+}
+
+.logo {
+    horizontal-align: center;
+    margin-top: 30;
+    margin-bottom: 30;
+}
+
+.header {
+    horizontal-align: center;
+    font-size: 30;
+    font-weight: 600;
+    margin-top: 15;
+    margin-bottom: 55;
+    text-align: center;
+}
+
+.input-field {
+    margin-bottom: 25;
+    margin-right: 20;
+    margin-left: 20;
+}
+
+.input {
+    font-size: 18;
+    placeholder-color: #A8A8A8;
+}
+
+.login-button {
+    margin-bottom: 20;
+}

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'api/'
+  apiUrl: 'https://plan4ba.ddkfm.de/api/'
 };

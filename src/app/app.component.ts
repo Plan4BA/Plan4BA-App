@@ -9,26 +9,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy {
-  @ViewChild(MatSidenav) private snav: MatSidenav;
 
+  @ViewChild(MatSidenav) snav: MatSidenav;
   mobileQuery: MediaQueryList;
-
-  private _mobileQueryListener: () => void;
-  private navItems = [
-      {
-          label: 'Home',
-          url: '/home'
-      },
-      {
-          label: 'Settings',
-          url: '/settings'
-      },
+  navItems = [
+    {
+      label: 'Home',
+      url: '/home'
+    },
+    {
+      label: 'Settings',
+      url: '/settings'
+    },
   ];
 
+  private _mobileQueryListener: () => void;
+
   constructor(
-    changeDetectorRef: ChangeDetectorRef,
-    media: MediaMatcher,
-    private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
+    private media: MediaMatcher,
+    public router: Router,
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

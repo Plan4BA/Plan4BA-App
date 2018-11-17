@@ -1,9 +1,9 @@
 import { RadSideDrawerComponent } from 'nativescript-ui-sidedrawer/angular';
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { NavigationEnd, Router } from "@angular/router";
-import { RouterExtensions } from "nativescript-angular/router";
-import { DrawerTransitionBase, SlideInOnTopTransition } from "nativescript-ui-sidedrawer";
-import { filter } from "rxjs/operators";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { RouterExtensions } from 'nativescript-angular/router';
+import { DrawerTransitionBase, SlideInOnTopTransition } from 'nativescript-ui-sidedrawer';
+import { filter } from 'rxjs/operators';
 import { SidenavService } from './shared/sidenav/sidenav.service';
 
 @Component({
@@ -13,49 +13,50 @@ import { SidenavService } from './shared/sidenav/sidenav.service';
 })
 export class AppComponent implements OnInit {
 
-    // some code for the RadSideDrawer has been copied from https://github.com/NativeScript/template-drawer-navigation-ng
+  // some code for the RadSideDrawer has been copied from https://github.com/NativeScript/template-drawer-navigation-ng
 
-    @ViewChild(RadSideDrawerComponent) private drawerComponent: RadSideDrawerComponent;
+  @ViewChild(RadSideDrawerComponent) private drawerComponent: RadSideDrawerComponent;
 
-    private _activatedUrl: string;
-    private _sideDrawerTransition: DrawerTransitionBase;
+  private _activatedUrl: string;
+  private _sideDrawerTransition: DrawerTransitionBase;
 
-    constructor(
-        private router: Router,
-        private routerExtensions: RouterExtensions,
-        private sidenavService: SidenavService,
-        ) {
-    }
+  constructor(
+    private router: Router,
+    private routerExtensions: RouterExtensions,
+    private sidenavService: SidenavService,
+    ) { }
 
-    ngOnInit(): void {
-        this._activatedUrl = "/home";
-        this._sideDrawerTransition = new SlideInOnTopTransition();
+  ngOnInit(): void {
+    this._activatedUrl = '/home';
+    this._sideDrawerTransition = new SlideInOnTopTransition();
 
-        this.router.events
-        .pipe(filter((event: any) => event instanceof NavigationEnd))
-        .subscribe((event: NavigationEnd) => {
-            this.drawerComponent.sideDrawer.gesturesEnabled = event.urlAfterRedirects !== '/login';
-            this._activatedUrl = event.urlAfterRedirects;
-        });
-        
-        this.sidenavService.open.subscribe(() => {this.drawerComponent.sideDrawer.showDrawer(); });
-    }
+    this.router.events
+    .pipe(filter((event: any) => event instanceof NavigationEnd))
+    .subscribe((event: NavigationEnd) => {
+      this.drawerComponent.sideDrawer.gesturesEnabled = event.urlAfterRedirects !== '/login';
+      this._activatedUrl = event.urlAfterRedirects;
+    });
 
-    get sideDrawerTransition(): DrawerTransitionBase {
-        return this._sideDrawerTransition;
-    }
+    this.sidenavService.open.subscribe(() => {
+      this.drawerComponent.sideDrawer.showDrawer();
+    });
+  }
 
-    isComponentSelected(url: string): boolean {
-        return this._activatedUrl === url;
-    }
+  get sideDrawerTransition(): DrawerTransitionBase {
+    return this._sideDrawerTransition;
+  }
 
-    onNavItemTap(navItemRoute: string): void {
-        this.routerExtensions.navigate([navItemRoute], {
-            transition: {
-                name: "fade"
-            }
-        });
+  isComponentSelected(url: string): boolean {
+    return this._activatedUrl === url;
+  }
 
-        this.drawerComponent.sideDrawer.closeDrawer();
-    }
+  onNavItemTap(navItemRoute: string): void {
+    this.routerExtensions.navigate([navItemRoute], {
+      transition: {
+        name: 'fade'
+      }
+    });
+
+    this.drawerComponent.sideDrawer.closeDrawer();
+  }
 }

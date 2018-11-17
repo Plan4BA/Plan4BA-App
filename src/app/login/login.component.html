@@ -1,2 +1,27 @@
-<!-- placeholder for navigation after successful login -->
-<button mat-button routerLink='/home'>login</button>
+<mat-card role="region" class="login-card">
+  <img mat-card-image src="./assets/logo.png" class="logo" alt="Plan4BA Logo">
+  <mat-card-content>
+    <form #loginForm="ngForm">
+      <table cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Username" [(ngModel)]="username" name="username" id="username" autofocus required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field>
+              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" id="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="login()" color="primary">Login</button>
+  </mat-card-actions>
+</mat-card>

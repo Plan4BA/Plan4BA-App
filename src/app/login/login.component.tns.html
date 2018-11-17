@@ -1,5 +1,17 @@
-<ActionBar class="action-bar" title="Login"></ActionBar>
-<StackLayout  class="page p-20">
-    <!-- placeholder for navigation after successful login -->
-    <Button text="login" class="btn btn-primary" [nsRouterLink]="['/home']"></Button>
-</StackLayout>
+<FlexboxLayout class="page">
+    <StackLayout class="form" shadow="6">
+        <Image src="~/assets/logo.png" stretch="none" class="logo"></Image>
+
+        <StackLayout class="input-field">
+            <TextField class="input" hint="Username" autocorrect="false" autocapitalizationType="none" [(ngModel)]="username" returnKeyType="next" (returnPress)="focusPassword()"></TextField>
+            <StackLayout class="hr-light"></StackLayout>
+        </StackLayout>
+
+        <StackLayout class="input-field">
+            <TextField #passwordField class="input" hint="Password" secure="true" [(ngModel)]="password" returnKeyType="done" (returnPress)="login()"></TextField>
+            <StackLayout class="hr-light"></StackLayout>
+        </StackLayout>
+
+        <Button text="Login" (tap)="login()" class="btn btn-primary login-button"></Button>
+    </StackLayout>
+</FlexboxLayout>
