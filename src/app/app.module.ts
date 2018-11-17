@@ -4,8 +4,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule, MatToolbarModule, MatListModule, MatIconModule, MatButtonModule } from '@angular/material';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatProgressSpinnerModule,
+  MatFormFieldModule,
+  MatCardModule,
+  MatInputModule,
+} from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +39,7 @@ library.add(faCoffee);
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
@@ -36,6 +48,10 @@ library.add(faCoffee);
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    MatInputModule,
     HttpClientModule,
   ],
   providers: [
