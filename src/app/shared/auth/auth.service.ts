@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { tap, catchError, filter, map } from 'rxjs/operators';
 import * as  base64 from 'base-64';
 import * as utf8 from 'utf8';
+
+import { environment } from '../../../environments/environment';
 import { getString, setString, removeString } from '../data-store-util/data-store-util';
 import { LoginData } from './login-data.model';
 
@@ -13,29 +14,40 @@ import { LoginData } from './login-data.model';
 })
 export class AuthService {
 
-  private loginData = new BehaviorSubject<LoginData>(undefined);
+  private storageKey = 'login';
+  private data: BehaviorSubject<LoginData>;
 
   constructor(
     private http: HttpClient,
     ) {
-    // load token from storage
-    const storedLoginData = getString('login');
-    if (!!storedLoginData) {
-      try {
-        this.loginData.next(JSON.parse(storedLoginData));
-      } catch (e) {
-        removeString('login');
+    // load data from storage
+    let initialData: LoginData;
+    try {
+      const storedData: LoginData = JSON.parse(getString(this.storageKey));
+      if (this.isDataValid(storedData)) {
+        initialData = storedData;
       }
+    } catch (error) {
+      console.log(JSON.stringify(error));
     }
+    this.data = new BehaviorSubject<LoginData>(initialData);
+
+    this.data.subscribe(data => {
+      if (this.isDataValid(data)) {
+        setString(this.storageKey, JSON.stringify(data));
+      } else {
+        removeString(this.storageKey);
+      }
+    });
   }
 
-  getLoginData(): BehaviorSubject<LoginData> {
-    return this.loginData;
+  getData(): BehaviorSubject<LoginData> {
+    return this.data;
   }
 
   isLoggedIn(): boolean {
-    const loginData = this.loginData.getValue();
-    return !!loginData && !!loginData.token && !!loginData.validTo && loginData.validTo > (new Date()).getTime();
+    const loginData = this.data.getValue();
+    return this.isDataValid(loginData);
   }
 
   login(username: string, password: string): Observable<LoginData|HttpErrorResponse> {
@@ -47,17 +59,28 @@ export class AuthService {
       } }
     )
     .pipe(
-      tap((data: LoginData) => this.loginData.next(data)),
-      tap((data: LoginData) => {
-        setString('login', JSON.stringify(data));
+      map((data: LoginData) => {
+        if (!this.isDataValid(data)) {
+          throw new Error('Received login data is not valid!');
+        }
+        return data;
       }),
+      tap((data: LoginData) => this.data.next(data)),
       catchError(this.handleErrors)
     );
   }
 
   logout(): void {
-    this.loginData.next(undefined);
-    removeString('login');
+    this.data.next(undefined);
+  }
+
+  private isDataValid(data: LoginData): boolean {
+    return !!data
+      && typeof data.token === 'string'
+      && Number.isInteger(data.userId)
+      && typeof data.calDavToken === 'boolean'
+      && Number.isInteger(data.validTo)
+      && data.validTo > (new Date()).getTime();
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
