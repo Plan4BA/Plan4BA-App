@@ -27,6 +27,7 @@ import { authProviders } from './app.routes';
 import { AuthService } from './shared/auth/auth.service';
 import { SidenavService } from './shared/sidenav/sidenav.service';
 import { LecturesService } from './shared/lectures/lectures.service';
+import { MealsService } from './shared/meals/meals.service';
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee);
@@ -59,6 +60,7 @@ library.add(faCoffee);
     AuthService,
     SidenavService,
     LecturesService,
+    MealsService,
     authProviders,
   ],
   bootstrap: [AppComponent]
