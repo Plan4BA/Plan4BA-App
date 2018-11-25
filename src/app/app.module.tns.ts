@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { authProviders } from './app.routes';
 import { AuthService } from './shared/auth/auth.service';
 import { SidenavService } from './shared/sidenav/sidenav.service';
+import { LecturesService } from './shared/lectures/lectures.service';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -38,6 +39,7 @@ setStatusBarColors();
   providers: [
     AuthService,
     SidenavService,
+    LecturesService,
     authProviders,
   ],
   bootstrap: [AppComponent],
