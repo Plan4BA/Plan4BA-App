@@ -18,6 +18,10 @@ export class AppComponent implements OnDestroy {
       url: '/home'
     },
     {
+      label: 'Calendar',
+      url: '/calendar'
+    },
+    {
       label: 'Settings',
       url: '/settings'
     },

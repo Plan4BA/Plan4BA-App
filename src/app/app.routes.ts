@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './shared/auth-guard/auth.guard';
+import { CalendarComponent } from './calendar/calendar.component';
 
 
 export const authProviders = [
@@ -19,6 +20,11 @@ export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
     canActivate: [AuthGuard],
   },
   {
