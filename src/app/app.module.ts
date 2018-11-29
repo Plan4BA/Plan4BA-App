@@ -14,6 +14,7 @@ import {
   MatFormFieldModule,
   MatCardModule,
   MatInputModule,
+  MatDialogModule,
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -32,6 +33,8 @@ import { LecturesService } from './shared/lectures/lectures.service';
 import { MealsService } from './shared/meals/meals.service';
 import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
+import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee, faAngleLeft, faAngleRight);
@@ -44,6 +47,11 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     LoginComponent,
     CalendarComponent,
     MonthlyCalendarComponent,
+    DailyLecturesComponent,
+    DailyLecturesListComponent,
+  ],
+  entryComponents: [
+    DailyLecturesComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +68,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     MatProgressSpinnerModule,
     MatCardModule,
     MatInputModule,
+    MatDialogModule,
     HttpClientModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

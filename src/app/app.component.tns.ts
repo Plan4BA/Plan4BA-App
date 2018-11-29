@@ -33,7 +33,10 @@ export class AppComponent implements OnInit {
     this.router.events
     .pipe(filter((event: any) => event instanceof NavigationEnd))
     .subscribe((event: NavigationEnd) => {
-      this.drawerComponent.sideDrawer.gesturesEnabled = event.urlAfterRedirects !== '/login';
+      // this.route.data.subscribe didn't work
+      this.drawerComponent.sideDrawer.gesturesEnabled
+        = !event.urlAfterRedirects.includes('/login')
+        && !event.urlAfterRedirects.includes('/daily');
       this._activatedUrl = event.urlAfterRedirects;
     });
 
@@ -54,7 +57,8 @@ export class AppComponent implements OnInit {
     this.routerExtensions.navigate([navItemRoute], {
       transition: {
         name: 'fade'
-      }
+      },
+      clearHistory: true
     });
 
     this.drawerComponent.sideDrawer.closeDrawer();

@@ -1,0 +1,13 @@
+<!-- <p4ba-daily-lectures-list [viewDate]="viewDate"></p4ba-daily-lectures-list> -->
+<div class="dialog-header">
+  <button mat-button (click)="prevDay()">
+    <fa-icon icon="angle-left"></fa-icon>
+  </button>
+  <h3>{{ viewDate | date:"EEEE d.M.yy" }}</h3>
+  <button mat-button (click)="nextDay()">
+    <fa-icon icon="angle-right"></fa-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <p4ba-daily-lectures-list [viewDate]="viewDate"></p4ba-daily-lectures-list>
+</div>

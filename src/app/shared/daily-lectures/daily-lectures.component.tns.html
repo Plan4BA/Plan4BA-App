@@ -1,0 +1,12 @@
+<ActionBar class="action-bar" [title]="viewDate | date:'EEEE d.M.yy'">
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" (tap)="back()"></NavigationButton>
+    <ActionItem (tap)="prevDay()">
+        <Label text="&#xf104;" class="fa action-item-label p-l-15 p-r-15"></Label>
+    </ActionItem>
+    <ActionItem (tap)="nextDay()">
+        <Label text="&#xf105;" class="fa action-item-label p-l-15 p-r-15"></Label>
+    </ActionItem>
+</ActionBar>
+<StackLayout class="page" (swipe)="onSwipe($event)">
+    <p4ba-daily-lectures-list [viewDate]="viewDate"></p4ba-daily-lectures-list>
+</StackLayout>

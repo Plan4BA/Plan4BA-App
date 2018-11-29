@@ -19,6 +19,8 @@ import { LecturesService } from './shared/lectures/lectures.service';
 import { MealsService } from './shared/meals/meals.service';
 import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
+import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -33,6 +35,8 @@ setStatusBarColors();
     LoginComponent,
     CalendarComponent,
     MonthlyCalendarComponent,
+    DailyLecturesComponent,
+    DailyLecturesListComponent,
   ],
   imports: [
     NativeScriptModule,

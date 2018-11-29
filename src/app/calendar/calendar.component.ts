@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+
+import { DailyLecturesComponent } from '../shared/daily-lectures/daily-lectures.component';
 
 @Component({
   selector: 'p4ba-calendar',
@@ -7,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog,
+    ) { }
 
   dayClickedListener(date: Date): void {
-
+    const dialogRef = this.dialog.open(DailyLecturesComponent, {data: {date}});
   }
 
 }
