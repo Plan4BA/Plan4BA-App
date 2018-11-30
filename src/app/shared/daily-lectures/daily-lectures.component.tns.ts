@@ -38,13 +38,13 @@ export class DailyLecturesComponent implements OnInit {
   prevDay(): void {
     this.viewDate.setUTCHours(0, 0, 0, 0);
     this.viewDate.setUTCDate(this.viewDate.getUTCDate() - 1);
-    this.routerExtensions.navigateByUrl('/daily?date=' + this.viewDate.getTime());
+    this.routerExtensions.navigateByUrl('/daily-lectures?date=' + this.viewDate.getTime());
   }
 
   nextDay(): void {
     this.viewDate.setUTCHours(0, 0, 0, 0);
     this.viewDate.setUTCDate(this.viewDate.getUTCDate() + 1);
-    this.routerExtensions.navigateByUrl('/daily?date=' + this.viewDate.getTime());
+    this.routerExtensions.navigateByUrl('/daily-lectures?date=' + this.viewDate.getTime());
   }
 
   onSwipe(args: SwipeGestureEventData) {

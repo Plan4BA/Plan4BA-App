@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
       // this.route.data.subscribe didn't work
       this.drawerComponent.sideDrawer.gesturesEnabled
         = !event.urlAfterRedirects.includes('/login')
-        && !event.urlAfterRedirects.includes('/daily');
+        && !event.urlAfterRedirects.includes('/daily-lectures');
       this._activatedUrl = event.urlAfterRedirects;
     });
 

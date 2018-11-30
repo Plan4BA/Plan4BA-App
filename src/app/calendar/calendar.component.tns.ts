@@ -11,7 +11,7 @@ export class CalendarComponent {
   constructor(private routerExtensions: RouterExtensions) {}
 
   dayClickedListener(date: Date): void {
-    this.routerExtensions.navigateByUrl('/daily?date=' + date.getTime());
+    this.routerExtensions.navigateByUrl('/daily-lectures?date=' + date.getTime());
   }
 
 }
