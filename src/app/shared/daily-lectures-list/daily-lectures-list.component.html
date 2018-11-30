@@ -1,3 +1,8 @@
-<p>
-  daily-lectures-list works!
-</p>
+<mat-list>
+  <mat-list-item *ngFor="let lecture of filteredLectures">
+    <h3 matLine>{{ lecture.description }}</h3>
+    <p matLine>{{ lecture.start * 1000 | date:'shortTime' }} to {{ lecture.end * 1000 | date:'shortTime' }}</p>
+    <p matLine>Lecturer: {{ lecture.instructor }}</p>
+    <p matLine>Room: {{ lecture.room }}</p>
+  </mat-list-item>
+</mat-list>

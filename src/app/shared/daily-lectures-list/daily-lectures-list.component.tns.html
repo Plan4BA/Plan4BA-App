@@ -1,1 +1,11 @@
-<Button text="daily-lectures-list works!" class="btn btn-primary"></Button>
+
+<ListView [items]="filteredLectures">
+    <ng-template let-lecture="item" let-i="index" let-odd="odd" let-even="even">
+        <StackLayout [class.odd]="odd" [class.even]="even">
+            <Label [text]="lecture.description" class="list-heading"></Label>
+            <Label [text]="(lecture.start * 1000 | date:'shortTime') + ' to ' + (lecture.end * 1000 | date:'shortTime')"></Label>
+            <Label [text]="'Lecturer: ' + lecture.instructor"></Label>
+            <Label [text]="'Room: ' + lecture.room"></Label>
+        </StackLayout>
+    </ng-template>
+</ListView>
