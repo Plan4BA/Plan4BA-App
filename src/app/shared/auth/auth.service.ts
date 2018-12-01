@@ -108,7 +108,7 @@ export class AuthService {
           refreshAuthTokenSub.unsubscribe();
           return this.handleErrors(error);
         })
-      ).subscribe();
+      ).subscribe(() => refreshAuthTokenSub.unsubscribe());
     }
   }
 
