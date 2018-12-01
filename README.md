@@ -8,21 +8,33 @@ It's using the [Code-Sharing] support of NativeScript with Angular. This allows 
 Follow the [installation guide](https://docs.nativescript.org/angular/start/quick-setup) at the nativescript documentation.
 
 - [Node.js](https://nodejs.org/en/download/) and npm (included in the Node.js installation)
-- [Nativescript CLI](https://github.com/NativeScript/nativescript-cli) with `npm install -g nativescript`
-- [iOS or Android requirements](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements)
+- [Nativescript CLI](https://github.com/NativeScript/nativescript-cli) with `npm install -g nativescript` (only for mobile development)
+- [iOS or Android requirements](https://docs.nativescript.org/angular/start/quick-setup#step-3-install-ios-and-android-requirements) (only for mobile development)
 - [Angular CLI](https://github.com/angular/angular-cli) (recommended) with `npm install -g @angular/cli`
+
+## Preparation
+
+### General Preparation
+
+Before running anyting, you have to install the dependencies by running `npm install` in the root directory of this project.
+
+### Prepare for Web
+
+To send api requests to the backend, you can use the [integrated proxy](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) of the angular cli development server. This is necessary, because the browser tries to prevent XSS-Attacks. You can configure the target address for the proxy in the proxy.conf.json file. Remember to start the development server with the `--proxy-config` as described in "Run for Web" to activate the integrated proxy.
+
+### Prepare for Mobile
+
+To send api requests from the phone, you need to set the address of the api server in the environment.tns.ts file. The api server has to be accessible from your mobile phone. If you host a local api server on your computer, you have to make sure your phone is in the same network and the firewall of your computer isn't blocking the port of the api server.
 
 ## Run
 
 ### Run for Web
 
-You can run a development web server with the Angular CLI using `ng serve`.
-To send api requests to the backend, you can use the [integrated proxy](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md). This is necessary, because the browser tries to prevent XSS-Attacks. After writing the address of the api server to the proxy.conf.json file, you can start the development web server with the proxy by executing `ng serve --proxy-config proxy.conf.json`.
+You can run a development web server with the Angular CLI using `ng serve`. If you want to use the integrated proxy of the angular cli development server, as mentioned in "Prepare for Web", you need to run `ng serve --proxy-config proxy.conf.json`.
 
 ### Run for Mobile
 
 You can run the app on an iOS or Android device using `tns run ios --bundle` or `tns run android --bundle`.
-To send api requests from the phone, you need to set the address of the api server in the environment.tns.ts file.
 
 ## Build
 
