@@ -33,6 +33,9 @@ export class DailyLecturesListComponent implements OnInit {
   }
 
   filterLecturesByDate(lectures: Lecture[], date: Date): Lecture[] {
+    if (!lectures) {
+      return [];
+    }
     const dateTimestamp = date.getTime();
     const nextDay = new Date(date.getTime());
     nextDay.setUTCDate(nextDay.getUTCDate() + 1);

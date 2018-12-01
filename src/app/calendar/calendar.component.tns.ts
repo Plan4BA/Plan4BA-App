@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { RouterExtensions } from 'nativescript-angular';
 
+import { SidenavService } from '../shared/sidenav/sidenav.service';
+
 @Component({
   selector: 'p4ba-calendar',
   templateUrl: './calendar.component.html',
@@ -8,7 +10,10 @@ import { RouterExtensions } from 'nativescript-angular';
 })
 export class CalendarComponent {
 
-  constructor(private routerExtensions: RouterExtensions) {}
+  constructor(
+    private routerExtensions: RouterExtensions,
+    private sidenavService: SidenavService,
+    ) {}
 
   dayClickedListener(date: Date): void {
     this.routerExtensions.navigateByUrl('/daily-lectures?date=' + date.getTime());

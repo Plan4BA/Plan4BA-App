@@ -58,7 +58,7 @@ export class LecturesService {
     return this.http.get<Lecture[]>(
       environment.apiUrl + 'lectures',
       { headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       } }
     )
     .pipe(
@@ -76,7 +76,7 @@ export class LecturesService {
   private isDataValid(data: Lecture[]): boolean {
     return !!data
       && Array.isArray(data)
-      && data.filter((lecture: Lecture) => {
+      && data.every((lecture: Lecture) => {
         return !!lecture
           && Number.isInteger(lecture.id)
           && typeof lecture.title === 'string'
@@ -91,7 +91,7 @@ export class LecturesService {
           && typeof lecture.remarks === 'string'
           && typeof lecture.exam === 'boolean'
           && Number.isInteger(lecture.userId);
-      }).length === data.length;
+      });
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
