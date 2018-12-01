@@ -43,7 +43,7 @@ export class LecturesService {
 
     this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn) {
-        this.loadData().subscribe(() => {});
+        const loadDataSubscription = this.loadData().subscribe(() => loadDataSubscription.unsubscribe());
       } else {
         this.data.next(null);
       }

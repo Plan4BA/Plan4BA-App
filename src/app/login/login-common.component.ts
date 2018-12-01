@@ -31,15 +31,17 @@ export class LoginCommonComponent {
       return;
     }
     this.isAuthenticating = true;
-    this.authService.login(this.username, this.password)
+    const loginSub = this.authService.login(this.username, this.password)
       .subscribe(
         () => {
           this.isAuthenticating = false;
+          loginSub.unsubscribe();
           this.router.navigate(['/']);
         },
         (error) => {
           // status code 401 means "unauthorized"
           this.isAuthenticating = false;
+          loginSub.unsubscribe();
           if (error.status === 401) {
             alert('The combination of username and password don\'t match an account.');
           } else {

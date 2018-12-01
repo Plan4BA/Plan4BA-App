@@ -86,7 +86,7 @@ export class AuthService {
     if (!this.refreshTokenRunning && this.isTokenDataValid(this._refreshTokenData.getValue())) {
       this.refreshTokenRunning = true;
       this._authTokenData.next(null);
-      this.http.get<TokenData>(
+      const refreshAuthTokenSub = this.http.get<TokenData>(
         environment.apiUrl + 'token',
         { headers: {
           'Content-Type': 'application/json',
@@ -96,6 +96,7 @@ export class AuthService {
       .pipe(
         map((tokenData: TokenData) => {
           this.refreshTokenRunning = false;
+          refreshAuthTokenSub.unsubscribe();
           if (!this.isTokenDataValid(tokenData)) {
             throw new Error('Received token data is not valid!');
           }
@@ -104,6 +105,7 @@ export class AuthService {
         tap((tokenData: TokenData) => this._authTokenData.next(tokenData)),
         catchError(error => {
           this.refreshTokenRunning = false;
+          refreshAuthTokenSub.unsubscribe();
           return this.handleErrors(error);
         })
       ).subscribe();
