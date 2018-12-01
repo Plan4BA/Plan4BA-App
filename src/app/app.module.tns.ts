@@ -5,6 +5,7 @@ import { NativeScriptUICalendarModule } from 'nativescript-ui-calendar/angular';
 import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NgShadowModule } from 'nativescript-ng-shadow';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-cale
 import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
+import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -49,6 +51,7 @@ setStatusBarColors();
   ],
   providers: [
     AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     SidenavService,
     LecturesService,
     MealsService,

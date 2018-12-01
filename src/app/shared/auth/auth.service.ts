@@ -1,57 +1,69 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
-import { tap, catchError, filter, map } from 'rxjs/operators';
+import { tap, catchError, filter, map, switchMap } from 'rxjs/operators';
 import * as  base64 from 'base-64';
 import * as utf8 from 'utf8';
 
 import { environment } from '../../../environments/environment';
 import { getString, setString, removeString } from '../data-store-util/data-store-util';
-import { LoginData } from './login-data.model';
+import { TokenData } from './token-data.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private storageKey = 'login';
-  private data: BehaviorSubject<LoginData>;
+  private _isLoggedIn: BehaviorSubject<boolean>;
+  private storageKeyLogin = 'login';
+  private _refreshTokenData: BehaviorSubject<TokenData>;
+  private _authTokenData: BehaviorSubject<TokenData>;
+  private refreshTokenRunning = false;
 
   constructor(
     private http: HttpClient,
     ) {
     // load data from storage
-    let initialData: LoginData;
+    let initialRefreshTokenData: TokenData;
     try {
-      const storedData: LoginData = JSON.parse(getString(this.storageKey));
-      if (this.isDataValid(storedData)) {
-        initialData = storedData;
+      const storedRefreshData: TokenData = JSON.parse(getString(this.storageKeyLogin));
+      if (this.isTokenDataValid(storedRefreshData)) {
+        initialRefreshTokenData = storedRefreshData;
       }
     } catch (error) {
       console.log(JSON.stringify(error));
     }
-    this.data = new BehaviorSubject<LoginData>(initialData);
+    this._refreshTokenData = new BehaviorSubject<TokenData>(initialRefreshTokenData);
+    this._authTokenData = new BehaviorSubject<TokenData>(null);
+    this._isLoggedIn = new BehaviorSubject<boolean>(!!initialRefreshTokenData);
 
-    this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
-        setString(this.storageKey, JSON.stringify(data));
+    this._refreshTokenData.subscribe(refreshTokenData => {
+      if (this.isTokenDataValid(refreshTokenData)) {
+        this._isLoggedIn.next(true);
+        setString(this.storageKeyLogin, JSON.stringify(refreshTokenData));
+        this.refreshAuthToken();
       } else {
-        removeString(this.storageKey);
+        this._isLoggedIn.next(false);
+        removeString(this.storageKeyLogin);
+        this._authTokenData.next(null);
       }
     });
   }
 
-  getData(): BehaviorSubject<LoginData> {
-    return this.data;
+  get isLoggedIn(): BehaviorSubject<boolean> {
+    return this._isLoggedIn;
   }
 
-  isLoggedIn(): boolean {
-    const loginData = this.data.getValue();
-    return this.isDataValid(loginData);
+  get refreshTokenData(): BehaviorSubject<TokenData> {
+    return this._refreshTokenData;
   }
 
-  login(username: string, password: string): Observable<LoginData|HttpErrorResponse> {
-    return this.http.get<LoginData>(
+  get authTokenData(): BehaviorSubject<TokenData> {
+    return this._authTokenData;
+  }
+
+  login(username: string, password: string): Observable<TokenData|HttpErrorResponse> {
+    return this.http.get<TokenData>(
       environment.apiUrl + 'login',
       { headers: {
         'Content-Type': 'application/json',
@@ -59,28 +71,56 @@ export class AuthService {
       } }
     )
     .pipe(
-      map((data: LoginData) => {
-        if (!this.isDataValid(data)) {
+      map((refreshTokenData: TokenData) => {
+        if (!this.isTokenDataValid(refreshTokenData)) {
           throw new Error('Received login data is not valid!');
         }
-        return data;
+        return refreshTokenData;
       }),
-      tap((data: LoginData) => this.data.next(data)),
+      tap((refreshTokenData: TokenData) => this._refreshTokenData.next(refreshTokenData)),
       catchError(this.handleErrors)
     );
   }
 
-  logout(): void {
-    this.data.next(undefined);
+  refreshAuthToken() {
+    if (!this.refreshTokenRunning && this.isTokenDataValid(this._refreshTokenData.getValue())) {
+      this.refreshTokenRunning = true;
+      this._authTokenData.next(null);
+      this.http.get<TokenData>(
+        environment.apiUrl + 'token',
+        { headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._refreshTokenData.getValue().token}`
+        } }
+      )
+      .pipe(
+        map((tokenData: TokenData) => {
+          this.refreshTokenRunning = false;
+          if (!this.isTokenDataValid(tokenData)) {
+            throw new Error('Received token data is not valid!');
+          }
+          return tokenData;
+        }),
+        tap((tokenData: TokenData) => this._authTokenData.next(tokenData)),
+        catchError(error => {
+          this.refreshTokenRunning = false;
+          return this.handleErrors(error);
+        })
+      ).subscribe();
+    }
   }
 
-  private isDataValid(data: LoginData): boolean {
-    return !!data
-      && typeof data.token === 'string'
-      && Number.isInteger(data.userId)
-      && typeof data.calDavToken === 'boolean'
-      && Number.isInteger(data.validTo)
-      && data.validTo > (new Date()).getTime();
+  logout(): void {
+    this._refreshTokenData.next(null);
+  }
+
+  private isTokenDataValid(tokenData: TokenData): boolean {
+    return !!tokenData
+      && typeof tokenData.token === 'string'
+      && Number.isInteger(tokenData.userId)
+      && typeof tokenData.calDavToken === 'boolean'
+      && Number.isInteger(tokenData.validTo)
+      && tokenData.validTo > (new Date()).getTime();
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {

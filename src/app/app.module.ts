@@ -16,7 +16,7 @@ import {
   MatInputModule,
   MatDialogModule,
 } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -35,6 +35,7 @@ import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-cale
 import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
+import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee, faAngleLeft, faAngleRight);
@@ -77,6 +78,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
   ],
   providers: [
     AuthService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     SidenavService,
     LecturesService,
     MealsService,

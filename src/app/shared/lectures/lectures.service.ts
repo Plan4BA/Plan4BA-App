@@ -7,6 +7,7 @@ import { getString, removeString, setString } from '../data-store-util/data-stor
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Lecture } from './lecture.model';
+import { TokenData } from '../auth/token-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +41,11 @@ export class LecturesService {
       }
     });
 
-    this.authService.getData().subscribe((loginData) => {
-      if (loginData) {
-        this.loadData(loginData.token).subscribe(() => {});
+    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn) {
+        this.loadData().subscribe(() => {});
       } else {
-        this.data.next(undefined);
+        this.data.next(null);
       }
     });
   }
@@ -53,12 +54,11 @@ export class LecturesService {
     return this.data;
   }
 
-  loadData(authToken: string): Observable<Lecture[]|HttpErrorResponse> {
+  loadData(): Observable<Lecture[]|HttpErrorResponse> {
     return this.http.get<Lecture[]>(
       environment.apiUrl + 'lectures',
       { headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authToken}`
       } }
     )
     .pipe(

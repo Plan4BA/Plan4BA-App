@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Meal } from './meal.model';
 import { Food } from './food.model';
+import { TokenData } from '../auth/token-data.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,11 +42,11 @@ export class MealsService {
       }
     });
 
-    this.authService.getData().subscribe((loginData) => {
-      if (loginData) {
-        this.loadData(loginData.token).subscribe(() => {});
+    this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
+      if (isLoggedIn) {
+        this.loadData().subscribe(() => {});
       } else {
-        this.data.next(undefined);
+        this.data.next(null);
       }
     });
   }
@@ -54,12 +55,11 @@ export class MealsService {
     return this.data;
   }
 
-  loadData(authToken: string): Observable<Meal[]|HttpErrorResponse> {
+  loadData(): Observable<Meal[]|HttpErrorResponse> {
     return this.http.get<Meal[]>(
       environment.apiUrl + 'meals',
       { headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authToken}`
       } }
     )
     .pipe(
