@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+
 import { LecturesService } from '../lectures/lectures.service';
 import { Lecture } from '../lectures/lecture.model';
 
@@ -10,6 +11,8 @@ import { Lecture } from '../lectures/lecture.model';
 export class DailyLecturesListComponent implements OnInit {
 
   private _viewDate: Date;
+  @Output() tapEvent = new EventEmitter<any>();
+  @Output() swipeEvent = new EventEmitter<any>();
 
   filteredLectures: Lecture[];
 
@@ -27,6 +30,10 @@ export class DailyLecturesListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this._viewDate) {
+      this._viewDate = new Date();
+      this._viewDate.setUTCHours(0, 0, 0, 0);
+    }
     this.lecturesService.getData().subscribe((lectures: Lecture[]) => {
       this.filteredLectures = this.filterLecturesByDate(lectures, this.viewDate);
     });

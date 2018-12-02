@@ -8,5 +8,5 @@
     </ActionItem>
 </ActionBar>
 <StackLayout class="page" (swipe)="onSwipe($event)">
-    <p4ba-daily-lectures-list [viewDate]="viewDate"></p4ba-daily-lectures-list>
+    <p4ba-daily-lectures-list [viewDate]="viewDate" (swipeEvent)="onSwipe($event)"></p4ba-daily-lectures-list>
 </StackLayout>
