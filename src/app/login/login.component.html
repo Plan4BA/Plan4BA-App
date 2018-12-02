@@ -17,6 +17,18 @@
             </mat-form-field>
           </td>
         </tr>
+        <tr class="store-hash-row">
+          <td>
+            <mat-checkbox [(ngModel)]="storeHash" name="storeHash">Hash speichern</mat-checkbox>
+            <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
+          </td>
+        </tr>
+        <tr class="info-text-row">
+          <td>
+            <span class="info-text">Benutze deinen Campus Dual Login</span>
+            <mat-icon (click)="openLoginInfoDialog()">help</mat-icon>
+          </td>
+        </tr>
       </table>
     </form>
     <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>

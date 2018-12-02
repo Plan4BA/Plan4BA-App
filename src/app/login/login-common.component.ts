@@ -11,6 +11,7 @@ export class LoginCommonComponent {
   // username and password will be set with forms
   username = '';
   password = '';
+  storeHash = false;
 
   constructor(
     protected authService: AuthService,
@@ -31,7 +32,7 @@ export class LoginCommonComponent {
       return;
     }
     this.isAuthenticating = true;
-    const loginSub = this.authService.login(this.username, this.password)
+    const loginSub = this.authService.login(this.username, this.password, this.storeHash)
       .subscribe(
         () => {
           this.isAuthenticating = false;

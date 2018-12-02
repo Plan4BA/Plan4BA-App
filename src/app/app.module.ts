@@ -15,6 +15,7 @@ import {
   MatCardModule,
   MatInputModule,
   MatDialogModule,
+  MatCheckboxModule,
 } from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +41,8 @@ import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-l
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
+import { StoreHashInfoComponent } from './shared/store-hash-info/store-hash-info.component';
+import { LoginInfoComponent } from './shared/login-info/login-info.component';
 
 registerLocaleData(localeDe);
 
@@ -58,9 +61,13 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     DailyLecturesListComponent,
     MealsComponent,
     DailyMealsListComponent,
+    StoreHashInfoComponent,
+    LoginInfoComponent,
   ],
   entryComponents: [
     DailyLecturesComponent,
+    StoreHashInfoComponent,
+    LoginInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +85,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     MatCardModule,
     MatInputModule,
     MatDialogModule,
+    MatCheckboxModule,
     HttpClientModule,
     CalendarModule.forRoot({
       provide: DateAdapter,

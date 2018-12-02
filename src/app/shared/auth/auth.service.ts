@@ -62,11 +62,12 @@ export class AuthService {
     return this._authTokenData;
   }
 
-  login(username: string, password: string): Observable<TokenData|HttpErrorResponse> {
+  login(username: string, password: string, storeHash: boolean): Observable<TokenData|HttpErrorResponse> {
     return this.http.get<TokenData>(
       environment.apiUrl + 'login',
       { headers: {
         'Content-Type': 'application/json',
+        'StoreHash': storeHash ? 'true' : 'false',
         'Authorization': 'Basic ' + base64.encode(utf8.encode(`${username}:${password}`))
       } }
     )

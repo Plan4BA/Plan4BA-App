@@ -27,6 +27,8 @@ import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-l
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
+import { StoreHashInfoComponent } from './shared/store-hash-info/store-hash-info.component';
+import { LoginInfoComponent } from './shared/login-info/login-info.component';
 
 registerLocaleData(localeDe);
 
@@ -47,6 +49,8 @@ setStatusBarColors();
     DailyLecturesListComponent,
     MealsComponent,
     DailyMealsListComponent,
+    StoreHashInfoComponent,
+    LoginInfoComponent,
   ],
   imports: [
     NativeScriptModule,
