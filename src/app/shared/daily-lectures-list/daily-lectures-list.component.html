@@ -1,8 +1,8 @@
 <mat-list>
   <mat-list-item *ngFor="let lecture of filteredLectures">
     <h3 matLine>{{ lecture.description }}</h3>
-    <p matLine>{{ lecture.start * 1000 | date:'shortTime' }} to {{ lecture.end * 1000 | date:'shortTime' }}</p>
-    <p matLine>Lecturer: {{ lecture.instructor }}</p>
-    <p matLine>Room: {{ lecture.room }}</p>
+    <p matLine>{{ lecture.start * 1000 | date:'shortTime' }} bis {{ lecture.end * 1000 | date:'shortTime' }}</p>
+    <p matLine>Dozent: {{ lecture.instructor }}</p>
+    <p matLine>Raum: {{ lecture.room }}</p>
   </mat-list-item>
 </mat-list>

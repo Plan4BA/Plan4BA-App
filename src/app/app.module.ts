@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -20,6 +20,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -36,6 +38,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
+
+registerLocaleData(localeDe);
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee, faAngleLeft, faAngleRight);
@@ -79,6 +83,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    { provide: LOCALE_ID, useValue: 'de-DE' },
     SidenavService,
     LecturesService,
     MealsService,

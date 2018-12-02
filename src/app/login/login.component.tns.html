@@ -3,12 +3,12 @@
         <Image src="~/assets/logo.png" stretch="none" class="logo"></Image>
 
         <StackLayout class="input-field">
-            <TextField class="input" hint="Username" autocorrect="false" autocapitalizationType="none" [(ngModel)]="username" returnKeyType="next" (returnPress)="focusPassword()"></TextField>
+            <TextField class="input" hint="Benutzername" autocorrect="false" autocapitalizationType="none" [(ngModel)]="username" returnKeyType="next" (returnPress)="focusPassword()"></TextField>
             <StackLayout class="hr-light"></StackLayout>
         </StackLayout>
 
         <StackLayout class="input-field">
-            <TextField #passwordField class="input" hint="Password" secure="true" [(ngModel)]="password" returnKeyType="done" (returnPress)="login()"></TextField>
+            <TextField #passwordField class="input" hint="Passwort" secure="true" [(ngModel)]="password" returnKeyType="done" (returnPress)="login()"></TextField>
             <StackLayout class="hr-light"></StackLayout>
         </StackLayout>
 

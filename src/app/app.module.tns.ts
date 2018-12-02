@@ -1,4 +1,4 @@
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
 import { NativeScriptUICalendarModule } from 'nativescript-ui-calendar/angular';
@@ -6,6 +6,8 @@ import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
 import { NgShadowModule } from 'nativescript-ng-shadow';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
+
+registerLocaleData(localeDe);
 
 // Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
 // import { NativeScriptHttpClientModule } from 'nativescript-angular/http-client';
@@ -52,6 +56,7 @@ setStatusBarColors();
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    { provide: LOCALE_ID, useValue: 'de-DE' },
     SidenavService,
     LecturesService,
     MealsService,

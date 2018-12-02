@@ -14,15 +14,15 @@ export class AppComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
   navItems = [
     {
-      label: 'Home',
+      label: 'Dashboard',
       url: '/home'
     },
     {
-      label: 'Calendar',
+      label: 'Kalender',
       url: '/calendar'
     },
     {
-      label: 'Settings',
+      label: 'Einstellungen',
       url: '/settings'
     },
   ];
