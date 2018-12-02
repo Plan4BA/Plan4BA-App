@@ -28,13 +28,15 @@ export class HomeComponent implements OnInit {
     this.today.setUTCHours(0, 0, 0, 0);
 
     this.mealsService.getData().subscribe((meals: Meal[]) => {
-      const todaysMealsData = meals.find((meal: Meal) => {
-        const mealDay = new Date(meal.day);
-        mealDay.setUTCHours(0, 0, 0, 0);
-        return mealDay.getTime() === this.today.getTime();
-      });
-      if (todaysMealsData) {
-        this.todaysMeals = todaysMealsData.meals;
+      if (meals) {
+        const todaysMealsData = meals.find((meal: Meal) => {
+          const mealDay = new Date(meal.day);
+          mealDay.setUTCHours(0, 0, 0, 0);
+          return mealDay.getTime() === this.today.getTime();
+        });
+        if (todaysMealsData) {
+          this.todaysMeals = todaysMealsData.meals;
+        }
       }
     });
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MealsService } from '../shared/meals/meals.service';
+import { SidenavService } from '../shared/sidenav/sidenav.service';
 
 @Component({
   selector: 'p4ba-meals',
@@ -10,6 +11,7 @@ import { MealsService } from '../shared/meals/meals.service';
 export class MealsComponent implements OnInit {
 
   constructor(
+    private sidenavService: SidenavService,
     private mealsService: MealsService,
   ) { }
 
