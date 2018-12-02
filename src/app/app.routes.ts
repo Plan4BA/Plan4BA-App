@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './shared/auth-guard/auth.guard';
 import { CalendarComponent } from './calendar/calendar.component';
+import { MealsComponent } from './meals/meals.component';
 
 
 export const authProviders = [
@@ -25,6 +26,11 @@ export const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'meals',
+    component: MealsComponent,
     canActivate: [AuthGuard],
   },
   {

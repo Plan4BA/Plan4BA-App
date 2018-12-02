@@ -16,6 +16,10 @@
           <Label col="0" text="&#xf073;" class="fa"></Label>
           <Label col="1" text="Kalender" class="p-r-10"></Label>
         </GridLayout>
+        <GridLayout columns="auto, *" class="sidedrawer-list-item" [class.selected]="isComponentSelected('/meals')" (tap)="onNavItemTap('/meals')">
+          <Label col="0" text="&#xf2e7;" class="fa"></Label>
+          <Label col="1" text="Essen" class="p-r-10"></Label>
+        </GridLayout>
 
         <StackLayout class="hr-light"></StackLayout>
 

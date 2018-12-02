@@ -1,0 +1,11 @@
+<mat-list>
+  <mat-list-item *ngFor="let meal of dailyMeals">
+    <h3 matLine>{{ meal.description }}</h3>
+    <p matLine>{{ meal.prices }}</p>
+    <p *ngIf="meal.vegetarian" matLine>Vegetarisch</p>
+    <p *ngIf="meal.vegan" matLine>Vegan</p>
+    <p *ngIf="meal.additionalInformation.length > 0" matLine>{{ meal.additionalInformation }}</p>
+  </mat-list-item>
+</mat-list>
+<h3 *ngIf="dailyMeals.length === 0">Kein Essen</h3>
+  

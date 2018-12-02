@@ -25,6 +25,8 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
+import { MealsComponent } from './meals/meals.component';
+import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
 
 registerLocaleData(localeDe);
 
@@ -43,6 +45,8 @@ setStatusBarColors();
     MonthlyCalendarComponent,
     DailyLecturesComponent,
     DailyLecturesListComponent,
+    MealsComponent,
+    DailyMealsListComponent,
   ],
   imports: [
     NativeScriptModule,

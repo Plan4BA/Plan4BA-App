@@ -1,0 +1,4 @@
+<div *ngFor="let dailyMealData of mealsService.getData().getValue()">
+    <h2>{{ dailyMealData.day | date:'EEEE d.M.yy' }}</h2>
+    <p4ba-daily-meals-list [dailyMeals]="dailyMealData.meals"></p4ba-daily-meals-list>
+</div>
