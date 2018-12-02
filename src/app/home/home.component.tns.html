@@ -13,8 +13,9 @@
     <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="sidenavService.open.emit()" ios.position="left"></ActionItem>
     <ActionItem icon="res://icon" android:visibility="collapsed" ios.position="left"></ActionItem>
 </ActionBar>
-<StackLayout  class="page p-20">
-    <!-- placeholder content -->
-    <Label text="Welcome to {{ title }}!" class="h1 text-center" textWrap="true"></Label>
-    <Label text="&#xf0f4;" class="fa"></Label>
+<StackLayout class="page p-20">
+    <Label class="dashboard-heading" text="Vorlesungen heute"></Label>
+    <p4ba-daily-lectures-list (tapEvent)="openLectures()" [viewDate]="today"></p4ba-daily-lectures-list>
+    <Label class="dashboard-heading" text="Essen heute"></Label>
+    <p4ba-daily-meals-list [dailyMeals]="todaysMeals" (tapEvent)="openMeals()"></p4ba-daily-meals-list>
 </StackLayout>

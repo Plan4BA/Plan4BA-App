@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
+import { RouterExtensions } from 'nativescript-angular';
 
 import { SidenavService } from '../shared/sidenav/sidenav.service';
-import { DailyLecturesComponent } from '../shared/daily-lectures/daily-lectures.component';
 import { MealsService } from '../shared/meals/meals.service';
 import { Meal } from '../shared/meals/meal.model';
 import { Food } from '../shared/meals/food.model';
@@ -20,8 +18,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private sidenavService: SidenavService,
-    private dialog: MatDialog,
-    private router: Router,
+    private routerExtensions: RouterExtensions,
     private mealsService: MealsService,
   ) {
     this.today = new Date();
@@ -40,11 +37,11 @@ export class HomeComponent implements OnInit {
   }
 
   openLectures(): void {
-    const dialogRef = this.dialog.open(DailyLecturesComponent, {data: {date: this.today}});
+    this.routerExtensions.navigateByUrl('/daily-lectures?date=' + this.today.getTime());
   }
 
   openMeals(): void {
-    this.router.navigateByUrl('/meals');
+    this.routerExtensions.navigateByUrl('/meals');
   }
 
   ngOnInit() {

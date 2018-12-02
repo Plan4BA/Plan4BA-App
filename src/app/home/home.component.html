@@ -1,7 +1,4 @@
-<!-- placeholder content -->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<fa-icon icon="coffee"></fa-icon>
+<h2>Vorlesungen heute</h2>
+<p4ba-daily-lectures-list (click)="openLectures()" [viewDate]="today"></p4ba-daily-lectures-list>
+<h2>Essen heute</h2>
+<p4ba-daily-meals-list [dailyMeals]="todaysMeals" (click)="openMeals()"></p4ba-daily-meals-list>
