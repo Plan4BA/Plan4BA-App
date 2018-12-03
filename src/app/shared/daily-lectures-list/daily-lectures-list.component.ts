@@ -6,7 +6,7 @@ import { Lecture } from '../lectures/lecture.model';
 @Component({
   selector: 'p4ba-daily-lectures-list',
   templateUrl: './daily-lectures-list.component.html',
-  styleUrls: ['./daily-lectures-list.component.css']
+  styleUrls: ['./daily-lectures-list.component.scss']
 })
 export class DailyLecturesListComponent implements OnInit {
 

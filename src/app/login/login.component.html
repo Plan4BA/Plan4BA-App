@@ -1,39 +1,23 @@
 <mat-card role="region" class="login-card">
-  <img mat-card-image src="./assets/logo.png" class="logo" alt="Plan4BA Logo">
   <mat-card-content>
+    <img mat-card-image src="./assets/images/logo.png" class="logo" alt="Plan4BA Logo">
     <form #loginForm="ngForm">
-      <table cellspacing="0">
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="Benutzername" [(ngModel)]="username" name="username" id="username" autofocus required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <mat-form-field>
-              <input matInput placeholder="Passwort" [(ngModel)]="password" type="password" name="password" id="password" required>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr class="store-hash-row">
-          <td>
-            <mat-checkbox [(ngModel)]="storeHash" name="storeHash">Hash speichern</mat-checkbox>
-            <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
-          </td>
-        </tr>
-        <tr class="info-text-row">
-          <td>
-            <span class="info-text">Benutze deinen Campus Dual Login</span>
-            <mat-icon (click)="openLoginInfoDialog()">help</mat-icon>
-          </td>
-        </tr>
-      </table>
+      <mat-form-field>
+        <input matInput placeholder="Benutzername" [(ngModel)]="username" name="username" id="username" autofocus required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Passwort" [(ngModel)]="password" type="password" name="password" id="password" required>
+      </mat-form-field>
+      <div class="store-hash-row">
+        <mat-checkbox [(ngModel)]="storeHash" name="storeHash">Hash speichern</mat-checkbox>
+        <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
+      </div>
+      <div class="info-text-row">
+        <span class="info-text">Benutze deinen Campus Dual Login</span>
+        <mat-icon (click)="openLoginInfoDialog()">help</mat-icon>
+      </div>
     </form>
     <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
-  </mat-card-content>
-  <mat-card-actions>
     <button mat-raised-button (click)="login()" color="primary">Login</button>
-  </mat-card-actions>
+  </mat-card-content>
 </mat-card>

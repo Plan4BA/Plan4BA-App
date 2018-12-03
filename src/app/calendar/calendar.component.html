@@ -1,1 +1,15 @@
-<p4ba-monthly-calendar (dayClicked)="dayClickedListener($event)"></p4ba-monthly-calendar>
+<mat-card>
+    <mat-card-content>
+        <div class="month-selection-header">
+            <button mat-button class="arrow-left" (click)="prevMonth()">
+                <fa-icon icon="angle-left"></fa-icon>
+            </button>
+            <h3>{{ viewDate | date:"LLLL yyyy" }}</h3>
+            <button mat-button class="arrow-right" (click)="nextMonth()">
+                <fa-icon icon="angle-right"></fa-icon>
+            </button>
+        </div>
+        <p4ba-monthly-calendar (dayClicked)="dayClickedListener($event)" [viewDate]="viewDate"></p4ba-monthly-calendar>
+    </mat-card-content>
+</mat-card>
+

@@ -2,21 +2,8 @@ import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee, faAngleLeft, faAngleRight, faLeaf } from '@fortawesome/free-solid-svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatSidenavModule,
-  MatToolbarModule,
-  MatListModule,
-  MatIconModule,
-  MatButtonModule,
-  MatProgressSpinnerModule,
-  MatFormFieldModule,
-  MatCardModule,
-  MatInputModule,
-  MatDialogModule,
-  MatCheckboxModule,
-} from '@angular/material';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -43,15 +30,24 @@ import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
 import { StoreHashInfoComponent } from './shared/store-hash-info/store-hash-info.component';
 import { LoginInfoComponent } from './shared/login-info/login-info.component';
+import { MaterialModule } from './material-module';
+import { SpinnerComponent } from './shared/spinner.component';
+import { AppHeaderComponent } from './layouts/full/header/header.component';
+import { FullComponent } from './layouts/full/full.component';
+import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
+import { MenuItems } from './shared/menu-items/menu-items';
 
 registerLocaleData(localeDe);
 
 // Add an icon to the library for convenient access in other components
-library.add(faCoffee, faAngleLeft, faAngleRight);
+library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
 
 @NgModule({
   declarations: [
     AppComponent,
+    FullComponent,
+    AppHeaderComponent,
+    AppSidebarComponent,
     HomeComponent,
     SettingsComponent,
     LoginComponent,
@@ -63,6 +59,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     DailyMealsListComponent,
     StoreHashInfoComponent,
     LoginInfoComponent,
+    SpinnerComponent,
   ],
   entryComponents: [
     DailyLecturesComponent,
@@ -73,19 +70,9 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    MaterialModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatProgressSpinnerModule,
-    MatCardModule,
-    MatInputModule,
-    MatDialogModule,
-    MatCheckboxModule,
     HttpClientModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
@@ -100,6 +87,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight);
     LecturesService,
     MealsService,
     authProviders,
+    MenuItems,
   ],
   bootstrap: [AppComponent]
 })

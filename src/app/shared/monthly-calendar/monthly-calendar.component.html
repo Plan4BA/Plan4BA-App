@@ -1,16 +1,5 @@
-<div>
-  <div class="month-selection-header">
-    <button mat-button class="arrow-left" (click)="prevMonth()">
-      <fa-icon icon="angle-left"></fa-icon>
-    </button>
-    <h3>{{ viewDate | date:"LLLL yyyy" }}</h3>
-    <button mat-button class="arrow-right" (click)="nextMonth()">
-      <fa-icon icon="angle-right"></fa-icon>
-    </button>
-  </div>
-  <mwl-calendar-month-view
-  [viewDate]="viewDate"
-  [events]="events"
-  weekStartsOn="1"
-  (dayClicked)="dayClickedListener($event)"></mwl-calendar-month-view>
-</div>
+<mwl-calendar-month-view
+[viewDate]="viewDate"
+[events]="events"
+weekStartsOn="1"
+(dayClicked)="dayClickedListener($event)"></mwl-calendar-month-view>

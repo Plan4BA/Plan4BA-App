@@ -5,7 +5,7 @@ import { Food } from '../meals/food.model';
 @Component({
   selector: 'p4ba-daily-meals-list',
   templateUrl: './daily-meals-list.component.html',
-  styleUrls: ['./daily-meals-list.component.css']
+  styleUrls: ['./daily-meals-list.component.scss']
 })
 export class DailyMealsListComponent implements OnInit {
 

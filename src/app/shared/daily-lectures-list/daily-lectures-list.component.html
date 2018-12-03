@@ -1,4 +1,4 @@
-<mat-list>
+<mat-list class="word-wrap">
   <mat-list-item *ngFor="let lecture of filteredLectures">
     <h3 matLine>{{ lecture.description }}</h3>
     <p matLine>{{ lecture.start * 1000 | date:'shortTime' }} bis {{ lecture.end * 1000 | date:'shortTime' }}</p>

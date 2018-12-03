@@ -1,4 +1,16 @@
-<div *ngFor="let dailyMealData of mealsService.getData().getValue()">
-    <h2>{{ dailyMealData.day | date:'EEEE d.M.yy' }}</h2>
-    <p4ba-daily-meals-list [dailyMeals]="dailyMealData.meals"></p4ba-daily-meals-list>
-</div>
+<mat-card class="centered">
+    <mat-card-content>
+            <mat-card-title class="left-icon"><mat-icon>restaurant</mat-icon><span>Essen</span></mat-card-title>
+    </mat-card-content>
+    <mat-list class="word-wrap">
+        <mat-card-content *ngFor="let dailyMealData of mealsService.getData().getValue()">
+            <h2 mat-subheader>{{ dailyMealData.day | date:'EEEE d.M.yy' }}</h2>
+            <mat-list-item *ngFor="let meal of dailyMealData.meals">
+              <h3 matLine>{{ meal.description }}</h3>
+              <p matLine>{{ meal.prices }}</p>
+              <fa-icon *ngIf="meal.vegetarian || meal.vegan" icon="leaf" [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"></fa-icon>
+              <p *ngIf="meal.additionalInformation.length > 0" matLine>{{ meal.additionalInformation }}</p>
+            </mat-list-item>
+        </mat-card-content>
+    </mat-list>
+</mat-card>

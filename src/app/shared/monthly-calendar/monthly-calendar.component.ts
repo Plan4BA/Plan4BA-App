@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 
 import { LecturesService } from '../lectures/lectures.service';
@@ -11,7 +11,7 @@ import { Lecture } from '../lectures/lecture.model';
 })
 export class MonthlyCalendarComponent {
   events: CalendarEvent[] = [];
-  viewDate: Date = new Date();
+  @Input() viewDate: Date = new Date();
   @Output() dayClicked = new EventEmitter<Date>();
 
   constructor(
@@ -51,16 +51,6 @@ export class MonthlyCalendarComponent {
   dayClickedListener(event): void {
     this.viewDate = event.day.date;
     this.dayClicked.emit(event.day.date);
-  }
-
-  prevMonth(): void {
-    this.viewDate.setUTCMonth(this.viewDate.getUTCMonth() - 1);
-    this.viewDate = new Date(this.viewDate.getTime());
-  }
-
-  nextMonth(): void {
-    this.viewDate.setUTCMonth(this.viewDate.getUTCMonth() + 1);
-    this.viewDate = new Date(this.viewDate.getTime());
   }
 
 }
