@@ -12,7 +12,7 @@ export class MealsComponent implements OnInit {
 
   constructor(
     private sidenavService: SidenavService,
-    private mealsService: MealsService,
+    public mealsService: MealsService,
   ) { }
 
   ngOnInit() {
