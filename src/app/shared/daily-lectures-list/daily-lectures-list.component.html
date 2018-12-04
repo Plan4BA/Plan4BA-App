@@ -1,9 +1,9 @@
 <mat-list class="word-wrap">
   <mat-list-item *ngFor="let lecture of filteredLectures">
     <h3 matLine>{{ lecture.description }}</h3>
-    <p matLine>{{ lecture.start * 1000 | date:'shortTime' }} bis {{ lecture.end * 1000 | date:'shortTime' }}</p>
-    <p matLine>Dozent: {{ lecture.instructor }}</p>
-    <p matLine>Raum: {{ lecture.room }}</p>
+    <p matLine class="text-muted">{{ lecture.start * 1000 | date:'shortTime' }} bis {{ lecture.end * 1000 | date:'shortTime' }}</p>
+    <p matLine class="text-muted">Dozent: {{ lecture.instructor }}</p>
+    <p matLine class="text-muted">Raum: {{ lecture.room }}</p>
   </mat-list-item>
 </mat-list>
 <h3 *ngIf="filteredLectures.length === 0">Keine Vorlesungen</h3>

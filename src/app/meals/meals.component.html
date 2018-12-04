@@ -7,9 +7,9 @@
             <h2 mat-subheader>{{ dailyMealData.day | date:'EEEE d.M.yy' }}</h2>
             <mat-list-item *ngFor="let meal of dailyMealData.meals">
               <h3 matLine>{{ meal.description }}</h3>
-              <p matLine>{{ meal.prices }}</p>
+              <p matLine class="text-muted">{{ meal.prices }}</p>
               <fa-icon *ngIf="meal.vegetarian || meal.vegan" icon="leaf" [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"></fa-icon>
-              <p *ngIf="meal.additionalInformation.length > 0" matLine>{{ meal.additionalInformation }}</p>
+              <p *ngIf="meal.additionalInformation.length > 0" matLine class="text-muted">{{ meal.additionalInformation }}</p>
             </mat-list-item>
         </mat-card-content>
     </mat-list>
