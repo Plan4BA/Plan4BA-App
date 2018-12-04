@@ -3,6 +3,94 @@
 @import "angular-calendar/css/angular-calendar.css";
 /* You can add global styles to this file, and also import other style files */
 
+// app - global
+
 body {
     margin: 0;
 }
+
+// app - mat-card
+
+.mat-card {
+    .mat-card-title.left-icon {
+        display: flex;
+        flex-direction: row;
+
+        span {
+            padding-left: 10px;
+        }
+    }
+
+    .mat-list.word-wrap {
+        .mat-list-item {
+            height:initial!important;
+            margin-bottom: 20px;
+    
+            h3, p {
+                word-wrap: break-word;
+                white-space: pre-wrap;
+            }
+        }
+    }
+}
+
+// own styles
+
+
+// header - topbar
+
+mat-toolbar{
+    .navbar-header {
+        .navbar-brand {
+            .light-logo {
+                width: 50px;
+            }
+            .dark-logo {
+                width: 50px;
+            }
+
+            span {
+                color: white;
+            }
+        }
+    }
+}
+@media(max-width: 767px) {
+    mat-toolbar{
+        .navbar-header {
+            .navbar-brand {
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.topbar {
+    position: fixed;
+    top: 0px;
+}
+
+// pages - main-container
+
+
+html .page-wrapper{
+    height:calc(100vh - 64px);
+    .page-content{
+        padding: 0px;
+    }
+}
+
+.main-container {
+    position: absolute;
+    top: 64px;
+}
+
+
+// @media(min-width: 660) {
+// html .page-wrapper{
+//     .page-content{
+//         padding: 15px;
+//     }
+// }

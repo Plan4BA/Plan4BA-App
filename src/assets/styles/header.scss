@@ -23,28 +23,15 @@ mat-toolbar{
             line-height: 18px;
             
             align-items: center;
-  
-            .light-logo {
-                width: 50px;
-            }
-            
             .dark-logo {
-                width: 50px;
                 display: none;
+
             }
             b {
                margin-right: 5px;
             }
             img{
                 
-            }
-            span {
-                color: white;
-            }
-            @media(max-width: 659px) {
-                span {
-                    display: none;
-                }
             }
         }
     }

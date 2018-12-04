@@ -927,7 +927,7 @@ Mat card
         margin: 0 0px 0px 0px;
     }
     .mat-card-header{
-        padding: 16px;
+        padding: 12px;
         border-radius: $radius $radius 0 0;
         .mat-card-title{
             margin-bottom: 2px;
@@ -958,40 +958,6 @@ Mat card
         margin: 0px!important;
     }
 }
-
-// own styles
-
-.mat-card {
-    .mat-card-title.left-icon {
-        display: flex;
-        flex-direction: row;
-
-        span {
-            padding-left: 10px;
-        }
-    }
-
-    .mat-list.word-wrap {
-        .mat-list-item {
-            height:initial!important;
-            margin-bottom: 20px;
-    
-            h3, p {
-                word-wrap: break-word;
-                white-space: pre-wrap;
-            }
-        }
-    }
-}
-
-@media(min-width: 660px) {
-    mat-card.centered {
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
 
 /*******************
 Grid
