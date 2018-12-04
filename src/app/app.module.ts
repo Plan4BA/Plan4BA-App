@@ -35,6 +35,7 @@ import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { FullComponent } from './layouts/full/full.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { MenuItems } from './shared/menu-items/menu-items';
+import { UserService } from './shared/user/user.service';
 
 registerLocaleData(localeDe);
 
@@ -85,6 +86,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     MealsService,
     authProviders,
     MenuItems,
+    UserService,
   ],
   bootstrap: [AppComponent]
 })
