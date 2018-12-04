@@ -24,10 +24,14 @@ export class LoginComponent extends LoginCommonComponent {
   }
 
   openHashHelpDialog(): void {
-    const dialogRef = this.dialog.open(StoreHashInfoComponent);
+    const dialogRef = this.dialog.open(StoreHashInfoComponent, {
+      maxWidth: 600
+    });
   }
 
   openLoginInfoDialog(): void {
-    const dialogRef = this.dialog.open(LoginInfoComponent);
+    const dialogRef = this.dialog.open(LoginInfoComponent, {
+      maxWidth: 600
+    });
   }
 }

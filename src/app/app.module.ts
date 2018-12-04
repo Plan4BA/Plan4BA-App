@@ -37,6 +37,7 @@ import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { MenuItems } from './shared/menu-items/menu-items';
 import { UserService } from './shared/user/user.service';
 import { InitialPollingService } from './shared/initial-polling/initial-polling.service';
+import { InfoTextsService } from './shared/info-texts/info-texts.service';
 
 registerLocaleData(localeDe);
 
@@ -89,6 +90,7 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     MenuItems,
     UserService,
     InitialPollingService,
+    InfoTextsService
   ],
   bootstrap: [AppComponent]
 })
