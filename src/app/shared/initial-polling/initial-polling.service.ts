@@ -28,7 +28,7 @@ export class InitialPollingService {
           duration: 20000,
           verticalPosition: 'top'
         } );
-        this.userService.loadData().pipe(
+        const userSub = this.userService.loadData().pipe(
           map((newUser: User) => {
             if (newUser.lastLecturePolling === 0 && this.retryCounter < 50) {
               this.retryCounter++;
@@ -45,8 +45,11 @@ export class InitialPollingService {
               );
           } )
         ).subscribe(() => {
-          console.log('success!');
-          this.lecturesService.loadData().subscribe(() => {
+          this.retryCounter = 0;
+          this.isPolling = false;
+          userSub.unsubscribe();
+          const lecturesSub = this.lecturesService.loadData().subscribe(() => {
+            lecturesSub.unsubscribe();
             this.snackBar.open('Der Stundenplan wurde geladen!', 'OK', {
               duration: 20000,
               verticalPosition: 'top'
