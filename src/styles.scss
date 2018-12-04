@@ -41,6 +41,8 @@ body {
 // header - topbar
 
 mat-toolbar{
+    background-color: #005bea!important;
+
     .navbar-header {
         .navbar-brand {
             .light-logo {
@@ -88,11 +90,22 @@ html .page-wrapper{
     top: 64px;
 }
 
+// responsive
 
 @media(min-width: 766px) {
     html .page-wrapper{
         .page-content{
             padding: 15px;
+        }
+    }
+}
+
+// sidebar - main sidebar
+
+#snav{
+    .mat-list-item {
+        &.selected > .mat-list-item-content > a{
+            background-color: #00c6fb;
         }
     }
 }
