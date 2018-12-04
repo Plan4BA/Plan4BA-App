@@ -34,8 +34,9 @@ body {
     }
 }
 
-// own styles
-
+.mat-snack-bar-container {
+    margin: 25px!important;
+}
 
 // header - topbar
 
@@ -88,9 +89,10 @@ html .page-wrapper{
 }
 
 
-// @media(min-width: 660) {
-// html .page-wrapper{
-//     .page-content{
-//         padding: 15px;
-//     }
-// }
+@media(min-width: 766px) {
+    html .page-wrapper{
+        .page-content{
+            padding: 15px;
+        }
+    }
+}

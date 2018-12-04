@@ -2,6 +2,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {ChangeDetectorRef, Component, OnDestroy, ViewChild} from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { Router } from '@angular/router';
+import { InitialPollingService } from './shared/initial-polling/initial-polling.service';
 
 @Component({
   selector: 'p4ba-root',
@@ -37,6 +38,7 @@ export class AppComponent implements OnDestroy {
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
     public router: Router,
+    private initialPollingService: InitialPollingService,
     ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
