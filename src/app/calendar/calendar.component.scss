@@ -1,5 +1,22 @@
-.month-selection-header {
+.arrow-selection-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .monthly-calendar {
+        min-width: 290px;
+        flex-grow: 1;
+    }
+
+    .daily-calendar {
+        min-width: 290px;
+        max-width: 400px;
+        flex-grow: 1;
+    }
 }

@@ -7,7 +7,7 @@ import { SidenavService } from '../sidenav/sidenav.service';
 @Component({
   selector: 'p4ba-daily-lectures',
   templateUrl: './daily-lectures.component.html',
-  styleUrls: ['./daily-lectures.component.css']
+  styleUrls: ['./daily-lectures.component.scss']
 })
 export class DailyLecturesComponent implements OnInit {
 

@@ -23,7 +23,6 @@ import { LecturesService } from './shared/lectures/lectures.service';
 import { MealsService } from './shared/meals/meals.service';
 import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { DailyLecturesComponent } from './shared/daily-lectures/daily-lectures.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
@@ -53,7 +52,6 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     LoginComponent,
     CalendarComponent,
     MonthlyCalendarComponent,
-    DailyLecturesComponent,
     DailyLecturesListComponent,
     MealsComponent,
     DailyMealsListComponent,
@@ -62,7 +60,6 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     SpinnerComponent,
   ],
   entryComponents: [
-    DailyLecturesComponent,
     StoreHashInfoComponent,
     LoginInfoComponent,
   ],

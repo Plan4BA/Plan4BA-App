@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
-import { DailyLecturesComponent } from '../shared/daily-lectures/daily-lectures.component';
 
 @Component({
   selector: 'p4ba-calendar',
@@ -11,13 +9,15 @@ import { DailyLecturesComponent } from '../shared/daily-lectures/daily-lectures.
 export class CalendarComponent {
 
   viewDate: Date = new Date();
+  @ViewChild('dailyCalendar') dailyCalendar;
 
   constructor(
     public dialog: MatDialog,
     ) { }
 
   dayClickedListener(date: Date): void {
-    const dialogRef = this.dialog.open(DailyLecturesComponent, {data: {date}});
+    this.viewDate = date;
+    setTimeout(() => this.dailyCalendar.nativeElement.scrollIntoView(true), 0);
   }
 
   prevMonth(): void {
@@ -27,6 +27,16 @@ export class CalendarComponent {
 
   nextMonth(): void {
     this.viewDate.setUTCMonth(this.viewDate.getUTCMonth() + 1);
+    this.viewDate = new Date(this.viewDate.getTime());
+  }
+
+  prevDay(): void {
+    this.viewDate.setUTCDate(this.viewDate.getUTCDate() - 1);
+    this.viewDate = new Date(this.viewDate.getTime());
+  }
+
+  nextDay(): void {
+    this.viewDate.setUTCDate(this.viewDate.getUTCDate() + 1);
     this.viewDate = new Date(this.viewDate.getTime());
   }
 

@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
 import { SidenavService } from '../shared/sidenav/sidenav.service';
-import { DailyLecturesComponent } from '../shared/daily-lectures/daily-lectures.component';
 import { MealsService } from '../shared/meals/meals.service';
 import { Meal } from '../shared/meals/meal.model';
 import { Food } from '../shared/meals/food.model';
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   openLectures(): void {
-    const dialogRef = this.dialog.open(DailyLecturesComponent, {data: {date: this.today}});
+    this.router.navigateByUrl('/calendar');
   }
 
   openMeals(): void {
