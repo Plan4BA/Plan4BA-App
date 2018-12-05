@@ -20,3 +20,12 @@
         flex-grow: 1;
     }
 }
+
+@media(max-width:767px) {
+    .mat-card {
+        margin: 0px;
+        .mat-card-content {
+            padding: 0px;
+        }
+    }
+}

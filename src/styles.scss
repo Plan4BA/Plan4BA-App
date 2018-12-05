@@ -80,9 +80,6 @@ mat-toolbar{
 
 html .page-wrapper{
     height:calc(100vh - 64px);
-    .page-content{
-        padding: 0px;
-    }
 }
 
 .main-container {
@@ -92,10 +89,10 @@ html .page-wrapper{
 
 // responsive
 
-@media(min-width: 766px) {
+@media(max-width:767px) {
     html .page-wrapper{
         .page-content{
-            padding: 15px;
+            padding: 0px;
         }
     }
 }
