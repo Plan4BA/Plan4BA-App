@@ -7,6 +7,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { MealsComponent } from './meals/meals.component';
 import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
+import { LinksComponent } from './links/links.component';
 
 export const authProviders = [
   AuthGuard
@@ -35,6 +36,11 @@ export const routes: Routes = [
       {
         path: 'meals',
         component: MealsComponent,
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'links',
+        component: LinksComponent,
         canActivate: [AuthGuard],
       },
       {
