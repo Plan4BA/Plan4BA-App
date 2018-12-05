@@ -8,8 +8,12 @@ import {
   Directive,
   AfterViewInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
+
 import { MenuItems } from '../../../shared/menu-items/menu-items';
+import { AuthService } from '../../../shared/auth/auth.service';
+
 @Component({
   selector: 'p4ba-sidebar',
   templateUrl: './sidebar.component.html',
@@ -23,7 +27,9 @@ export class AppSidebarComponent implements OnDestroy {
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public menuItems: MenuItems
+    public menuItems: MenuItems,
+    private authService: AuthService,
+    private router: Router,
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -32,5 +38,10 @@ export class AppSidebarComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

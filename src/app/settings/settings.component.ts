@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 
-import { AuthService } from '../shared/auth/auth.service';
 import { SidenavService } from '../shared/sidenav/sidenav.service';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user.model';
@@ -19,8 +17,6 @@ export class SettingsComponent implements OnInit {
   user: User;
 
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private sidenavService: SidenavService,
     private userService: UserService,
     private dialog: MatDialog,
@@ -39,9 +35,8 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+  pollLectures() {
+    this.initialPollingService.pollLecturesManually();
   }
 
 }
