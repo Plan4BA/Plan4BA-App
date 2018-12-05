@@ -75,4 +75,27 @@ export class SettingsComponent implements OnInit {
       }
     });
   }
+
+  pollLectures() {
+    if (this.user.hashStored) {
+      this.initialPollingService.pollLecturesManually();
+    } else {
+      const dialogRef = this.dialog.open(UserCredentialsComponent, {
+        maxWidth: 600,
+        data: {
+          title: 'Login Daten erforderlich',
+          contentText: 'Um den Stundenplan aus dem Campus Dual zu laden, sind Login Daten nötig. Um den Stundenplan zu aktualisieren ohne immer deine Daten eingeben zu müssen, kannst du die Option "Hash speichern" aktivieren.',
+          buttonName: 'Stundenplan laden',
+          buttonWarn: false
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.username && result.password) {
+          this.initialPollingService.pollLecturesManually(result.username, result.password);
+        }
+      });
+    }
+  }
+
 }
