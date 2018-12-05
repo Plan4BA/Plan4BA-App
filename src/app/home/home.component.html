@@ -7,14 +7,16 @@
         </mat-card-header> -->
         <mat-card-content>
             <mat-card-title class="left-icon"><mat-icon>calendar_today</mat-icon><span>Vorlesungen heute</span></mat-card-title>
-            <p4ba-daily-lectures-list (click)="openLectures()" [viewDate]="today"></p4ba-daily-lectures-list>
+            <mat-list class="word-wrap no-x-padding-mobile">
+                <p4ba-daily-lectures-list (click)="openLectures()" [viewDate]="today"></p4ba-daily-lectures-list>
+            </mat-list>
         </mat-card-content>
     </mat-card>
     
     <mat-card>
         <mat-card-content>
             <mat-card-title class="left-icon"><mat-icon>restaurant</mat-icon><span>Essen heute</span></mat-card-title>
-            <mat-list class="word-wrap">
+            <mat-list class="word-wrap no-x-padding-mobile">
                 <p4ba-daily-meals-list [dailyMeals]="todaysMeals" (click)="openMeals()"></p4ba-daily-meals-list>
             </mat-list>
         </mat-card-content>

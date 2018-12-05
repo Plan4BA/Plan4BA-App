@@ -4,7 +4,7 @@
   <p *ngIf="meal.vegetarian" matLine class="text-muted">Vegetarisch</p>
   <p *ngIf="meal.vegan" matLine class="text-muted">Vegan</p>
   <p *ngIf="meal.additionalInformation.length > 0" matLine class="text-muted"`>{{ meal.additionalInformation }}</p>
-  <fa-icon *ngIf="meal.vegetarian || meal.vegan" icon="leaf" [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"></fa-icon>
+  <fa-icon class="list-right-icon" *ngIf="meal.vegetarian || meal.vegan" icon="leaf" [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"></fa-icon>
 </mat-list-item>
 <mat-list-item *ngIf="dailyMeals.length === 0">
   <h3 matLine >Kein Essen</h3>
