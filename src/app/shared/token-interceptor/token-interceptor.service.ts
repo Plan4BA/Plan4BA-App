@@ -24,7 +24,8 @@ export class TokenInterceptorService {
     if (
       request.url.indexOf(environment.apiUrl + 'token') === 0
       || request.url.indexOf(environment.apiUrl + 'login') === 0
-      || request.url.indexOf(environment.apiUrl + 'info') === 0) {
+      || request.url.indexOf(environment.apiUrl + 'info') === 0
+      || request.url.indexOf(environment.apiUrl + 'user/delete') === 0) {
       return next.handle(request);
     } else {
       // this dynamic injection is required to not create a cyclic dependency

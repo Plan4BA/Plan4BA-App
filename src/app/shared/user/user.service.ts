@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
-import { BehaviorSubject, throwError, Observable } from 'rxjs';
+import { BehaviorSubject, throwError, Observable, of } from 'rxjs';
+import * as  base64 from 'base-64';
+import * as utf8 from 'utf8';
 
 import { User } from '../user/user.model';
 import { AuthService } from '../auth/auth.service';
@@ -67,6 +69,19 @@ export class UserService {
         return data;
       }),
       tap((data: User) => this.data.next(data)),
+      catchError(this.handleErrors)
+    );
+  }
+
+  delete(username: string, password: string): Observable<any|HttpErrorResponse> {
+    return this.http.delete(
+      environment.apiUrl + 'user/delete',
+      { headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + base64.encode(utf8.encode(`${username}:${password}`))
+      } }
+    )
+    .pipe(
       catchError(this.handleErrors)
     );
   }
