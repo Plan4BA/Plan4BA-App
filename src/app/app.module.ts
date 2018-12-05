@@ -38,6 +38,7 @@ import { MenuItems } from './shared/menu-items/menu-items';
 import { UserService } from './shared/user/user.service';
 import { InitialPollingService } from './shared/initial-polling/initial-polling.service';
 import { InfoTextsService } from './shared/info-texts/info-texts.service';
+import { UserCredentialsComponent } from './shared/user-credentials-dialog/user-credentials.component';
 
 registerLocaleData(localeDe);
 
@@ -61,10 +62,12 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     StoreHashInfoComponent,
     LoginInfoComponent,
     SpinnerComponent,
+    UserCredentialsComponent,
   ],
   entryComponents: [
     StoreHashInfoComponent,
     LoginInfoComponent,
+    UserCredentialsComponent,
   ],
   imports: [
     BrowserModule,
