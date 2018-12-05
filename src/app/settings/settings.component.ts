@@ -35,8 +35,4 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  pollLectures() {
-    this.initialPollingService.pollLecturesManually();
-  }
-
 }
