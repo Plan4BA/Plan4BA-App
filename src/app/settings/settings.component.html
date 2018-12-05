@@ -3,6 +3,40 @@
         <mat-card-title class="left-icon"><mat-icon>settings</mat-icon><span>Einstellungen</span></mat-card-title>
     </mat-card-content>
     <mat-card-content>
-        <button mat-raised-button color="warn" (click)="logout()">logout</button>
+        <div *ngIf="user">
+            <div class="key-value-action">
+                <div class="key-value">
+                    <span class="key">Matrikelnummer</span>
+                    <span class="value">{{user.matriculationNumber}}</span>
+                </div>
+            </div>
+            <div class="key-value-action">
+                <div class="key-value">
+                    <span class="key">Seminargruppe</span>
+                    <span class="value">{{user.group}}</span>
+                </div>
+            </div>
+            <div class="key-value-action">
+                <div class="key-value">
+                    <span class="key">Berufsakademie</span>
+                    <span class="value">{{user.university}}</span>
+                </div>
+            </div>
+            <div class="key-value-action">
+                <div class="key-value">
+                    <span class="key">Hash gespeichert</span>
+                    <span class="value">{{user.hashStored ? 'ja' : 'nein'}}</span>
+                </div>
+                <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
+            </div>
+            <div class="key-value-action">
+                <div class="key-value">
+                    <span class="key">Letzter Abruf Stundenplan</span>
+                    <span class="value">{{user.lastLectureCall | date:'medium'}}</span>
+                </div>
+                    <!-- <button mat-raised-button (click)="pollLectures()">Jetzt abrufen</button> -->
+            </div>
+        </div>
+        <button mat-raised-button color="warn" (click)="logout()">Logout</button>
     </mat-card-content>
 </mat-card>
