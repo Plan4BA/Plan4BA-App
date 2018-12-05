@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MealsService } from '../shared/meals/meals.service';
 import { SidenavService } from '../shared/sidenav/sidenav.service';
+import { Meal } from '../shared/meals/meal.model';
 
 @Component({
   selector: 'p4ba-meals',
@@ -10,10 +11,18 @@ import { SidenavService } from '../shared/sidenav/sidenav.service';
 })
 export class MealsComponent implements OnInit {
 
+  mealsData: Meal[] = [];
+
   constructor(
     private sidenavService: SidenavService,
-    public mealsService: MealsService,
-  ) { }
+    private mealsService: MealsService,
+  ) {
+    this.mealsService.getData().subscribe((mealsData: Meal[]) => {
+      if (mealsData) {
+        this.mealsData = mealsData;
+      }
+    });
+  }
 
   ngOnInit() {
   }

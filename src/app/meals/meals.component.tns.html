@@ -14,7 +14,7 @@
     <ActionItem icon="res://icon" android:visibility="collapsed" ios.position="left"></ActionItem>
 </ActionBar>
 <StackLayout class="page p-20">
-    <StackLayout *ngFor="let dailyMealData of mealsService.getData().getValue()">
+    <StackLayout *ngFor="let dailyMealData of mealsData">
         <Label [text]="dailyMealData.day | date:'EEEE d.M.yy'" class="date-heading"></Label>
         <p4ba-daily-meals-list [dailyMeals]="dailyMealData.meals"></p4ba-daily-meals-list>
     </StackLayout>
