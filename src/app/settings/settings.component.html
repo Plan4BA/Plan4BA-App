@@ -36,6 +36,14 @@
                 </div>
                 <button mat-raised-button (click)="pollLectures()">{{ 'settings.refresh' | translate}}</button>
             </div>
+            <div class="key-action">
+                <span class="key">{{ 'settings.language' | translate}}</span>
+                <mat-select class="action" [(value)]="selectedLang">
+                    <mat-option *ngFor="let selectableLang of selectableLangs" [value]="selectableLang">
+                        {{ ('languages.' + selectableLang) | translate }}
+                    </mat-option>
+                </mat-select>
+            </div>
         </div>
         <button mat-raised-button color="warn" (click)="deleteUser()">{{ 'settings.deleteUserdata' | translate}}</button>
     </mat-card-content>

@@ -51,8 +51,13 @@ export class AppComponent implements OnDestroy {
 
     translate.addLangs(['en', 'de']);
     translate.setDefaultLang('de');
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|de/) ? browserLang : 'de');
+    let usedLang = localStorage.getItem('usedLanguage');
+    if (!usedLang || !usedLang.match(/en|de/)) {
+      const browserLang = translate.getBrowserLang();
+      usedLang = browserLang.match(/en|de/) ? browserLang : 'de';
+    }
+    translate.use(usedLang);
+    localStorage.setItem('usedLanguage', usedLang);
   }
 
   ngOnDestroy(): void {

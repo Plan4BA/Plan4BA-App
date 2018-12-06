@@ -1,3 +1,9 @@
+<mat-select class="action lang-select" [(value)]="selectedLang">
+  <mat-option *ngFor="let selectableLang of selectableLangs" [value]="selectableLang">
+    {{ ('languages.' + selectableLang) | translate }}
+  </mat-option>
+</mat-select>
+
 <mat-card role="region" class="login-card">
   <mat-card-content>
     <div class="logo">

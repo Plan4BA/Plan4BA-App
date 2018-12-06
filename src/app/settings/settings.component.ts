@@ -18,6 +18,8 @@ import { UserCredentialsComponent } from '../shared/user-credentials-dialog/user
 })
 export class SettingsComponent implements OnInit {
 
+  selectableLangs;
+  _selectedLang;
   user: User;
 
   constructor(
@@ -31,6 +33,17 @@ export class SettingsComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.userService.getData().subscribe((user: User) => this.user = user);
+    this.selectedLang = localStorage.getItem('usedLanguage') || 'de';
+    this.selectableLangs = this.translate.getLangs();
+  }
+
+  get selectedLang(): string {
+    return this._selectedLang;
+  }
+
+  set selectedLang(lang: string) {
+    this.translate.use(lang);
+    this._selectedLang = lang;
   }
 
   ngOnInit() {

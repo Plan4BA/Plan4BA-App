@@ -8,9 +8,19 @@
     background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
 }
 
-mat-card {
+.lang-select {
+    position: absolute;
+    width: 100px;
+    background-color: white;
+    padding: 10px;
+    top: 0px;
+    right: 0px;
+}
+
+.login-card {
     max-width: 320px;
     margin: 30px;
+    margin-top: 70px;
 }
 
 .logo {

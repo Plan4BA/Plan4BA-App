@@ -17,6 +17,9 @@ export class LoginComponent {
 
   private _isAuthenticating = false;
 
+  selectableLangs;
+  _selectedLang;
+
   // username and password will be set with forms
   username = '';
   password = '';
@@ -28,7 +31,10 @@ export class LoginComponent {
     private router: Router,
     private dialog: MatDialog,
     private translate: TranslateService,
-    ) { }
+  ) {
+      this.selectedLang = localStorage.getItem('usedLanguage') || 'de';
+      this.selectableLangs = this.translate.getLangs();
+  }
 
   get isAuthenticating(): boolean {
     return this._isAuthenticating;
@@ -36,6 +42,15 @@ export class LoginComponent {
 
   set isAuthenticating(isAuthenticating: boolean) {
     this._isAuthenticating = isAuthenticating;
+  }
+
+  get selectedLang(): string {
+    return this._selectedLang;
+  }
+
+  set selectedLang(lang: string) {
+    this.translate.use(lang);
+    this._selectedLang = lang;
   }
 
   login() {
