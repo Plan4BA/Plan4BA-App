@@ -1,4 +1,5 @@
 <mat-list-item *ngFor="let lecture of filteredLectures">
+  <div mat-list-icon [style.background-color]="lecture.color"></div>
   <h3 matLine>{{ lecture.description }}</h3>
   <p matLine class="text-muted">{{ lecture.start * 1000 | date:'shortTime' }} bis {{ lecture.end * 1000 | date:'shortTime' }}</p>
   <p matLine class="text-muted">Dozent: {{ lecture.instructor }}</p>
