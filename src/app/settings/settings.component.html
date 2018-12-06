@@ -1,42 +1,42 @@
 <mat-card>
     <mat-card-content>
-        <mat-card-title class="left-icon"><mat-icon>settings</mat-icon><span>Einstellungen</span></mat-card-title>
+        <mat-card-title class="left-icon"><mat-icon>settings</mat-icon><span>{{ 'settings.settings' | translate}}</span></mat-card-title>
     </mat-card-content>
     <mat-card-content>
         <div *ngIf="user">
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">Matrikelnummer</span>
+                    <span class="key">{{ 'settings.matriculationNumber' | translate}}</span>
                     <span class="value">{{user.matriculationNumber}}</span>
                 </div>
             </div>
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">Seminargruppe</span>
+                    <span class="key">{{ 'settings.tutorialGroup' | translate}}</span>
                     <span class="value">{{user.group}}</span>
                 </div>
             </div>
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">Berufsakademie</span>
+                    <span class="key">{{ 'settings.university' | translate}}</span>
                     <span class="value">{{user.university}}</span>
                 </div>
             </div>
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">Hash gespeichert</span>
-                    <span class="value">{{user.hashStored ? 'ja' : 'nein'}}</span>
+                    <span class="key">{{ 'settings.credentialsStored' | translate}}</span>
+                    <span class="value">{{(user.hashStored ? 'settings.yes' : 'settings.no') | translate}}</span>
                 </div>
                 <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
             </div>
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">Letzter Abruf Stundenplan</span>
+                    <span class="key">{{ 'settings.lastLecturePolling' | translate}}</span>
                     <span class="value">{{user.lastLectureCall | date:'medium'}}</span>
                 </div>
-                <button mat-raised-button (click)="pollLectures()">Aktualisieren</button>
+                <button mat-raised-button (click)="pollLectures()">{{ 'settings.refresh' | translate}}</button>
             </div>
         </div>
-        <button mat-raised-button color="warn" (click)="deleteUser()">Benutzerdaten löschen</button>
+        <button mat-raised-button color="warn" (click)="deleteUser()">{{ 'settings.deleteUserdata' | translate}}</button>
     </mat-card-content>
 </mat-card>

@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { switchMap, catchError, map, shareReplay, retryWhen, mergeMap, finalize, tap, delayWhen } from 'rxjs/operators';
 import * as  base64 from 'base-64';
 import * as utf8 from 'utf8';
+import { TranslateService } from '@ngx-translate/core';
 
 import { LecturesService } from '../lectures/lectures.service';
 import { UserService } from '../user/user.service';
@@ -25,6 +26,7 @@ export class InitialPollingService {
     private userService: UserService,
     private snackBar: MatSnackBar,
     private http: HttpClient,
+    private translate: TranslateService,
   ) {
     this.userService.getData().subscribe((user: User) => {
       if (user && user.lastLecturePolling === 0) {
@@ -62,7 +64,7 @@ export class InitialPollingService {
     if (user && !this.isPolling) {
       this.isPolling = true;
       this.prevPollingDate = user.lastLecturePolling;
-      this.snackBar.open('Wir laden gerade den Stundenplan aus dem Campus Dual. Das kann durchaus eine Minute dauern.', 'OK', {
+      this.snackBar.open(this.translate.instant('pollingService.startPollingLectures'), 'OK', {
         duration: 20000,
         verticalPosition: 'top'
       } );
@@ -88,7 +90,7 @@ export class InitialPollingService {
         userSub.unsubscribe();
         const lecturesSub = this.lecturesService.loadData().subscribe(() => {
           lecturesSub.unsubscribe();
-          this.snackBar.open('Der Stundenplan wurde geladen!', 'OK', {
+          this.snackBar.open(this.translate.instant('pollingService.lecturesPollingFinished'), 'OK', {
             duration: 20000,
             verticalPosition: 'top'
           } );

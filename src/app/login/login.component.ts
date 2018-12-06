@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
+import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/auth/auth.service';
 import { alert } from '../shared/dialog-util/dialog-util';
@@ -26,6 +27,7 @@ export class LoginComponent {
     private authService: AuthService,
     private router: Router,
     private dialog: MatDialog,
+    private translate: TranslateService,
     ) { }
 
   get isAuthenticating(): boolean {
@@ -38,11 +40,11 @@ export class LoginComponent {
 
   login() {
     if (!this.username || !this.password) {
-      alert('Please enter a username and a password!');
+      alert(this.translate.instant('errorMessages.usernamePasswordRequired'));
       return;
     }
     if (!this.acceptPrivacy) {
-      alert('Please accept the privacy conditions!');
+      alert(this.translate.instant('errorMessages.acceptingPrivacyPolicyRequired'));
       return;
     }
     this.isAuthenticating = true;
@@ -58,9 +60,9 @@ export class LoginComponent {
           this.isAuthenticating = false;
           loginSub.unsubscribe();
           if (error.status === 401) {
-            alert('The combination of username and password don\'t match an account.');
+            alert(this.translate.instant('errorMessages.usernamePasswordNotMatching'));
           } else {
-            alert('An unknown error occured while trying to log in.');
+            alert(this.translate.instant('errorMessages.unknownError'));
           }
         }
       );

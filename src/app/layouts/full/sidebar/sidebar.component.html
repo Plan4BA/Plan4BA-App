@@ -7,7 +7,7 @@
     <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected">
         <a class="" appAccordionToggle [routerLink]="['/', menuitem.state]" *ngIf="menuitem.type === 'link'">
             <mat-icon>{{ menuitem.icon }}</mat-icon> 
-            <span>{{ menuitem.name }}</span> 
+            <span>{{ menuitem.translationKey | translate }}</span> 
             <span fxFlex></span> 
             <span class="label label-{{ badge.type }}" *ngFor="let badge of menuitem.badge">{{ badge.value }}</span> 
         </a>
@@ -20,7 +20,7 @@
         border-radius: 4px;
         color: #ffffff;">
             <mat-icon style="color: #ffffff;">{{ 'exit_to_app' }}</mat-icon> 
-            <span>{{ 'Logout' }}</span> 
+            <span>{{ 'menuItems.logout' | translate }}</span> 
             <span fxFlex></span>
         </a>
     

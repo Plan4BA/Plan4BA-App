@@ -1,0 +1,80 @@
+{
+    "login": {
+        "iAcceptPrivacyPolicy": "I accept the privacy policiy",
+        "privacyPolicy": "Privacy policiy",
+        "storeCredentials": "Store credentials",
+        "useYourCDLogin": "Please use your campus dual credentials",
+        "password": "Password",
+        "username": "Username",
+        "login": "Login"
+    },
+    "errorMessages": {
+        "usernamePasswordRequired": "Username and password are required!",
+        "acceptingPrivacyPolicyRequired": "You need to accept the privacy policy!",
+        "usernamePasswordNotMatching": "The combination of username and password does not match!",
+        "unknownError": "An unknown error occured!"
+    },
+    "home": {
+        "lecturesToday": "Today's lectures",
+        "mealsToday": "Today's meals"
+    },
+    "menuItems": {
+        "logout": "Logout",
+        "dashboard": "Dashboard",
+        "calendar": "Calendar",
+        "meals": "Meals",
+        "settings": "Settings"
+    },
+    "meals": {
+        "meals": "Meals",
+        "emptyMenu": "The menu is empty."
+    },
+    "settings": {
+        "settings": "Settings",
+        "matriculationNumber": "Matriculation number",
+        "tutorialGroup": "Tutorial group",
+        "university": "University",
+        "credentialsStored": "Credentials stored",
+        "yes": "Ja",
+        "no": "Nein",
+        "lastLecturePolling": "Last schedule fetch",
+        "refresh": "Refresh",
+        "deleteUserdata": "Delete user data",
+        "deleteUserDialog": {
+            "title": "Credentials required",
+            "contentText": "Your credentials are required to delete your user data. No data will be deleted on the servers of the campus dual system, only on the servers of the Plan4BA App.",
+            "buttonName": "Delete user data"
+        },
+        "pollLecturesDialog": {
+            "title": "Credentials required",
+            "contentText": "Credentials are required to fetch the schedule from the campus dual system. You can activate the option 'Store credentials' to refresh your schedule automatically without entering your credentials every time.",
+            "buttonName": "Fetch schedule"
+        }
+    },
+    "dailyLecturesList": {
+        "to": "to",
+        "lecturer": "Lecturer",
+        "room": "Room",
+        "noLectures": "No lectures"
+    },
+    "dailyMealsList": {
+        "vegetarian": "Vegetarian",
+        "vegan": "Vegan",
+        "noFood": "No meals"
+    },
+    "pollingService": {
+        "startPollingLectures": "We're currently fetching your schedule from the campus dual system. This may take a minute.",
+        "lecturesPollingFinished": "Your lecture was fetched!"
+    },
+    "privacyPolicyDialog": {
+        "privacyPolicy": "Privacy policy",
+        "close": "Close"
+    },
+    "storeCredentialsDialog": {
+        "storeCredentials": "Store credentials",
+        "close": "Close"
+    },
+    "userCredentialsDialog": {
+        "close": "Close"
+    }
+}

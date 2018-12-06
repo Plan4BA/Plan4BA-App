@@ -5,28 +5,28 @@
     </div>
     <form #loginForm="ngForm">
       <mat-form-field>
-        <input matInput placeholder="Benutzername" [(ngModel)]="username" name="username" id="username" autofocus required>
+        <input matInput [placeholder]="'login.username' | translate" [(ngModel)]="username" name="username" id="username" autofocus required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Passwort" [(ngModel)]="password" type="password" name="password" id="password" required>
+        <input matInput [placeholder]="'login.password' | translate" [(ngModel)]="password" type="password" name="password" id="password" required>
       </mat-form-field>
       <div class="section">
-        <span class="small-font">Benutze deinen Campus Dual Login</span>
+        <span class="small-font">{{ 'login.useYourCDLogin' | translate}}</span>
       </div>
       <div class="action-right section">
-        <mat-checkbox class="word-wrap small-font" [(ngModel)]="storeHash" name="storeHash">Anmeldedaten speichern</mat-checkbox>
+        <mat-checkbox class="word-wrap small-font" [(ngModel)]="storeHash" name="storeHash">{{ 'login.storeCredentials' | translate }}</mat-checkbox>
         <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
       </div>
       <div class="section">
         <mat-checkbox class="word-wrap small-font" [(ngModel)]="acceptPrivacy" name="acceptPrivacy">
-          <span>Ich bin mit den Datenschutzbestimmungen einverstanden</span>
+          <span>{{ 'login.iAcceptPrivacyPolicy' | translate }}</span>
         </mat-checkbox>
       </div>
       <div class="section">
-        <a (click)="openLoginInfoDialog()" class="link small-font">Datenschutzbestimmungen</a>
+        <a (click)="openLoginInfoDialog()" class="link small-font">{{ 'login.privacyPolicy' | translate }}</a>
       </div>
     </form>
     <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
-    <button mat-raised-button (click)="login()" color="primary">Login</button>
+    <button mat-raised-button (click)="login()" color="primary">{{ 'login.login' | translate }}</button>
   </mat-card-content>
 </mat-card>

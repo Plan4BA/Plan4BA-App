@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 import { SidenavService } from '../shared/sidenav/sidenav.service';
 import { UserService } from '../shared/user/user.service';
@@ -27,6 +28,7 @@ export class SettingsComponent implements OnInit {
     private initialPollingService: InitialPollingService,
     private authService: AuthService,
     private router: Router,
+    private translate: TranslateService,
   ) {
     this.userService.getData().subscribe((user: User) => this.user = user);
   }
@@ -44,9 +46,9 @@ export class SettingsComponent implements OnInit {
     const dialogRef = this.dialog.open(UserCredentialsComponent, {
       maxWidth: 600,
       data: {
-        title: 'Login Daten erforderlich',
-        contentText: 'Die Login Daten sind erforderlich, um die Benutzerdaten zu löschen. Es werden keine Daten im Campus Dual System gelöscht, nur auf den Servern der Plan4BA Anwendung.',
-        buttonName: 'Benutzerdaten löschen',
+        title: 'settings.deleteUserDialog.title',
+        contentText: 'settings.deleteUserDialog.contentText',
+        buttonName: 'settings.deleteUserDialog.buttonName',
         buttonWarn: true
       }
     });
@@ -63,7 +65,7 @@ export class SettingsComponent implements OnInit {
         },
         err => {
           if (err && err.status === 401) {
-            this.snackBar.open('Die Login Daten waren falsch.', 'OK', {
+            this.snackBar.open(this.translate.instant('errorMessages.usernamePasswordNotMatching'), 'OK', {
               duration: 5000,
               verticalPosition: 'top'
             } );
@@ -83,9 +85,9 @@ export class SettingsComponent implements OnInit {
       const dialogRef = this.dialog.open(UserCredentialsComponent, {
         maxWidth: 600,
         data: {
-          title: 'Login Daten erforderlich',
-          contentText: 'Um den Stundenplan aus dem Campus Dual zu laden, sind Login Daten nötig. Um den Stundenplan zu aktualisieren ohne immer deine Daten eingeben zu müssen, kannst du die Option "Hash speichern" aktivieren.',
-          buttonName: 'Stundenplan laden',
+          title: 'settings.pollLecturesDialog.title',
+          contentText: 'settings.pollLecturesDialog.contentText',
+          buttonName: 'settings.pollLecturesDialog.buttonName',
           buttonWarn: false
         }
       });

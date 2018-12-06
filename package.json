@@ -25,6 +25,8 @@
     "@fortawesome/angular-fontawesome": "^0.3.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
+    "@ngx-translate/core": "^10.0.2",
+    "@ngx-translate/http-loader": "^3.0.1",
     "angular-calendar": "^0.26.4",
     "base-64": "^0.1.0",
     "core-js": "^2.5.4",

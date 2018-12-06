@@ -17,7 +17,7 @@ export interface DialogParameter {
 })
 export class UserCredentialsComponent implements OnInit {
 
-  title = 'Login Daten eingeben';
+  title = '';
   contentText = '';
   buttonName = '';
   buttonWarn = false;
