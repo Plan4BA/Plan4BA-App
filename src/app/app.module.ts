@@ -39,6 +39,7 @@ import { UserService } from './shared/user/user.service';
 import { InitialPollingService } from './shared/initial-polling/initial-polling.service';
 import { InfoTextsService } from './shared/info-texts/info-texts.service';
 import { UserCredentialsComponent } from './shared/user-credentials-dialog/user-credentials.component';
+import { NotificationsService } from './shared/notifications/notifications.service';
 
 registerLocaleData(localeDe);
 
@@ -93,7 +94,8 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
     MenuItems,
     UserService,
     InitialPollingService,
-    InfoTextsService
+    InfoTextsService,
+    NotificationsService,
   ],
   bootstrap: [AppComponent]
 })
