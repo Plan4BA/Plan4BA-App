@@ -12,6 +12,7 @@ export class LoginCommonComponent {
   username = '';
   password = '';
   storeHash = false;
+  acceptPrivacy = false;
 
   constructor(
     protected authService: AuthService,
@@ -29,6 +30,10 @@ export class LoginCommonComponent {
   login() {
     if (!this.username || !this.password) {
       alert('Please enter a username and a password!');
+      return;
+    }
+    if (!this.acceptPrivacy) {
+      alert('Please accept the privacy conditions!');
       return;
     }
     this.isAuthenticating = true;

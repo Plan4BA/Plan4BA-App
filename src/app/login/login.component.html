@@ -1,6 +1,8 @@
 <mat-card role="region" class="login-card">
   <mat-card-content>
-    <img mat-card-image src="./assets/images/logo.png" class="logo" alt="Plan4BA Logo">
+    <div class="logo">
+      <img mat-card-image src="./assets/images/logo.png" alt="Plan4BA Logo">
+    </div>
     <form #loginForm="ngForm">
       <mat-form-field>
         <input matInput placeholder="Benutzername" [(ngModel)]="username" name="username" id="username" autofocus required>
@@ -8,13 +10,20 @@
       <mat-form-field>
         <input matInput placeholder="Passwort" [(ngModel)]="password" type="password" name="password" id="password" required>
       </mat-form-field>
-      <div class="store-hash-row">
-        <mat-checkbox [(ngModel)]="storeHash" name="storeHash">Hash speichern</mat-checkbox>
+      <div class="section">
+        <span class="small-font">Benutze deinen Campus Dual Login</span>
+      </div>
+      <div class="action-right section">
+        <mat-checkbox class="word-wrap small-font" [(ngModel)]="storeHash" name="storeHash">Anmeldedaten speichern</mat-checkbox>
         <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
       </div>
-      <div class="info-text-row">
-        <span class="info-text">Benutze deinen Campus Dual Login</span>
-        <mat-icon (click)="openLoginInfoDialog()">help</mat-icon>
+      <div class="section">
+        <mat-checkbox class="word-wrap small-font" [(ngModel)]="acceptPrivacy" name="acceptPrivacy">
+          <span>Ich bin mit den Datenschutzbestimmungen einverstanden</span>
+        </mat-checkbox>
+      </div>
+      <div class="section">
+        <a (click)="openLoginInfoDialog()" class="link small-font">Datenschutzbestimmungen</a>
       </div>
     </form>
     <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>

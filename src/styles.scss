@@ -145,3 +145,11 @@ mwl-calendar-week-view-hour-segment {
 .cal-month-view .cal-day-cell.cal-today {
     background-color: rgba(0, 198, 251, 0.3);
 }
+
+
+.mat-checkbox.word-wrap {
+    .mat-checkbox-label {
+        word-wrap: break-word!important;
+        white-space: pre-wrap!important;
+    }
+}
