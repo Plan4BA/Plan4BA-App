@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CalendarComponent implements AfterViewInit {
 
-  viewDate: Date = new Date();
+  viewDate: Date;
   @ViewChild('monthlyCalendar') monthlyCalendar;
   @ViewChild('dailyCalendar') dailyCalendar;
   private blockScroll = false;
@@ -18,7 +18,10 @@ export class CalendarComponent implements AfterViewInit {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    ) { }
+    ) {
+    this.viewDate = new Date();
+    this.viewDate.setUTCHours(0, 0, 0, 0);
+    }
 
   ngAfterViewInit() {
     this.route.fragment.subscribe((fragment: String) => {
