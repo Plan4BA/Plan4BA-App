@@ -1,8 +1,0 @@
-@import 'app-common';
-@import '~nativescript-theme-core/scss/platforms/index.ios';
-
-// Place any CSS rules you want to apply only on iOS here
-
-.action-bar {
-    padding-top: $status-bar-height-ios;
-}
