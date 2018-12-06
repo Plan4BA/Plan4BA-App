@@ -6,6 +6,7 @@ import { catchError, map, switchMap, filter } from 'rxjs/operators';
 import { TokenData } from '../auth/token-data.model';
 import { AuthService } from '../auth/auth.service';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import { environment } from '../../../environments/environment';
 export class TokenInterceptorService {
 
   authService: AuthService;
+  router: Router;
 
   constructor(private injector: Injector) {
   }
@@ -21,7 +23,20 @@ export class TokenInterceptorService {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (
+    if (request.url.indexOf(environment.apiUrl + 'token') === 0) {
+      return next.handle(request).pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            if (!this.router) {
+              this.router = this.injector.get(Router);
+            }
+            this.authService.logout();
+            this.router.navigate(['/login']);
+          }
+          return throwError(error);
+        })
+      );
+    } else if (
       request.headers.has('Authorization')
       || request.url.indexOf(environment.apiUrl + 'info') === 0
     ) {
