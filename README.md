@@ -20,6 +20,20 @@ You can run a development web server with the Angular CLI using `ng serve`. If y
 
 To build the web app run `ng build --prod`.
 
+## Mobile App
+
+We use [Apache Cordova](https://cordova.apache.org/) to generate mobile apps. In order to generate a mobile app, follow these steps:
+
+1. Install the cordova CLI by executing `npm install -g cordova`
+2. Create an application folder by executing `cordova create plan4BA_mobile de.ba-leipzig.plan4ba "Plan4BA"`
+3. Navigate into the folder using `cd plan4BA_mobile`
+4. Add the desired platform, for example android, by executing `cordova platform add android`
+5. In the root directory of this Angular application, run `ng build --prod --base-href . --output-path ../Plan4plan4BA_mobileBA/www/` (adjust the output path)
+6. Add `<script type=”text/javascript” src=”cordova.js”></script>` to the generated index.html file
+7. Build for your desired platform, for example android, by executing `cordova build android`
+
+For further information, read [this guide](https://medium.com/@EliaPalme/how-to-wrap-an-angular-app-with-apache-cordova-909024a25d79).
+
 ## Angular CLI auto-generated readme
 
 ### Development server
