@@ -3,7 +3,6 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 
-import { getString, removeString, setString } from '../data-store-util/data-store-util';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../auth/auth.service';
 import { Lecture } from './lecture.model';
@@ -24,7 +23,7 @@ export class LecturesService {
     // load data from storage
     let initialData: Lecture[];
     try {
-      const storedData: Lecture[] = JSON.parse(getString(this.storageKey));
+      const storedData: Lecture[] = JSON.parse(localStorage.getItem(this.storageKey));
       if (this.isDataValid(storedData)) {
         initialData = storedData;
       }
@@ -35,9 +34,9 @@ export class LecturesService {
 
     this.data.subscribe(data => {
       if (this.isDataValid(data)) {
-        setString(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
-        removeString(this.storageKey);
+        localStorage.removeItem(this.storageKey);
       }
     });
 

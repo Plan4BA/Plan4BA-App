@@ -4,7 +4,6 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 import { InfoText } from './info-text.model';
-import { getString, setString, removeString } from '../data-store-util/data-store-util';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -22,7 +21,7 @@ export class InfoTextsService {
     // load data from storage
     let initialData: InfoText[];
     try {
-      const storedData: InfoText[] = JSON.parse(getString(this.storageKey));
+      const storedData: InfoText[] = JSON.parse(localStorage.getItem(this.storageKey));
       if (this.isDataValid(storedData)) {
         initialData = storedData;
       }
@@ -38,10 +37,10 @@ export class InfoTextsService {
           (structured: any, infoText: InfoText) => ({...structured, [infoText.key]: infoText.description}),
           {}
         ));
-        setString(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
         this.structuredData.next(null);
-        removeString(this.storageKey);
+        localStorage.removeItem(this.storageKey);
       }
     });
 

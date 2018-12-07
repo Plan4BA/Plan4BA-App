@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { InfoTextsService } from '../info-texts/info-texts.service';
 
 @Component({
-  selector: 'p4ba-store-hash-info',
-  templateUrl: './store-hash-info.component.html',
-  styleUrls: ['./store-hash-info.component.css']
+  selector: 'p4ba-privacy-policy',
+  templateUrl: './privacy-policy.dialog.html',
+  styleUrls: ['./privacy-policy.dialog.css']
 })
-export class StoreHashInfoComponent implements OnInit {
+export class PrivacyPolicyDialog implements OnInit {
 
   contentText = '';
 
@@ -14,8 +14,8 @@ export class StoreHashInfoComponent implements OnInit {
     private infoTextsService: InfoTextsService
   ) {
     this.infoTextsService.getStructuredData().subscribe((infoTexts: any) => {
-        if (infoTexts && infoTexts['login.storehash']) {
-          this.contentText = infoTexts['login.storehash'];
+        if (infoTexts && infoTexts['login.privacynotice']) {
+          this.contentText = infoTexts['login.privacynotice'];
         }
       }
     );

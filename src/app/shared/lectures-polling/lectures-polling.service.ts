@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { switchMap, catchError, map, shareReplay, retryWhen, mergeMap, finalize, tap, delayWhen } from 'rxjs/operators';
-import * as  base64 from 'base-64';
-import * as utf8 from 'utf8';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LecturesService } from '../lectures/lectures.service';
@@ -15,7 +13,7 @@ import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class InitialPollingService {
+export class LecturesPollingService {
 
   private isPolling = false;
   private retryCounter = 0;
@@ -40,7 +38,7 @@ export class InitialPollingService {
       'Content-Type': 'application/json'
     };
     if (username && password) {
-      headers['Authorization'] = 'Basic ' + base64.encode(utf8.encode(`${username}:${password}`));
+      headers['Authorization'] = 'Basic ' + btoa(`${username}:${password}`);
     }
 
     const triggerSub = this.http.get(

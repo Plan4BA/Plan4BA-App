@@ -3,11 +3,10 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { SidenavService } from '../shared/sidenav/sidenav.service';
 import { UserService } from '../shared/user/user.service';
 import { User } from '../shared/user/user.model';
-import { StoreHashInfoComponent } from '../shared/store-hash-info/store-hash-info.component';
-import { InitialPollingService } from '../shared/initial-polling/initial-polling.service';
+import { StoreCredentialsInfoDialog } from '../shared/store-credentials-info/store-credentials-info.dialog';
+import { LecturesPollingService } from '../shared/lectures-polling/lectures-polling.service';
 import { AuthService } from '../shared/auth/auth.service';
 import { UserCredentialsComponent } from '../shared/user-credentials-dialog/user-credentials.component';
 
@@ -23,11 +22,10 @@ export class SettingsComponent implements OnInit {
   user: User;
 
   constructor(
-    private sidenavService: SidenavService,
     private userService: UserService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private initialPollingService: InitialPollingService,
+    private lecturesPollingService: LecturesPollingService,
     private authService: AuthService,
     private router: Router,
     private translate: TranslateService,
@@ -50,7 +48,7 @@ export class SettingsComponent implements OnInit {
   }
 
   openHashHelpDialog(): void {
-    const dialogRef = this.dialog.open(StoreHashInfoComponent, {
+    const dialogRef = this.dialog.open(StoreCredentialsInfoDialog, {
       maxWidth: 600
     });
   }
@@ -93,7 +91,7 @@ export class SettingsComponent implements OnInit {
 
   pollLectures() {
     if (this.user.hashStored) {
-      this.initialPollingService.pollLecturesManually();
+      this.lecturesPollingService.pollLecturesManually();
     } else {
       const dialogRef = this.dialog.open(UserCredentialsComponent, {
         maxWidth: 600,
@@ -107,7 +105,7 @@ export class SettingsComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.username && result.password) {
-          this.initialPollingService.pollLecturesManually(result.username, result.password);
+          this.lecturesPollingService.pollLecturesManually(result.username, result.password);
         }
       });
     }

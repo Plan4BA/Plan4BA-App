@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable, of } from 'rxjs';
-import * as  base64 from 'base-64';
-import * as utf8 from 'utf8';
 
 import { User } from '../user/user.model';
 import { AuthService } from '../auth/auth.service';
-import { getString, setString, removeString } from '../data-store-util/data-store-util';
 import { environment } from '../../../environments/environment';
 import { map, tap, catchError } from 'rxjs/operators';
 
@@ -24,7 +21,7 @@ export class UserService {
     // load data from storage
     let initialData: User;
     try {
-      const storedData: User = JSON.parse(getString(this.storageKey));
+      const storedData: User = JSON.parse(localStorage.getItem(this.storageKey));
       if (this.isDataValid(storedData)) {
         initialData = storedData;
       }
@@ -35,9 +32,9 @@ export class UserService {
 
     this.data.subscribe(data => {
       if (this.isDataValid(data)) {
-        setString(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
-        removeString(this.storageKey);
+        localStorage.removeItem(this.storageKey);
       }
     });
 
@@ -78,7 +75,7 @@ export class UserService {
       environment.apiUrl + 'user/delete',
       { headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + base64.encode(utf8.encode(`${username}:${password}`))
+        'Authorization': 'Basic ' + btoa(`${username}:${password}`)
       } }
     )
     .pipe(

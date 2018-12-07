@@ -20,7 +20,6 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { authProviders } from './app.routes';
 import { AuthService } from './shared/auth/auth.service';
-import { SidenavService } from './shared/sidenav/sidenav.service';
 import { LecturesService } from './shared/lectures/lectures.service';
 import { MealsService } from './shared/meals/meals.service';
 import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
@@ -29,8 +28,8 @@ import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-l
 import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
-import { StoreHashInfoComponent } from './shared/store-hash-info/store-hash-info.component';
-import { LoginInfoComponent } from './shared/login-info/login-info.component';
+import { StoreCredentialsInfoDialog } from './shared/store-credentials-info/store-credentials-info.dialog';
+import { PrivacyPolicyDialog } from './shared/privacy-policy/privacy-policy.dialog';
 import { MaterialModule } from './material-module';
 import { SpinnerComponent } from './shared/spinner.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
@@ -38,7 +37,7 @@ import { FullComponent } from './layouts/full/full.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { MenuItems } from './shared/menu-items/menu-items';
 import { UserService } from './shared/user/user.service';
-import { InitialPollingService } from './shared/initial-polling/initial-polling.service';
+import { LecturesPollingService } from './shared/lectures-polling/lectures-polling.service';
 import { InfoTextsService } from './shared/info-texts/info-texts.service';
 import { UserCredentialsComponent } from './shared/user-credentials-dialog/user-credentials.component';
 
@@ -66,14 +65,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     DailyLecturesListComponent,
     MealsComponent,
     DailyMealsListComponent,
-    StoreHashInfoComponent,
-    LoginInfoComponent,
+    StoreCredentialsInfoDialog,
+    PrivacyPolicyDialog,
     SpinnerComponent,
     UserCredentialsComponent,
   ],
   entryComponents: [
-    StoreHashInfoComponent,
-    LoginInfoComponent,
+    StoreCredentialsInfoDialog,
+    PrivacyPolicyDialog,
     UserCredentialsComponent,
   ],
   imports: [
@@ -100,13 +99,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
     { provide: LOCALE_ID, useValue: 'de-DE' },
-    SidenavService,
     LecturesService,
     MealsService,
     authProviders,
     MenuItems,
     UserService,
-    InitialPollingService,
+    LecturesPollingService,
     InfoTextsService
   ],
   bootstrap: [AppComponent]

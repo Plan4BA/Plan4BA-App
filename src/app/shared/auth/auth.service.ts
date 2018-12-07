@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError, filter, map, switchMap } from 'rxjs/operators';
-import * as  base64 from 'base-64';
-import * as utf8 from 'utf8';
 
 import { environment } from '../../../environments/environment';
-import { getString, setString, removeString } from '../data-store-util/data-store-util';
 import { TokenData } from './token-data.model';
 
 @Injectable({
@@ -26,7 +23,7 @@ export class AuthService {
     // load data from storage
     let initialRefreshTokenData: TokenData;
     try {
-      const storedRefreshData: TokenData = JSON.parse(getString(this.storageKeyLogin));
+      const storedRefreshData: TokenData = JSON.parse(localStorage.getItem(this.storageKeyLogin));
       if (this.isTokenDataValid(storedRefreshData)) {
         initialRefreshTokenData = storedRefreshData;
       }
@@ -40,11 +37,11 @@ export class AuthService {
     this._refreshTokenData.subscribe(refreshTokenData => {
       if (this.isTokenDataValid(refreshTokenData)) {
         this._isLoggedIn.next(true);
-        setString(this.storageKeyLogin, JSON.stringify(refreshTokenData));
+        localStorage.setItem(this.storageKeyLogin, JSON.stringify(refreshTokenData));
         this.refreshAuthToken();
       } else {
         this._isLoggedIn.next(false);
-        removeString(this.storageKeyLogin);
+        localStorage.removeItem(this.storageKeyLogin);
         this._authTokenData.next(null);
       }
     });
@@ -68,7 +65,7 @@ export class AuthService {
       { headers: {
         'Content-Type': 'application/json',
         'StoreHash': storeHash ? 'true' : 'false',
-        'Authorization': 'Basic ' + base64.encode(utf8.encode(`${username}:${password}`))
+        'Authorization': 'Basic ' + btoa(`${username}:${password}`)
       } }
     )
     .pipe(

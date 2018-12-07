@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { SidenavService } from '../shared/sidenav/sidenav.service';
 import { MealsService } from '../shared/meals/meals.service';
 import { Meal } from '../shared/meals/meal.model';
 import { Food } from '../shared/meals/food.model';
@@ -18,7 +17,6 @@ export class HomeComponent implements OnInit {
   todaysMeals: Food[] = [];
 
   constructor(
-    private sidenavService: SidenavService,
     private dialog: MatDialog,
     private router: Router,
     private mealsService: MealsService,

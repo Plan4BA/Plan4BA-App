@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/auth/auth.service';
-import { alert } from '../shared/dialog-util/dialog-util';
-import { StoreHashInfoComponent } from '../shared/store-hash-info/store-hash-info.component';
-import { LoginInfoComponent } from '../shared/login-info/login-info.component';
+import { StoreCredentialsInfoDialog } from '../shared/store-credentials-info/store-credentials-info.dialog';
+import { PrivacyPolicyDialog } from '../shared/privacy-policy/privacy-policy.dialog';
 
 @Component({
   selector: 'p4ba-login',
@@ -31,6 +30,7 @@ export class LoginComponent {
     private router: Router,
     private dialog: MatDialog,
     private translate: TranslateService,
+    private snackBar: MatSnackBar,
   ) {
       this.selectedLang = localStorage.getItem('usedLanguage') || 'de';
       this.selectableLangs = this.translate.getLangs();
@@ -55,11 +55,17 @@ export class LoginComponent {
 
   login() {
     if (!this.username || !this.password) {
-      alert(this.translate.instant('errorMessages.usernamePasswordRequired'));
+      this.snackBar.open(this.translate.instant('errorMessages.usernamePasswordRequired'), 'OK', {
+        duration: 5000,
+        verticalPosition: 'top'
+      } );
       return;
     }
     if (!this.acceptPrivacy) {
-      alert(this.translate.instant('errorMessages.acceptingPrivacyPolicyRequired'));
+      this.snackBar.open(this.translate.instant('errorMessages.acceptingPrivacyPolicyRequired'), 'OK', {
+        duration: 5000,
+        verticalPosition: 'top'
+      } );
       return;
     }
     this.isAuthenticating = true;
@@ -84,13 +90,13 @@ export class LoginComponent {
   }
 
   openHashHelpDialog(): void {
-    const dialogRef = this.dialog.open(StoreHashInfoComponent, {
+    const dialogRef = this.dialog.open(StoreCredentialsInfoDialog, {
       maxWidth: 600
     });
   }
 
   openLoginInfoDialog(): void {
-    const dialogRef = this.dialog.open(LoginInfoComponent, {
+    const dialogRef = this.dialog.open(PrivacyPolicyDialog, {
       maxWidth: 600
     });
   }

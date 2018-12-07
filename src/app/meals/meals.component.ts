@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MealsService } from '../shared/meals/meals.service';
-import { SidenavService } from '../shared/sidenav/sidenav.service';
 import { Meal } from '../shared/meals/meal.model';
 
 @Component({
@@ -14,7 +13,6 @@ export class MealsComponent implements OnInit {
   mealsData: Meal[] = [];
 
   constructor(
-    private sidenavService: SidenavService,
     private mealsService: MealsService,
   ) {
     this.mealsService.getData().subscribe((mealsData: Meal[]) => {

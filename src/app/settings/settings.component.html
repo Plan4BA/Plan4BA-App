@@ -32,7 +32,7 @@
             <div class="key-value-action">
                 <div class="key-value">
                     <span class="key">{{ 'settings.lastLecturePolling' | translate}}</span>
-                    <span class="value">{{user.lastLectureCall | date:'medium'}}</span>
+                    <span class="value">{{user.lastLecturePolling | date:'medium'}}</span>
                 </div>
                 <button mat-raised-button (click)="pollLectures()">{{ 'settings.refresh' | translate}}</button>
             </div>
