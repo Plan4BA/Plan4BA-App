@@ -50,6 +50,7 @@ export class LoginComponent {
 
   set selectedLang(lang: string) {
     this.translate.use(lang);
+    localStorage.setItem('usedLanguage', lang);
     this._selectedLang = lang;
   }
 
