@@ -42,7 +42,7 @@ import { LecturesPollingService } from './shared/data/lectures/lectures-polling.
 import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
 import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-credentials.dialog';
 import { LinksComponent } from './links/links.component';
-import { UniversityService } from './shared/university/university.service';
+import { LinksService } from './shared/data/links/link.service';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -116,7 +116,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserService,
     LecturesPollingService,
     InfoTextsService,
-    UniversityService,
+    LinksService,
   ],
   bootstrap: [AppComponent]
 })

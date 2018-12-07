@@ -23,6 +23,7 @@
         "dashboard": "Dashboard",
         "calendar": "Calendar",
         "meals": "Meals",
+        "links": "Links",
         "settings": "Settings"
     },
     "meals": {
@@ -81,5 +82,8 @@
     "languages": {
         "de": "German",
         "en": "English"
+    },
+    "links": {
+        "links": "Links"
     }
 }

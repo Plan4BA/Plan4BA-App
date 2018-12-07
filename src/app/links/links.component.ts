@@ -2,32 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { SidenavService } from '../shared/sidenav/sidenav.service';
-import { MealsService } from '../shared/meals/meals.service';
-import { Meal } from '../shared/meals/meal.model';
-import { Food } from '../shared/meals/food.model';
-import { UniversityService } from '../shared/university/university.service';
-import { University } from '../shared/university/university.model';
+import { Link } from '../shared/data/links/link.model';
+import { LinksService } from '../shared/data/links/link.service';
 
 @Component({
   selector: 'p4ba-links',
   templateUrl: './links.component.html',
   styleUrls: ['./links.component.scss'],
 })
-export class LinksComponent implements OnInit {
+export class LinksComponent {
 
-  links: {label: string, url: string}[] = [];
+  links: Link[] = [];
 
   constructor(
-    private universityService: UniversityService
+    private linksService: LinksService
   ) {
-    this.universityService.getData().subscribe((university: University) => {
-      if (university) {
-        this.links = university.links;
+    this.linksService.getData().subscribe((links: Link[]) => {
+      if (links) {
+        this.links = links;
       }
     });
-  }
-
-  ngOnInit() {
   }
 }
