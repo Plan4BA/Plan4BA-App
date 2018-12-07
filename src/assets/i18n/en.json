@@ -52,7 +52,14 @@
             "contentText": "Credentials are required to fetch the schedule from the campus dual system. You can activate the option 'Store credentials' to refresh your schedule automatically without entering your credentials every time.",
             "buttonName": "Fetch schedule"
         },
-        "language": "Language"
+        "changeStoreCredentials": {
+            "title": "Credentials required",
+            "contentText": "Credentials are required to change this setting.",
+            "storeCredentials": "Store credentials",
+            "deleteCredentials": "Delete credentials"
+        },
+        "language": "Language",
+        "change": "Change"
     },
     "dailyLecturesList": {
         "to": "to",

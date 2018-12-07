@@ -52,7 +52,14 @@
             "contentText": "Um den Stundenplan aus dem Campus Dual zu laden, sind Login Daten nötig. Um den Stundenplan zu aktualisieren ohne immer deine Daten eingeben zu müssen, kannst du die Option 'Anmeldedaten speichern' aktivieren.",
             "buttonName": "Stundenplan laden"
         },
-        "language": "Sprache"
+        "changeStoreCredentials": {
+            "title": "Login Daten erforderlich",
+            "contentText": "Um diese Einstellung zu bearbeiten, ist eine erneute Eingabe der Campus Dual Login Daten erforderlich.",
+            "storeCredentials": "Anmeldedaten speichern",
+            "deleteCredentials": "Anmeldedaten löschen"
+        },
+        "language": "Sprache",
+        "change": "Ändern"
     },
     "dailyLecturesList": {
         "to": "bis",

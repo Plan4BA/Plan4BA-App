@@ -112,4 +112,23 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  changeStoreCredentials() {
+    const dialogRef = this.dialog.open(UserCredentialsDialog, {
+      maxWidth: 600,
+      data: {
+        title: 'settings.changeStoreCredentials.title',
+        contentText: 'settings.changeStoreCredentials.contentText',
+        buttonName: 'settings.changeStoreCredentials.' + (this.user.hashStored ? 'deleteCredentials' : 'storeCredentials'),
+        buttonWarn: false
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.username && result.password) {
+        const loginSub = this.authService.login(result.username, result.password, !this.user.hashStored).subscribe(
+          () => loginSub.unsubscribe()
+        );
+      }
+    });
+  }
 }
