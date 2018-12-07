@@ -4,7 +4,7 @@ import { Observable, BehaviorSubject, throwError } from 'rxjs';
 import { map, tap, catchError } from 'rxjs/operators';
 
 import { InfoText } from './info-text.model';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -3,11 +3,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
-import { AuthService } from '../auth/auth.service';
+import { environment } from '../../../../environments/environment';
+import { AuthService } from '../../auth/auth.service';
 import { Meal } from './meal.model';
 import { Food } from './food.model';
-import { TokenData } from '../auth/token-data.model';
+import { TokenData } from '../../auth/token-data.model';
 
 @Injectable({
   providedIn: 'root'

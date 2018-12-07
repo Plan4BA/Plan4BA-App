@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoTextsService } from '../info-texts/info-texts.service';
+
+import { InfoTextsService } from '../../data/info-texts/info-texts.service';
 
 @Component({
   selector: 'p4ba-privacy-policy',
   templateUrl: './privacy-policy.dialog.html',
-  styleUrls: ['./privacy-policy.dialog.css']
+  styleUrls: ['./privacy-policy.dialog.scss']
 })
 export class PrivacyPolicyDialog implements OnInit {
 

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
 import { HomeComponent } from './home/home.component';
-import { AuthGuard } from './shared/auth-guard/auth.guard';
+import { AuthGuard } from './shared/auth/auth.guard';
 import { CalendarComponent } from './calendar/calendar.component';
 import { MealsComponent } from './meals/meals.component';
 import { SettingsComponent } from './settings/settings.component';

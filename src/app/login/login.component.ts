@@ -4,8 +4,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/auth/auth.service';
-import { StoreCredentialsInfoDialog } from '../shared/store-credentials-info/store-credentials-info.dialog';
-import { PrivacyPolicyDialog } from '../shared/privacy-policy/privacy-policy.dialog';
+import { StoreCredentialsInfoDialog } from '../shared/dialogs/store-credentials-info/store-credentials-info.dialog';
+import { PrivacyPolicyDialog } from '../shared/dialogs/privacy-policy/privacy-policy.dialog';
 
 @Component({
   selector: 'p4ba-login',

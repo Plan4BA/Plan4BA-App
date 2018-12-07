@@ -20,26 +20,26 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { authProviders } from './app.routes';
 import { AuthService } from './shared/auth/auth.service';
-import { LecturesService } from './shared/lectures/lectures.service';
-import { MealsService } from './shared/meals/meals.service';
+import { LecturesService } from './shared/data/lectures/lectures.service';
+import { MealsService } from './shared/data/meals/meals.service';
 import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
-import { TokenInterceptorService } from './shared/token-interceptor/token-interceptor.service';
+import { TokenInterceptorService } from './shared/auth/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
-import { StoreCredentialsInfoDialog } from './shared/store-credentials-info/store-credentials-info.dialog';
-import { PrivacyPolicyDialog } from './shared/privacy-policy/privacy-policy.dialog';
+import { StoreCredentialsInfoDialog } from './shared/dialogs/store-credentials-info/store-credentials-info.dialog';
+import { PrivacyPolicyDialog } from './shared/dialogs/privacy-policy/privacy-policy.dialog';
 import { MaterialModule } from './material-module';
-import { SpinnerComponent } from './shared/spinner.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
 import { FullComponent } from './layouts/full/full.component';
 import { AppSidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { MenuItems } from './shared/menu-items/menu-items';
-import { UserService } from './shared/user/user.service';
-import { LecturesPollingService } from './shared/lectures-polling/lectures-polling.service';
-import { InfoTextsService } from './shared/info-texts/info-texts.service';
-import { UserCredentialsComponent } from './shared/user-credentials-dialog/user-credentials.component';
+import { UserService } from './shared/data/user/user.service';
+import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
+import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
+import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-credentials.dialog';
 
 registerLocaleData(localeDe);
 
@@ -68,12 +68,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     StoreCredentialsInfoDialog,
     PrivacyPolicyDialog,
     SpinnerComponent,
-    UserCredentialsComponent,
+    UserCredentialsDialog,
   ],
   entryComponents: [
     StoreCredentialsInfoDialog,
     PrivacyPolicyDialog,
-    UserCredentialsComponent,
+    UserCredentialsDialog,
   ],
   imports: [
     BrowserModule,

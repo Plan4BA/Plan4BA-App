@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
-import { Food } from '../meals/food.model';
+import { Food } from '../data/meals/food.model';
 
 @Component({
   selector: 'p4ba-daily-meals-list',

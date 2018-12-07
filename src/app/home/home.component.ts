@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { MealsService } from '../shared/meals/meals.service';
-import { Meal } from '../shared/meals/meal.model';
-import { Food } from '../shared/meals/food.model';
+import { MealsService } from '../shared/data/meals/meals.service';
+import { Meal } from '../shared/data/meals/meal.model';
+import { Food } from '../shared/data/meals/food.model';
 
 @Component({
   selector: 'p4ba-home',

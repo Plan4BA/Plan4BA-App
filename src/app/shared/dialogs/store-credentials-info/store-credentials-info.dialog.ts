@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { InfoTextsService } from '../info-texts/info-texts.service';
+
+import { InfoTextsService } from '../../data/info-texts/info-texts.service';
 
 @Component({
   selector: 'p4ba-store-credentials-info',
   templateUrl: './store-credentials-info.dialog.html',
-  styleUrls: ['./store-credentials-info.dialog.css']
+  styleUrls: ['./store-credentials-info.dialog.scss']
 })
 export class StoreCredentialsInfoDialog implements OnInit {
 

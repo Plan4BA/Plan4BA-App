@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable, of } from 'rxjs';
-
-import { User } from '../user/user.model';
-import { AuthService } from '../auth/auth.service';
-import { environment } from '../../../environments/environment';
 import { map, tap, catchError } from 'rxjs/operators';
+
+import { User } from './user.model';
+import { AuthService } from '../../auth/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -72,7 +72,7 @@ export class UserService {
 
   delete(username: string, password: string): Observable<any|HttpErrorResponse> {
     return this.http.delete(
-      environment.apiUrl + 'user/delete',
+      environment.apiUrl + 'data/user/delete',
       { headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(`${username}:${password}`)

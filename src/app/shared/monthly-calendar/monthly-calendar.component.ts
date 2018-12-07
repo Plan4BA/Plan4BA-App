@@ -1,13 +1,13 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CalendarEvent } from 'angular-calendar';
 
-import { LecturesService } from '../lectures/lectures.service';
-import { Lecture } from '../lectures/lecture.model';
+import { LecturesService } from '../data/lectures/lectures.service';
+import { Lecture } from '../data/lectures/lecture.model';
 
 @Component({
   selector: 'p4ba-monthly-calendar',
   templateUrl: './monthly-calendar.component.html',
-  styleUrls: ['./monthly-calendar.component.css']
+  styleUrls: ['./monthly-calendar.component.scss']
 })
 export class MonthlyCalendarComponent {
   events: CalendarEvent[] = [];

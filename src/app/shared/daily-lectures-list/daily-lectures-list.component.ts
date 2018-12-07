@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-import { LecturesService } from '../lectures/lectures.service';
-import { Lecture } from '../lectures/lecture.model';
+import { LecturesService } from '../data/lectures/lectures.service';
+import { Lecture } from '../data/lectures/lecture.model';
 
 @Component({
   selector: 'p4ba-daily-lectures-list',

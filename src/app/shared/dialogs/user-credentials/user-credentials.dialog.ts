@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { InfoTextsService } from '../info-texts/info-texts.service';
+import { InfoTextsService } from '../../data/info-texts/info-texts.service';
 
 export interface DialogParameter {
   title: string;
@@ -12,10 +12,10 @@ export interface DialogParameter {
 
 @Component({
   selector: 'p4ba-user-credentials',
-  templateUrl: './user-credentials.component.html',
-  styleUrls: ['./user-credentials.component.scss']
+  templateUrl: './user-credentials.dialog.html',
+  styleUrls: ['./user-credentials.dialog.scss']
 })
-export class UserCredentialsComponent implements OnInit {
+export class UserCredentialsDialog implements OnInit {
 
   title = '';
   contentText = '';
@@ -25,7 +25,7 @@ export class UserCredentialsComponent implements OnInit {
   password = '';
 
   constructor(
-    public dialogRef: MatDialogRef<UserCredentialsComponent>,
+    public dialogRef: MatDialogRef<UserCredentialsDialog>,
     @Inject(MAT_DIALOG_DATA) public data: DialogParameter
     ) {
     if (data) {

@@ -3,12 +3,12 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { UserService } from '../shared/user/user.service';
-import { User } from '../shared/user/user.model';
-import { StoreCredentialsInfoDialog } from '../shared/store-credentials-info/store-credentials-info.dialog';
-import { LecturesPollingService } from '../shared/lectures-polling/lectures-polling.service';
+import { UserService } from '../shared/data/user/user.service';
+import { User } from '../shared/data/user/user.model';
+import { StoreCredentialsInfoDialog } from '../shared/dialogs/store-credentials-info/store-credentials-info.dialog';
+import { LecturesPollingService } from '../shared/data/lectures/lectures-polling.service';
 import { AuthService } from '../shared/auth/auth.service';
-import { UserCredentialsComponent } from '../shared/user-credentials-dialog/user-credentials.component';
+import { UserCredentialsDialog } from '../shared/dialogs/user-credentials/user-credentials.dialog';
 
 @Component({
   selector: 'p4ba-settings',
@@ -54,7 +54,7 @@ export class SettingsComponent implements OnInit {
   }
 
   deleteUser(): void {
-    const dialogRef = this.dialog.open(UserCredentialsComponent, {
+    const dialogRef = this.dialog.open(UserCredentialsDialog, {
       maxWidth: 600,
       data: {
         title: 'settings.deleteUserDialog.title',
@@ -93,7 +93,7 @@ export class SettingsComponent implements OnInit {
     if (this.user.hashStored) {
       this.lecturesPollingService.pollLecturesManually();
     } else {
-      const dialogRef = this.dialog.open(UserCredentialsComponent, {
+      const dialogRef = this.dialog.open(UserCredentialsDialog, {
         maxWidth: 600,
         data: {
           title: 'settings.pollLecturesDialog.title',

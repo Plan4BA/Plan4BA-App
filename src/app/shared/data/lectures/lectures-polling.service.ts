@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
+import { throwError, of, Observable, timer } from 'rxjs';
 import { switchMap, catchError, map, shareReplay, retryWhen, mergeMap, finalize, tap, delayWhen } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LecturesService } from '../lectures/lectures.service';
+import { LecturesService } from './lectures.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.model';
-import { throwError, of, Observable, timer } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

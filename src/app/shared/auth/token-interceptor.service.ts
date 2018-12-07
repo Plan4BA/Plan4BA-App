@@ -2,11 +2,11 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, switchMap, filter } from 'rxjs/operators';
-
-import { TokenData } from '../auth/token-data.model';
-import { AuthService } from '../auth/auth.service';
-import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
+
+import { TokenData } from './token-data.model';
+import { AuthService } from './auth.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

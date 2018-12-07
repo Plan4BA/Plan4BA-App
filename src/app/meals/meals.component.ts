@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MealsService } from '../shared/meals/meals.service';
-import { Meal } from '../shared/meals/meal.model';
+import { MealsService } from '../shared/data/meals/meals.service';
+import { Meal } from '../shared/data/meals/meal.model';
 
 @Component({
   selector: 'p4ba-meals',
