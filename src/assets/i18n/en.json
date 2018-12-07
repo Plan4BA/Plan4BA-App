@@ -12,7 +12,8 @@
         "usernamePasswordRequired": "Username and password are required!",
         "acceptingPrivacyPolicyRequired": "You need to accept the privacy policy!",
         "usernamePasswordNotMatching": "The combination of username and password does not match!",
-        "unknownError": "An unknown error occured!"
+        "unknownError": "An unknown error occured!",
+        "refreshPage": "Please refresh your page!"
     },
     "home": {
         "lecturesToday": "Today's lectures",
@@ -66,7 +67,7 @@
     },
     "pollingService": {
         "startPollingLectures": "We're currently fetching your schedule from the campus dual system. This may take a minute.",
-        "lecturesPollingFinished": "Your lecture was fetched!"
+        "lecturesPollingFinished": "Your schedule was fetched!"
     },
     "privacyPolicyDialog": {
         "privacyPolicy": "Privacy policy",
@@ -85,5 +86,8 @@
     },
     "links": {
         "links": "Links"
+    },
+    "notifications": {
+        "lectureChanged": "There's a change in the schedule!"
     }
 }

@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
 import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
+import { NotificationsService } from './shared/data/notifications/notifications.service';
 
 @Component({
   selector: 'p4ba-root',
@@ -14,6 +15,7 @@ export class AppComponent {
   constructor(
     private lecturesPollingService: LecturesPollingService,
     private infoTextsService: InfoTextsService,
+    private notificationsService: NotificationsService,
     translate: TranslateService,
     ) {
 
