@@ -85,7 +85,9 @@
         "close": "Schließen"
     },
     "userCredentialsDialog": {
-        "close": "Schließen"
+        "close": "Schließen",
+        "password": "Passwort",
+        "username": "Benutzername"
     },
     "languages": {
         "de": "Deutsch",
