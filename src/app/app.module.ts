@@ -41,6 +41,8 @@ import { UserService } from './shared/data/user/user.service';
 import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
 import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
 import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-credentials.dialog';
+import { LinksComponent } from './links/links.component';
+import { LinksService } from './shared/data/links/link.service';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -71,6 +73,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     PrivacyPolicyDialog,
     SpinnerComponent,
     UserCredentialsDialog,
+    LinksComponent,
   ],
   entryComponents: [
     StoreCredentialsInfoDialog,
@@ -112,7 +115,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MenuItems,
     UserService,
     LecturesPollingService,
-    InfoTextsService
+    InfoTextsService,
+    LinksService,
   ],
   bootstrap: [AppComponent]
 })
