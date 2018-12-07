@@ -72,7 +72,7 @@ export class UserService {
 
   delete(username: string, password: string): Observable<any|HttpErrorResponse> {
     return this.http.delete(
-      environment.apiUrl + 'data/user/delete',
+      environment.apiUrl + 'user/delete',
       { headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa(`${username}:${password}`)
