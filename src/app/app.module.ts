@@ -10,7 +10,8 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import localeEn from '@angular/common/locales/en';
+import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -42,6 +43,7 @@ import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
 import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-credentials.dialog';
 
 registerLocaleData(localeDe);
+registerLocaleData(localeEn);
 
 // Add an icon to the library for convenient access in other components
 library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
@@ -98,7 +100,12 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
-    { provide: LOCALE_ID, useValue: 'de-DE' },
+    { provide: LOCALE_ID,
+      useFactory: (translate: TranslateService) => {
+        return translate.currentLang;
+      },
+      deps: [TranslateService]
+    },
     LecturesService,
     MealsService,
     authProviders,
