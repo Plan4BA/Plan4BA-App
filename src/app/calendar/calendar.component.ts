@@ -28,7 +28,7 @@ export class CalendarComponent implements AfterViewInit {
       if (!this.blockScroll) {
         if (fragment === 'dailyCalendar') {
           this.dailyCalendar.nativeElement.scrollIntoView(true);
-        } else {
+        } else if (fragment === 'monthlyCalendar') {
           this.monthlyCalendar.nativeElement.scrollIntoView(true);
         }
       }
@@ -40,7 +40,7 @@ export class CalendarComponent implements AfterViewInit {
     this.viewDate = date;
     this.blockScroll = true;
     this.router.navigate([], {
-      fragment: ''
+      fragment: 'monthlyCalendar'
     });
     setTimeout(() => {
       this.blockScroll = false;
