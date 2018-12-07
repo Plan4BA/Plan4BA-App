@@ -9,6 +9,7 @@ import { LecturesService } from './lectures.service';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.model';
 import { environment } from '../../../../environments/environment';
+import { NotificationsService } from '../notifications/notifications.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class LecturesPollingService {
     private snackBar: MatSnackBar,
     private http: HttpClient,
     private translate: TranslateService,
+    private notificationsService: NotificationsService,
   ) {
     this.userService.getData().subscribe((user: User) => {
       if (user && user.lastLecturePolling === 0) {
@@ -92,6 +94,9 @@ export class LecturesPollingService {
             duration: 20000,
             verticalPosition: 'top'
           } );
+          const notificationsSub = this.notificationsService.loadData().subscribe(() => {
+            notificationsSub.unsubscribe();
+          });
         });
       });
     }
