@@ -6,7 +6,9 @@ import {
   ViewChild,
   HostListener,
   Directive,
-  AfterViewInit
+  AfterViewInit,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -20,6 +22,8 @@ import { AuthService } from '../../../shared/auth/auth.service';
   styleUrls: []
 })
 export class AppSidebarComponent implements OnDestroy {
+
+  @Output() close = new EventEmitter<any>();
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
@@ -38,6 +42,12 @@ export class AppSidebarComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  itemClick() {
+    if (!this.mobileQuery.matches) {
+      this.close.next();
+    }
   }
 
   logout() {
