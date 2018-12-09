@@ -2,7 +2,7 @@
     "login": {
         "iAcceptPrivacyPolicy": "I accept the privacy policiy",
         "privacyPolicy": "Privacy policiy",
-        "storeCredentials": "Store credentials",
+        "storeCredentials": "Refresh schedule",
         "useYourCDLogin": "Please use your campus dual credentials",
         "password": "Password",
         "username": "Username",
@@ -81,7 +81,7 @@
         "close": "Close"
     },
     "storeCredentialsDialog": {
-        "storeCredentials": "Store credentials",
+        "storeCredentials": "Refresh schedule",
         "close": "Close"
     },
     "userCredentialsDialog": {

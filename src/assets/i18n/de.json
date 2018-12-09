@@ -2,7 +2,7 @@
     "login": {
         "iAcceptPrivacyPolicy": "Ich bin mit den Datenschutzbestimmungen einverstanden",
         "privacyPolicy": "Datenschutzbestimmungen",
-        "storeCredentials": "Anmeldedaten speichern",
+        "storeCredentials": "Stundenplan aktualisieren",
         "useYourCDLogin": "Benutze deinen Campus Dual Login",
         "password": "Passwort",
         "username": "Benutzername",
@@ -81,7 +81,7 @@
         "close": "Schließen"
     },
     "storeCredentialsDialog": {
-        "storeCredentials": "Anmeldedaten speichern",
+        "storeCredentials": "Stundenplan automatisch aktualisieren",
         "close": "Schließen"
     },
     "userCredentialsDialog": {
