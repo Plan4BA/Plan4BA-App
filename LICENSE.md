@@ -5,7 +5,7 @@ Copyright (c) 2018
 - Robert Beier
 - Eric Mäuer
 
-The logo.png file in the directory src/assets/images is not included in this license!
+All the files containing the Plan4BA Logo are not included in this license!
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
