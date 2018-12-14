@@ -49,7 +49,7 @@ export class MonthlyCalendarComponent {
   }
 
   dayClickedListener(event): void {
-    event.day.date.setHours(event.day.date.getHours() - (event.day.date.getTimezoneOffset() / 60));
+    event.day.date.setMinutes(event.day.date.getMinutes() - event.day.date.getTimezoneOffset());
     event.day.date.setUTCHours(-1, 0, 0, 0);
     this.viewDateLocal = event.day.date;
     this.dayClicked.emit(event.day.date);
