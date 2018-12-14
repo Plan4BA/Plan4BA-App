@@ -48,10 +48,10 @@ export class DailyLecturesListComponent implements OnInit {
     nextDay.setUTCDate(nextDay.getUTCDate() + 1);
     const nextDayTimestamp = nextDay.getTime();
     return lectures.filter((lecture: Lecture) => {
-      return lecture.start * 1000 >= dateTimestamp
-        && lecture.start * 1000 < nextDayTimestamp
-        && lecture.end * 1000 >= dateTimestamp
-        && lecture.end * 1000 < nextDayTimestamp;
+      return (lecture.start * 1000 >= dateTimestamp
+        && lecture.start * 1000 < nextDayTimestamp)
+        || (lecture.end * 1000 >= dateTimestamp
+        && lecture.end * 1000 < nextDayTimestamp);
     }).sort((lectureA: Lecture, lectureB: Lecture) =>  lectureA.start - lectureB.start);
   }
 

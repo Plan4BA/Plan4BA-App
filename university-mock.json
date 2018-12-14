@@ -1,0 +1,12 @@
+{
+    "name": "Staatliche Studienakademie Leipzig",
+    "accentColor": "#309D4A",
+    "logoUrl": "http://www.logistik-leipzig-halle.net/wp-content/uploads/2017/02/berufsakademie_logo_neu.jpg",
+    "links": [{
+        "label": "Google",
+        "url": "https://www.google.com"
+    }, {
+        "label": "BA Leipzig Homepage",
+        "url": "https://www.ba-leipzig.de/"
+    }]
+}

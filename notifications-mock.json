@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "label": "Stundenplanänderung",
+        "description": "Stundenplanänderung Details",
+        "type": "lectureChanged"
+    },
+    {
+        "id": 3,
+        "label": "Stundenplanänderung 2",
+        "description": "Stundenplanänderung Details 2",
+        "type": "lectureChanged"
+    },
+    {
+        "id": 4,
+        "label": "otter 2",
+        "description": "otter Details 2",
+        "type": "other"
+    }
+]
