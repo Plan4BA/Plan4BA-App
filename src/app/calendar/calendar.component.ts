@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CalendarComponent implements AfterViewInit {
 
-  viewDate: Date;
+  viewDateLocal: Date;
   @ViewChild('monthlyCalendar') monthlyCalendar;
   @ViewChild('dailyCalendar') dailyCalendar;
   private blockScroll = false;
@@ -19,8 +19,8 @@ export class CalendarComponent implements AfterViewInit {
     private router: Router,
     private route: ActivatedRoute,
     ) {
-    this.viewDate = new Date();
-    this.viewDate.setUTCHours(0, 0, 0, 0);
+    this.viewDateLocal = new Date();
+    this.viewDateLocal.setUTCHours(-1, 0, 0, 0);
     }
 
   ngAfterViewInit() {
@@ -37,7 +37,7 @@ export class CalendarComponent implements AfterViewInit {
 
 
   dayClickedListener(date: Date): void {
-    this.viewDate = date;
+    this.viewDateLocal = date;
     this.blockScroll = true;
     this.router.navigate([], {
       fragment: 'monthlyCalendar'
@@ -51,23 +51,23 @@ export class CalendarComponent implements AfterViewInit {
   }
 
   prevMonth(): void {
-    this.viewDate.setUTCMonth(this.viewDate.getUTCMonth() - 1);
-    this.viewDate = new Date(this.viewDate.getTime());
+    this.viewDateLocal.setUTCMonth(this.viewDateLocal.getUTCMonth() - 1);
+    this.viewDateLocal = new Date(this.viewDateLocal.getTime());
   }
 
   nextMonth(): void {
-    this.viewDate.setUTCMonth(this.viewDate.getUTCMonth() + 1);
-    this.viewDate = new Date(this.viewDate.getTime());
+    this.viewDateLocal.setUTCMonth(this.viewDateLocal.getUTCMonth() + 1);
+    this.viewDateLocal = new Date(this.viewDateLocal.getTime());
   }
 
   prevDay(): void {
-    this.viewDate.setUTCDate(this.viewDate.getUTCDate() - 1);
-    this.viewDate = new Date(this.viewDate.getTime());
+    this.viewDateLocal.setUTCDate(this.viewDateLocal.getUTCDate() - 1);
+    this.viewDateLocal = new Date(this.viewDateLocal.getTime());
   }
 
   nextDay(): void {
-    this.viewDate.setUTCDate(this.viewDate.getUTCDate() + 1);
-    this.viewDate = new Date(this.viewDate.getTime());
+    this.viewDateLocal.setUTCDate(this.viewDateLocal.getUTCDate() + 1);
+    this.viewDateLocal = new Date(this.viewDateLocal.getTime());
   }
 
 }

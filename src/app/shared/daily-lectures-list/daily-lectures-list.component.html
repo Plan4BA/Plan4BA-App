@@ -1,7 +1,7 @@
 <mat-list-item *ngFor="let lecture of filteredLectures">
   <div mat-list-icon [style.background-color]="lecture.color"></div>
   <h3 matLine>{{ lecture.description }}</h3>
-  <p matLine class="text-muted">{{ lecture.start * 1000 | date:'shortTime' }} {{ 'dailyLecturesList.to' | translate }} {{ lecture.end * 1000 | date:'shortTime' }}</p>
+  <p matLine class="text-muted">{{ lecture.start * 1000 | date:'shortTime':'+1' }} {{ 'dailyLecturesList.to' | translate }} {{ lecture.end * 1000 | date:'shortTime':'+1' }}</p>
   <p matLine class="text-muted">{{ 'dailyLecturesList.lecturer' | translate }}: {{ lecture.instructor }}</p>
   <p matLine class="text-muted">{{ 'dailyLecturesList.room' | translate }}: {{ lecture.room }}</p>
 </mat-list-item>

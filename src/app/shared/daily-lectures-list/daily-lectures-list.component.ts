@@ -10,32 +10,32 @@ import { Lecture } from '../data/lectures/lecture.model';
 })
 export class DailyLecturesListComponent implements OnInit {
 
-  private _viewDate: Date;
+  private _viewDateLocal: Date;
   @Output() tapEvent = new EventEmitter<any>();
   @Output() swipeEvent = new EventEmitter<any>();
 
   filteredLectures: Lecture[];
 
-  get viewDate(): Date {
-    return this._viewDate;
+  get viewDateLocal(): Date {
+    return this._viewDateLocal;
   }
 
   @Input()
-  set viewDate(viewDate: Date) {
-    this._viewDate = viewDate;
-    this.filteredLectures = this.filterLecturesByDate(this.lecturesService.getData().getValue(), viewDate);
+  set viewDateLocal(viewDateLocal: Date) {
+    this._viewDateLocal = viewDateLocal;
+    this.filteredLectures = this.filterLecturesByDate(this.lecturesService.getData().getValue(), viewDateLocal);
   }
 
   constructor(private lecturesService: LecturesService) {
   }
 
   ngOnInit() {
-    if (!this._viewDate) {
-      this._viewDate = new Date();
-      this._viewDate.setUTCHours(0, 0, 0, 0);
+    if (!this._viewDateLocal) {
+      this._viewDateLocal = new Date();
+      this._viewDateLocal.setUTCHours(-1, 0, 0, 0);
     }
     this.lecturesService.getData().subscribe((lectures: Lecture[]) => {
-      this.filteredLectures = this.filterLecturesByDate(lectures, this.viewDate);
+      this.filteredLectures = this.filterLecturesByDate(lectures, this.viewDateLocal);
     });
   }
 
@@ -48,10 +48,8 @@ export class DailyLecturesListComponent implements OnInit {
     nextDay.setUTCDate(nextDay.getUTCDate() + 1);
     const nextDayTimestamp = nextDay.getTime();
     return lectures.filter((lecture: Lecture) => {
-      return (lecture.start * 1000 >= dateTimestamp
-        && lecture.start * 1000 < nextDayTimestamp)
-        || (lecture.end * 1000 >= dateTimestamp
-        && lecture.end * 1000 < nextDayTimestamp);
+      return lecture.start * 1000 < nextDayTimestamp
+        && lecture.end * 1000 >= dateTimestamp;
     }).sort((lectureA: Lecture, lectureB: Lecture) =>  lectureA.start - lectureB.start);
   }
 

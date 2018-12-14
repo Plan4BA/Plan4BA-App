@@ -11,7 +11,7 @@ import { Lecture } from '../data/lectures/lecture.model';
 })
 export class MonthlyCalendarComponent {
   events: CalendarEvent[] = [];
-  @Input() viewDate: Date = new Date();
+  @Input() viewDateLocal: Date = new Date();
   @Output() dayClicked = new EventEmitter<Date>();
 
   constructor(
@@ -49,7 +49,7 @@ export class MonthlyCalendarComponent {
   }
 
   dayClickedListener(event): void {
-    this.viewDate = event.day.date;
+    this.viewDateLocal = event.day.date;
     this.dayClicked.emit(event.day.date);
   }
 
