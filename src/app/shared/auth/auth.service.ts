@@ -117,8 +117,7 @@ export class AuthService {
       && typeof tokenData.token === 'string'
       && Number.isInteger(tokenData.userId)
       && typeof tokenData.calDavToken === 'boolean'
-      && Number.isInteger(tokenData.validTo)
-      && tokenData.validTo > (new Date()).getTime();
+      && Number.isInteger(tokenData.validTo);
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
