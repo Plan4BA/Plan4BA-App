@@ -5,7 +5,7 @@
                 <button mat-button class="arrow-left" (click)="prevMonth()">
                     <fa-icon icon="angle-left"></fa-icon>
                 </button>
-                <h3>{{ viewDateLocal | date:"LLLL yyyy":"+1" }}</h3>
+                <h3>{{ viewDateLocal | date:"LLLL yyyy":"+2" }}</h3>
                 <button mat-button class="arrow-right" (click)="nextMonth()">
                     <fa-icon icon="angle-right"></fa-icon>
                 </button>
@@ -20,7 +20,7 @@
             <button mat-button class="arrow-left" (click)="prevDay()">
                 <fa-icon icon="angle-left"></fa-icon>
             </button>
-            <h3>{{ viewDateLocal | date:"EEEE d.M.yy":"+1" }}</h3>
+            <h3>{{ viewDateLocal | date:"EEEE d.M.yy":"+2" }}</h3>
             <button mat-button class="arrow-right" (click)="nextDay()">
                 <fa-icon icon="angle-right"></fa-icon>
             </button>

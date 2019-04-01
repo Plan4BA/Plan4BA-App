@@ -32,7 +32,7 @@ export class DailyLecturesListComponent implements OnInit {
   ngOnInit() {
     if (!this._viewDateLocal) {
       this._viewDateLocal = new Date();
-      this._viewDateLocal.setUTCHours(-1, 0, 0, 0);
+      this._viewDateLocal.setUTCHours(-2, 0, 0, 0);
     }
     this.lecturesService.getData().subscribe((lectures: Lecture[]) => {
       this.filteredLectures = this.filterLecturesByDate(lectures, this.viewDateLocal);

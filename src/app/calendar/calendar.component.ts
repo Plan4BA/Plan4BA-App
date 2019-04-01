@@ -20,7 +20,7 @@ export class CalendarComponent implements AfterViewInit {
     private route: ActivatedRoute,
     ) {
     this.viewDateLocal = new Date();
-    this.viewDateLocal.setUTCHours(-1, 0, 0, 0);
+    this.viewDateLocal.setUTCHours(-2, 0, 0, 0);
     }
 
   ngAfterViewInit() {
