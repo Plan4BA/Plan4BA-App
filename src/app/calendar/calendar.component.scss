@@ -1,0 +1,34 @@
+.arrow-selection-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.calendar-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .monthly-calendar {
+        min-width: 290px;
+        flex-grow: 1;
+    }
+
+    .daily-calendar {
+        min-width: 290px;
+        max-width: 400px;
+        flex-grow: 1;
+        min-height: 700px;
+    }
+}
+
+@media(max-width:767px) {
+    .mat-card {
+        margin-left: 0px;
+        margin-right: 0px;
+        .mat-card-content {
+            padding: 0px;
+        }
+    }
+}

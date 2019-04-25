@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card-title class="left-icon"><mat-icon>restaurant</mat-icon><span>{{ 'meals.meals' | translate}}</span></mat-card-title>
+        <mat-list class="word-wrap no-x-padding-mobile">
+            <div *ngFor="let dailyMealData of mealsData" class="daily-section">
+                <h2 mat-subheader>{{ dailyMealData.day | date:'EEEE d.M.yy' }}</h2>
+                <p4ba-daily-meals-list [dailyMeals]="dailyMealData.meals"></p4ba-daily-meals-list>
+            </div>
+            <mat-list-item *ngIf="mealsData.length === 0">
+              <h3 matLine>{{ 'meals.emptyMenu' | translate}}</h3>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+</mat-card>

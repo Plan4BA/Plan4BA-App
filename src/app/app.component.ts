@@ -1,9 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
+import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
+import { NotificationsService } from './shared/data/notifications/notifications.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'p4ba-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(
+    private lecturesPollingService: LecturesPollingService,
+    private infoTextsService: InfoTextsService,
+    private notificationsService: NotificationsService,
+    translate: TranslateService,
+    ) {
+
+    translate.addLangs(['en', 'de']);
+    translate.setDefaultLang('de');
+    let usedLang = localStorage.getItem('usedLanguage');
+    if (!usedLang || !usedLang.match(/en|de/)) {
+      const browserLang = translate.getBrowserLang();
+      usedLang = browserLang.match(/en|de/) ? browserLang : 'de';
+    }
+    translate.use(usedLang);
+    localStorage.setItem('usedLanguage', usedLang);
+  }
 }

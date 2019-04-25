@@ -1,0 +1,38 @@
+<mat-select class="action lang-select" [(value)]="selectedLang">
+  <mat-option *ngFor="let selectableLang of selectableLangs" [value]="selectableLang">
+    {{ ('languages.' + selectableLang) | translate }}
+  </mat-option>
+</mat-select>
+
+<mat-card role="region" class="login-card">
+  <mat-card-content>
+    <div class="logo">
+      <img mat-card-image src="./assets/images/logo.png" alt="Plan4BA Logo">
+    </div>
+    <form #loginForm="ngForm">
+      <mat-form-field>
+        <input matInput [placeholder]="'login.username' | translate" [(ngModel)]="username" name="username" id="username" autofocus required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [placeholder]="'login.password' | translate" [(ngModel)]="password" type="password" name="password" id="password" required>
+      </mat-form-field>
+      <div class="section">
+        <span class="small-font">{{ 'login.useYourCDLogin' | translate}}</span>
+      </div>
+      <div class="action-right section">
+        <mat-checkbox class="word-wrap small-font" [(ngModel)]="storeHash" name="storeHash">{{ 'login.storeCredentials' | translate }}</mat-checkbox>
+        <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
+      </div>
+      <div class="section">
+        <mat-checkbox class="word-wrap small-font" [(ngModel)]="acceptPrivacy" name="acceptPrivacy">
+          <span>{{ 'login.iAcceptPrivacyPolicy' | translate }}</span>
+        </mat-checkbox>
+      </div>
+      <div class="section">
+        <a (click)="openLoginInfoDialog()" class="link small-font">{{ 'login.privacyPolicy' | translate }}</a>
+      </div>
+    </form>
+    <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
+    <button mat-raised-button (click)="login()" color="primary">{{ 'login.login' | translate }}</button>
+  </mat-card-content>
+</mat-card>

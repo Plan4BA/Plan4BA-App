@@ -1,0 +1,137 @@
+// a customized theme will be used later
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "angular-calendar/css/angular-calendar.css";
+/* You can add global styles to this file, and also import other style files */
+
+// app - global
+
+body {
+    margin: 0;
+}
+
+// app - mat-card
+
+.mat-card {
+    .mat-card-title.left-icon {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 20px;
+
+        span {
+            padding-left: 10px;
+        }
+    }
+
+    .mat-list.word-wrap {
+        .mat-list-item {
+            height:initial!important;
+    
+            h3, p {
+                word-wrap: break-word;
+                white-space: pre-wrap;
+            }
+
+            .list-right-icon {
+                padding-left: 10px;
+            }
+        }
+    }
+}
+
+.mat-snack-bar-container {
+    margin: 25px!important;
+}
+
+// header - topbar
+
+mat-toolbar{
+    background-color: #005bea!important;
+
+    .navbar-header {
+        .navbar-brand {
+            .light-logo {
+                width: 50px;
+            }
+            .dark-logo {
+                width: 50px;
+            }
+
+            span {
+                color: white;
+            }
+        }
+    }
+}
+@media(max-width: 767px) {
+    mat-toolbar{
+        .navbar-header {
+            .navbar-brand {
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+// responsive
+
+@media(max-width:767px) {
+    html .page-wrapper{
+        .page-content{
+            padding: 0px;
+        }
+    }
+    .mat-list.no-x-padding-mobile {
+        .mat-list-item-content {
+            padding-left: 0px!important;
+            padding-right: 0px!important;
+        }
+        
+        .mat-subheader {
+            padding-left: 0px!important;
+            padding-right: 0px!important;
+        }
+    }
+}
+
+// sidebar - main sidebar
+
+#snav{
+    .mat-list-item {
+        &.selected > .mat-list-item-content > a{
+            background-color: #00c6fb;
+        }
+    }
+}
+
+
+mwl-calendar-month-cell,
+mwl-calendar-day-view-hour-segment, 
+mwl-calendar-week-view-hour-segment {
+    touch-action: auto !important;
+}
+    
+.cal-day-badge {
+    display: none!important;
+}
+
+.cal-month-view .cal-cell-top {
+    min-height: 50px!important;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+    color: inherit!important;
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+    background-color: rgba(0, 198, 251, 0.3);
+}
+
+
+.mat-checkbox.word-wrap {
+    .mat-checkbox-label {
+        word-wrap: break-word!important;
+        white-space: pre-wrap!important;
+    }
+}

@@ -8,10 +8,6 @@
 # dependencies
 /node_modules
 
-# NativeScript
-/hooks
-/platforms
-
 # IDEs and editors
 /.idea
 .project
