@@ -14,7 +14,7 @@
     background-color: white;
     padding: 10px;
     top: 0px;
-    right: 0px;
+    left: 0px;
 }
 
 .login-card {
@@ -50,4 +50,14 @@ a.link {
 .small-font {
     font-size: 14px;
     line-height: 14px;
+}
+
+.button-spinner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-progress-spinner {
+  margin-left: 10px;
 }

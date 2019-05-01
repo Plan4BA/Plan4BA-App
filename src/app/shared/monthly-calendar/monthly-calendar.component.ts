@@ -1,13 +1,20 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { CalendarEvent } from 'angular-calendar';
+import { CalendarEvent, CalendarDateFormatter } from 'angular-calendar';
 
 import { LecturesService } from '../data/lectures/lectures.service';
 import { Lecture } from '../data/lectures/lecture.model';
+import { CustomDateFormatter } from './custom-date-formatter.provider';
 
 @Component({
   selector: 'p4ba-monthly-calendar',
   templateUrl: './monthly-calendar.component.html',
-  styleUrls: ['./monthly-calendar.component.scss']
+  styleUrls: ['./monthly-calendar.component.scss'],
+  providers: [
+    {
+      provide: CalendarDateFormatter,
+      useClass: CustomDateFormatter
+    }
+  ]
 })
 export class MonthlyCalendarComponent {
   events: CalendarEvent[] = [];
@@ -54,5 +61,4 @@ export class MonthlyCalendarComponent {
     this.viewDateLocal = event.day.date;
     this.dayClicked.emit(event.day.date);
   }
-
 }

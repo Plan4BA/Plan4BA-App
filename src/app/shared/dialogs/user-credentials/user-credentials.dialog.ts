@@ -39,4 +39,8 @@ export class UserCredentialsDialog implements OnInit {
   ngOnInit() {
   }
 
+  submit() {
+    this.dialogRef.close({username: this.username, password: this.password});
+  }
+
 }

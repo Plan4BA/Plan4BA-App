@@ -25,7 +25,7 @@ body {
     .mat-list.word-wrap {
         .mat-list-item {
             height:initial!important;
-    
+
             h3, p {
                 word-wrap: break-word;
                 white-space: pre-wrap;
@@ -87,7 +87,7 @@ mat-toolbar{
             padding-left: 0px!important;
             padding-right: 0px!important;
         }
-        
+
         .mat-subheader {
             padding-left: 0px!important;
             padding-right: 0px!important;
@@ -105,13 +105,14 @@ mat-toolbar{
     }
 }
 
+// monthly calendar
 
 mwl-calendar-month-cell,
-mwl-calendar-day-view-hour-segment, 
+mwl-calendar-day-view-hour-segment,
 mwl-calendar-week-view-hour-segment {
     touch-action: auto !important;
 }
-    
+
 .cal-day-badge {
     display: none!important;
 }
@@ -125,9 +126,12 @@ mwl-calendar-week-view-hour-segment {
 }
 
 .cal-month-view .cal-day-cell.cal-today {
-    background-color: rgba(0, 198, 251, 0.3);
+    background-color: rgba(0, 91, 234, .2);
 }
 
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+    font-size: 1.2em;
+}
 
 .mat-checkbox.word-wrap {
     .mat-checkbox-label {
