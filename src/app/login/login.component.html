@@ -33,8 +33,10 @@
       <div class="section">
         <a (click)="openLoginInfoDialog()" class="link small-font">{{ 'login.privacyPolicy' | translate }}</a>
       </div>
-      <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
-      <button mat-raised-button color="primary" type="submit">{{ 'login.login' | translate }}</button>
+      <div class="button-spinner-container">
+        <button mat-raised-button color="primary" type="submit">{{ 'login.login' | translate }}</button>
+        <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>
