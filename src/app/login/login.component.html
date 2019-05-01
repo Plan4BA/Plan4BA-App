@@ -9,7 +9,7 @@
     <div class="logo">
       <img mat-card-image src="./assets/images/logo.png" alt="Plan4BA Logo">
     </div>
-    <form #loginForm="ngForm">
+    <form #loginForm="ngForm" (ngSubmit)="login()">
       <mat-form-field>
         <input matInput [placeholder]="'login.username' | translate" [(ngModel)]="username" name="username" id="username" autofocus required>
       </mat-form-field>
@@ -31,8 +31,8 @@
       <div class="section">
         <a (click)="openLoginInfoDialog()" class="link small-font">{{ 'login.privacyPolicy' | translate }}</a>
       </div>
+      <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
+      <button mat-raised-button color="primary" type="submit">{{ 'login.login' | translate }}</button>
     </form>
-    <mat-spinner [style.display]="isAuthenticating ? 'block' : 'none'" diameter="30" aria-label="loading spinner"></mat-spinner>
-    <button mat-raised-button (click)="login()" color="primary">{{ 'login.login' | translate }}</button>
   </mat-card-content>
 </mat-card>
