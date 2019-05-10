@@ -22,7 +22,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: start;
+        justify-content: flex-start;
         .key {
             min-width: 160px;
             max-width: 160px;
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     margin: 20px 0px;
     .key {
         min-width: 160px;
