@@ -32,7 +32,7 @@ export class LoginComponent {
     private translate: TranslateService,
     private snackBar: MatSnackBar,
   ) {
-      this.selectedLang = localStorage.getItem('usedLanguage') || 'de';
+      this._selectedLang = localStorage.getItem('usedLanguage') || 'de';
       this.selectableLangs = this.translate.getLangs();
   }
 
@@ -51,6 +51,7 @@ export class LoginComponent {
   set selectedLang(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('usedLanguage', lang);
+    window.location.reload();
     this._selectedLang = lang;
   }
 
