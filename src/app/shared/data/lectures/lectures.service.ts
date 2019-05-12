@@ -33,7 +33,7 @@ export class LecturesService {
     this.data = new BehaviorSubject<Lecture[]>(initialData);
 
     this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
+      if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
         localStorage.removeItem(this.storageKey);
@@ -61,12 +61,6 @@ export class LecturesService {
       } }
     )
     .pipe(
-      map((data: Lecture[]) => {
-        if (!this.isDataValid(data)) {
-          throw new Error('Received lectures data is not valid!');
-        }
-        return data;
-      }),
       tap((data: Lecture[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );

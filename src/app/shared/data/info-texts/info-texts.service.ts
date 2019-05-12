@@ -32,7 +32,7 @@ export class InfoTextsService {
     this.structuredData = new BehaviorSubject<any>(null);
 
     this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
+      if (!!data) {
         this.structuredData.next(data.reduce(
           (structured: any, infoText: InfoText) => ({...structured, [infoText.key]: infoText.description}),
           {}
@@ -63,12 +63,6 @@ export class InfoTextsService {
       } }
     )
     .pipe(
-      map((data: InfoText[]) => {
-        if (!this.isDataValid(data)) {
-          throw new Error('Received info data is not valid!');
-        }
-        return data;
-      }),
       tap((data: InfoText[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );

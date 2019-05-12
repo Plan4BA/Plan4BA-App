@@ -33,7 +33,7 @@ export class LinksService {
     this.data = new BehaviorSubject<Link[]>(initialData);
 
     this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
+      if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
         localStorage.removeItem(this.storageKey);
@@ -61,12 +61,6 @@ export class LinksService {
       } }
     )
     .pipe(
-      map((data: Link[]) => {
-        if (!this.isDataValid(data)) {
-          throw new Error('Received links data is not valid!');
-        }
-        return data;
-      }),
       tap((data: Link[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );

@@ -31,7 +31,7 @@ export class UserService {
     this.data = new BehaviorSubject<User>(initialData);
 
     this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
+      if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
         localStorage.removeItem(this.storageKey);
@@ -59,12 +59,6 @@ export class UserService {
       } }
     )
     .pipe(
-      map((data: User) => {
-        if (!this.isDataValid(data)) {
-          throw new Error('Received user data is not valid!');
-        }
-        return data;
-      }),
       tap((data: User) => this.data.next(data)),
       catchError(this.handleErrors)
     );

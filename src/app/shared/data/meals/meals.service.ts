@@ -34,7 +34,7 @@ export class MealsService {
     this.data = new BehaviorSubject<Meal[]>(initialData);
 
     this.data.subscribe(data => {
-      if (this.isDataValid(data)) {
+      if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
       } else {
         localStorage.removeItem(this.storageKey);
@@ -62,12 +62,6 @@ export class MealsService {
       } }
     )
     .pipe(
-      map((data: Meal[]) => {
-        if (!this.isDataValid(data)) {
-          throw new Error('Received meals data is not valid!');
-        }
-        return data;
-      }),
       tap((data: Meal[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );
