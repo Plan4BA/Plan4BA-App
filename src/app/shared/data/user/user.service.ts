@@ -13,6 +13,7 @@ import { environment } from '../../../../environments/environment';
 export class UserService {
   private storageKey = 'user';
   private data: BehaviorSubject<User>;
+  private version = 1;
 
   constructor(
     private http: HttpClient,
@@ -22,7 +23,7 @@ export class UserService {
     let initialData: User;
     try {
       const storedData: User = JSON.parse(localStorage.getItem(this.storageKey));
-      if (this.isDataValid(storedData)) {
+      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
         initialData = storedData;
       }
     } catch (error) {
@@ -33,6 +34,7 @@ export class UserService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -75,16 +77,6 @@ export class UserService {
     .pipe(
       catchError(this.handleErrors)
     );
-  }
-
-  private isDataValid(data: User): boolean {
-    return !!data
-      && typeof data.matriculationNumber === 'string'
-      && typeof data.group === 'string'
-      && typeof data.university === 'string'
-      && typeof data.hashStored === 'boolean'
-      && Number.isInteger(data.lastLecturePolling)
-      && Number.isInteger(data.lastLectureCall);
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {

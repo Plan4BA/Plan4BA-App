@@ -14,6 +14,7 @@ export class InfoTextsService {
   private storageKey = 'info';
   private data: BehaviorSubject<InfoText[]>;
   private structuredData: BehaviorSubject<any>;
+  private version = 1;
 
   constructor(
     private http: HttpClient,
@@ -22,7 +23,7 @@ export class InfoTextsService {
     let initialData: InfoText[];
     try {
       const storedData: InfoText[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (this.isDataValid(storedData)) {
+      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
         initialData = storedData;
       }
     } catch (error) {
@@ -38,6 +39,7 @@ export class InfoTextsService {
           {}
         ));
         localStorage.setItem(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
       } else {
         this.structuredData.next(null);
         localStorage.removeItem(this.storageKey);
@@ -66,16 +68,6 @@ export class InfoTextsService {
       tap((data: InfoText[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );
-  }
-
-  private isDataValid(data: InfoText[]): boolean {
-    return !!data
-      && Array.isArray(data)
-      && data.every((infoText: InfoText) => {
-        return !!infoText
-          && typeof infoText.key === 'string'
-          && typeof infoText.description === 'string';
-      });
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {

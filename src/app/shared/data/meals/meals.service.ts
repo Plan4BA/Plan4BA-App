@@ -16,6 +16,7 @@ export class MealsService {
 
   private storageKey = 'meals';
   private data: BehaviorSubject<Meal[]>;
+  private version = 1;
 
   constructor(
     private http: HttpClient,
@@ -25,7 +26,7 @@ export class MealsService {
     let initialData: Meal[];
     try {
       const storedData: Meal[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (this.isDataValid(storedData)) {
+      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
         initialData = storedData;
       }
     } catch (error) {
@@ -36,6 +37,7 @@ export class MealsService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -65,25 +67,6 @@ export class MealsService {
       tap((data: Meal[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );
-  }
-
-  private isDataValid(data: Meal[]): boolean {
-    return !!data
-      && Array.isArray(data)
-      && data.every((meal: Meal) => {
-        return !!meal
-          && Number.isInteger(meal.universityId)
-          && Number.isInteger(meal.day)
-          && Array.isArray(meal.meals)
-          && meal.meals.every((food: Food) => {
-            return !!food
-              && typeof food.description === 'string'
-              && typeof food.prices === 'string'
-              && typeof food.vegetarian === 'boolean'
-              && typeof food.vegan === 'boolean'
-              && typeof food.additionalInformation === 'string';
-          });
-      });
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {

@@ -15,6 +15,7 @@ export class LecturesService {
 
   private storageKey = 'lectures';
   private data: BehaviorSubject<Lecture[]>;
+  private version = 1;
 
   constructor(
     private http: HttpClient,
@@ -24,7 +25,7 @@ export class LecturesService {
     let initialData: Lecture[];
     try {
       const storedData: Lecture[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (this.isDataValid(storedData)) {
+      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
         initialData = storedData;
       }
     } catch (error) {
@@ -35,6 +36,7 @@ export class LecturesService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -64,27 +66,6 @@ export class LecturesService {
       tap((data: Lecture[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );
-  }
-
-  private isDataValid(data: Lecture[]): boolean {
-    return !!data
-      && Array.isArray(data)
-      && data.every((lecture: Lecture) => {
-        return !!lecture
-          && Number.isInteger(lecture.id)
-          && typeof lecture.title === 'string'
-          && Number.isInteger(lecture.start)
-          && Number.isInteger(lecture.end)
-          && typeof lecture.allDay === 'boolean'
-          && typeof lecture.description === 'string'
-          && typeof lecture.color === 'string'
-          && typeof lecture.room === 'string'
-          && typeof lecture.sroom === 'string'
-          && typeof lecture.instructor === 'string'
-          && typeof lecture.remarks === 'string'
-          && typeof lecture.exam === 'boolean'
-          && Number.isInteger(lecture.userId);
-      });
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {

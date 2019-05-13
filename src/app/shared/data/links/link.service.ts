@@ -15,6 +15,7 @@ export class LinksService {
 
   private storageKey = 'links';
   private data: BehaviorSubject<Link[]>;
+  private version = 1;
 
   constructor(
     private http: HttpClient,
@@ -24,7 +25,7 @@ export class LinksService {
     let initialData: Link[];
     try {
       const storedData: Link[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (this.isDataValid(storedData)) {
+      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
         initialData = storedData;
       }
     } catch (error) {
@@ -35,6 +36,7 @@ export class LinksService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
+        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -64,16 +66,6 @@ export class LinksService {
       tap((data: Link[]) => this.data.next(data)),
       catchError(this.handleErrors)
     );
-  }
-
-  private isDataValid(data: Link[]): boolean {
-    return !!data
-      && Array.isArray(data)
-      && data.every((link: Link) => {
-        return !!link
-          && typeof link.label === 'string'
-          && typeof link.url === 'string';
-      });
   }
 
   private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
