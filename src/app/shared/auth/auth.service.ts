@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
 import { tap, catchError, filter, map, switchMap } from 'rxjs/operators';
+import * as Sentry from '@sentry/browser';
 
 import { environment } from '../../../environments/environment';
 import { TokenData } from './token-data.model';
@@ -38,6 +39,9 @@ export class AuthService {
       if (this.isTokenDataValid(refreshTokenData)) {
         this._isLoggedIn.next(true);
         localStorage.setItem(this.storageKeyLogin, JSON.stringify(refreshTokenData));
+        Sentry.configureScope((scope) => {
+          scope.setUser({'username': refreshTokenData.userId.toString()});
+        });
         this.refreshAuthToken();
       } else {
         this._isLoggedIn.next(false);

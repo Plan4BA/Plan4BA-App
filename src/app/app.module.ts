@@ -1,4 +1,4 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { NgModule, LOCALE_ID, Injectable, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -13,6 +13,7 @@ import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import * as Sentry from '@sentry/browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,7 @@ import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-cr
 import { LinksComponent } from './links/links.component';
 import { LinksService } from './shared/data/links/link.service';
 import { NotificationsService } from './shared/data/notifications/notifications.service';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -54,6 +56,21 @@ library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+Sentry.init({
+  dsn: 'https://a16c84b452b04e7298dacf3e9ef127f0@sentry.plan4ba.ba-leipzig.de//2',
+  environment: environment.production ? 'prod' : 'dev',
+  release: 'plan4ba@0.2.0'
+});
+
+@Injectable()
+export class SentryErrorHandler implements ErrorHandler {
+  constructor() {}
+  handleError(error) {
+    const eventId = Sentry.captureException(error.originalError || error);
+    Sentry.showReportDialog({ eventId });
+  }
 }
 
 @NgModule({
@@ -110,6 +127,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
       deps: [TranslateService]
     },
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
     LecturesService,
     MealsService,
     authProviders,
