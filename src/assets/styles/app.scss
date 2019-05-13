@@ -20,24 +20,20 @@ File: scss
 Global Styles 
 *******************/
 
-* {
-    outline: none;
-    box-sizing:border-box;
-}
-
 body {
-    font-family: $bodyfont;
-    margin: 0;
-    overflow-x: hidden;
-    color: $bodytext;
-    font-weight: 300;
-    background: $inverse;
+  font-family: $bodyfont;
+  margin: 0;
+  overflow-x: hidden;
+  color: $bodytext;
+  font-weight: 300;
+  background: $inverse;
+  height: 100%;
 }
 
 html {
-    position: relative;
-    min-height: 100%;
-    background: $white;
+  position: relative;
+  height: 100%;
+  background: $white;
 }
 a:hover, a:focus, a{
     text-decoration: none;
