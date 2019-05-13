@@ -81,7 +81,10 @@ File: scss
  Phone and below ipad(767px) 
  ============================================================== */
 
-@media(max-width:767px) {
+ @media(max-width:767px) {
+    html .page-wrapper{
+        min-height: 504px;
+    }
     .mat-toolbar-single-row{
         height: 64px!important;
     }
