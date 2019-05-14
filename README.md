@@ -36,7 +36,7 @@ Plan4BA is caching and updating the personalized lectures and exams from the sys
 ## Preparation
 
 Before running anyting, you have to install the dependencies by running `npm install` in the root directory of this project.
-To send api requests to the backend, you can use the [integrated proxy](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) of the angular cli development server. This is necessary, because the browser tries to prevent XSS-Attacks. You can configure the target address for the proxy in the proxy.conf.json file.
+To send api requests to the backend, you can use the [integrated proxy](https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md) of the angular cli development server. This is necessary, because the browser tries to prevent XSS-Attacks. To use the proxy, you can create a copy of the example file `cp proxy/proxy/proxy.conf.example.json proxy/proxy.conf.json`. Then you have to change the target url for your local setup.
 
 ## Maintainers
 
@@ -52,7 +52,7 @@ You can basically only use it, if you have credentails to the Campus Dual System
 
 ## Run
 
-You can run a development web server with the Angular CLI using `ng serve`. If you want to use the integrated proxy of the angular cli development server, as mentioned in "Preparation", you need to run `ng serve --proxy-config proxy.conf.json`.
+You can run a development web server with the Angular CLI using `ng serve`. If you want to use the integrated proxy of the angular cli development server, as mentioned in "Preparation", you need to run `ng serve --proxy-config proxy/proxy.conf.json`.
 
 ## Build
 
