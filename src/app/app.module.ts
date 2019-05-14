@@ -61,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 Sentry.init({
   dsn: 'https://a16c84b452b04e7298dacf3e9ef127f0@sentry.plan4ba.ba-leipzig.de//2',
   environment: environment.production ? 'prod' : 'dev',
-  release: 'plan4ba@0.2.0'
+  release: 'plan4ba@0.3.0'
 });
 
 @Injectable()
