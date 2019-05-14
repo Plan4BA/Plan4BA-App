@@ -66,7 +66,12 @@ mat-toolbar{
  Topbar
 *******************/
 .topbar {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 56px;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
 }
@@ -74,7 +79,13 @@ mat-toolbar{
 .example-sidenav-container {
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  flex: 1;
+  min-height: 100%;
+  height: auto!important;
+  max-width: 100%;
+  margin: 0;
+  -webkit-transform: none;
+  transform: none;
+  width: 100%;
 }
 
 .example-sidenav-container {
@@ -83,3 +94,7 @@ mat-toolbar{
   flex: 1 0 auto;
 }
 
+.mat-sidenav {
+  position: fixed !important;
+  top: 64px !important;
+}

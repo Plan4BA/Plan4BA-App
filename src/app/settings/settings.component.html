@@ -1,8 +1,6 @@
 <mat-card>
     <mat-card-content>
         <mat-card-title class="left-icon"><mat-icon>settings</mat-icon><span>{{ 'settings.settings' | translate}}</span></mat-card-title>
-    </mat-card-content>
-    <mat-card-content>
         <div *ngIf="user">
             <div class="key-value-action">
                 <div class="key-value">
@@ -24,18 +22,17 @@
             </div>
             <div class="key-value-action">
                 <div class="key-value">
-                    <span class="key">{{ 'settings.credentialsStored' | translate}}</span>
+                    <span class="key">{{ 'settings.credentialsStored' | translate}} <mat-icon (click)="openHashHelpDialog()">help</mat-icon> </span>
                     <span class="value">{{(user.hashStored ? 'settings.yes' : 'settings.no') | translate}}</span>
                 </div>
-                <mat-icon (click)="openHashHelpDialog()">help</mat-icon>
-                <button mat-raised-button (click)="changeStoreCredentials()">{{ 'settings.change' | translate}}</button>
+                <button mat-raised-button (click)="changeStoreCredentials()" class="action">{{ 'settings.change' | translate}}</button>
             </div>
             <div class="key-value-action">
                 <div class="key-value">
                     <span class="key">{{ 'settings.lastLecturePolling' | translate}}</span>
                     <span class="value">{{user.lastLecturePolling | date:'medium'}}</span>
                 </div>
-                <button mat-raised-button (click)="pollLectures()">{{ 'settings.refresh' | translate}}</button>
+                <button mat-raised-button (click)="pollLectures()" class="action">{{ 'settings.refresh' | translate}}</button>
             </div>
             <div class="key-action">
                 <span class="key">{{ 'settings.language' | translate}}</span>

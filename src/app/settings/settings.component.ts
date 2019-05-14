@@ -31,7 +31,7 @@ export class SettingsComponent implements OnInit {
     private translate: TranslateService,
   ) {
     this.userService.getData().subscribe((user: User) => this.user = user);
-    this.selectedLang = localStorage.getItem('usedLanguage') || 'de';
+    this._selectedLang = localStorage.getItem('usedLanguage') || 'de';
     this.selectableLangs = this.translate.getLangs();
   }
 
@@ -42,6 +42,7 @@ export class SettingsComponent implements OnInit {
   set selectedLang(lang: string) {
     this.translate.use(lang);
     localStorage.setItem('usedLanguage', lang);
+    window.location.reload();
     this._selectedLang = lang;
   }
 

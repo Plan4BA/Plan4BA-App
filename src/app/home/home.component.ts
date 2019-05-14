@@ -22,13 +22,13 @@ export class HomeComponent implements OnInit {
     private mealsService: MealsService,
   ) {
     this.today = new Date();
-    this.today.setUTCHours(-2, 0, 0, 0);
+    this.today.setHours(0, 0, 0, 0);
 
     this.mealsService.getData().subscribe((meals: Meal[]) => {
       if (meals) {
         const todaysMealsData = meals.find((meal: Meal) => {
           const mealDay = new Date(meal.day);
-          mealDay.setUTCHours(-2, 0, 0, 0);
+          mealDay.setHours(0, 0, 0, 0);
           return mealDay.getTime() === this.today.getTime();
         });
         if (todaysMealsData) {

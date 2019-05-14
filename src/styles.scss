@@ -1,6 +1,5 @@
 // a customized theme will be used later
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "angular-calendar/css/angular-calendar.css";
+@import "assets/styles/plan4ba-theme";
 /* You can add global styles to this file, and also import other style files */
 
 // app - global
@@ -45,8 +44,6 @@ body {
 // header - topbar
 
 mat-toolbar{
-    background-color: #005bea!important;
-
     .navbar-header {
         .navbar-brand {
             .light-logo {
@@ -100,7 +97,11 @@ mat-toolbar{
 #snav{
     .mat-list-item {
         &.selected > .mat-list-item-content > a{
-            background-color: #00c6fb;
+            background-color: mat-color($plan4ba-accent);
+        }
+
+        .logout-menu-item {
+          background-color: mat-color($plan4ba-warn);
         }
     }
 }
@@ -126,7 +127,7 @@ mwl-calendar-week-view-hour-segment {
 }
 
 .cal-month-view .cal-day-cell.cal-today {
-    background-color: rgba(0, 91, 234, .2);
+    background-color: rgba(mat-color($plan4ba-primary), .2);
 }
 
 .cal-month-view .cal-day-cell.cal-today .cal-day-number {
