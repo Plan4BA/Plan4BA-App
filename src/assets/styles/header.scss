@@ -5,62 +5,57 @@ Email: niravjoshi87@gmail.com
 File: scss
 */
 
-
 /*******************
  Topbar
 *******************/
-mat-toolbar{
-    box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.5);
-    
-    &.topbar{
-        padding: 0px 15px;
-    }
-    .navbar-header {
-        
-        text-align: center;
-        .navbar-brand {
-            display: flex;
-            line-height: 18px;
-            
-            align-items: center;
-            .dark-logo {
-                display: none;
+mat-toolbar {
+  box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.5);
 
-            }
-            b {
-               margin-right: 5px;
-            }
-            img{
-                
-            }
-        }
-    }
-    
-    .app-search{
+  &.topbar {
+    padding: 0px 15px;
+  }
+  .navbar-header {
+    text-align: center;
+    .navbar-brand {
+      display: flex;
+      line-height: 18px;
+
+      align-items: center;
+      .dark-logo {
         display: none;
-        width: 100%;
-        top: 0px;
-        left: 0px;
-        z-index: 1;
-        position: absolute;
-        .form-control{
-            line-height: 42px;
-            
-        }
-        .cl-srh-btn{
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            font-size: 15px;
-            color:$bodytext;
-            cursor: pointer
-        }
+      }
+      b {
+        margin-right: 5px;
+      }
+      img {
+      }
     }
-    .profile-pic{
-        width: 40px;
-        height: 40px;
-        border-radius: 100%;
+  }
+
+  .app-search {
+    display: none;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    position: absolute;
+    .form-control {
+      line-height: 42px;
     }
+    .cl-srh-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 15px;
+      color: $bodytext;
+      cursor: pointer;
+    }
+  }
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+  }
 }
 /*******************
  Topbar
@@ -80,7 +75,7 @@ mat-toolbar{
   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   min-height: 100%;
-  height: auto!important;
+  height: auto !important;
   max-width: 100%;
   margin: 0;
   -webkit-transform: none;

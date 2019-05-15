@@ -22,7 +22,6 @@ import { AuthService } from '../../../shared/auth/auth.service';
   styleUrls: []
 })
 export class AppSidebarComponent implements OnDestroy {
-
   @Output() close = new EventEmitter<any>();
   mobileQuery: MediaQueryList;
 
@@ -33,7 +32,7 @@ export class AppSidebarComponent implements OnDestroy {
     media: MediaMatcher,
     public menuItems: MenuItems,
     private authService: AuthService,
-    private router: Router,
+    private router: Router
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();

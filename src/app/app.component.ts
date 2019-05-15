@@ -1,4 +1,4 @@
-import { Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
@@ -11,14 +11,12 @@ import { NotificationsService } from './shared/data/notifications/notifications.
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
   constructor(
     private lecturesPollingService: LecturesPollingService,
     private infoTextsService: InfoTextsService,
     private notificationsService: NotificationsService,
-    translate: TranslateService,
-    ) {
-
+    translate: TranslateService
+  ) {
     translate.addLangs(['en', 'de']);
     translate.setDefaultLang('de');
     let usedLang = localStorage.getItem('usedLanguage');

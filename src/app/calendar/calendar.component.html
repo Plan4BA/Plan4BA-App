@@ -1,33 +1,38 @@
 <div class="calendar-container">
-    <mat-card class="monthly-calendar">
-        <mat-card-content #monthlyCalendar>
-            <div class="arrow-selection-header">
-                <button mat-button class="arrow-left" (click)="prevMonth()">
-                    <fa-icon icon="angle-left"></fa-icon>
-                </button>
-                <h3>{{ viewDateLocal | date:"LLLL yyyy" }}</h3>
-                <button mat-button class="arrow-right" (click)="nextMonth()">
-                    <fa-icon icon="angle-right"></fa-icon>
-                </button>
-            </div>
-            <p4ba-monthly-calendar (dayClicked)="dayClickedListener($event)" [viewDateLocal]="viewDateLocal"></p4ba-monthly-calendar>
-        </mat-card-content>
-    </mat-card>
+  <mat-card class="monthly-calendar">
+    <mat-card-content #monthlyCalendar>
+      <div class="arrow-selection-header">
+        <button mat-button class="arrow-left" (click)="prevMonth()">
+          <fa-icon icon="angle-left"></fa-icon>
+        </button>
+        <h3>{{ viewDateLocal | date: 'LLLL yyyy' }}</h3>
+        <button mat-button class="arrow-right" (click)="nextMonth()">
+          <fa-icon icon="angle-right"></fa-icon>
+        </button>
+      </div>
+      <p4ba-monthly-calendar
+        (dayClicked)="dayClickedListener($event)"
+        [viewDateLocal]="viewDateLocal"
+      ></p4ba-monthly-calendar>
+    </mat-card-content>
+  </mat-card>
 
-    <mat-card class="daily-calendar">
-        <mat-card-content  #dailyCalendar>
-            <div class="arrow-selection-header">
-            <button mat-button class="arrow-left" (click)="prevDay()">
-                <fa-icon icon="angle-left"></fa-icon>
-            </button>
-            <h3>{{ viewDateLocal | date:"EEEE d.M.yy" }}</h3>
-            <button mat-button class="arrow-right" (click)="nextDay()">
-                <fa-icon icon="angle-right"></fa-icon>
-            </button>
-            </div>
-            <mat-list class="word-wrap">
-                <p4ba-daily-lectures-list [viewDateLocal]="viewDateLocal"></p4ba-daily-lectures-list>
-            </mat-list>
-        </mat-card-content>
-    </mat-card>
+  <mat-card class="daily-calendar">
+    <mat-card-content #dailyCalendar>
+      <div class="arrow-selection-header">
+        <button mat-button class="arrow-left" (click)="prevDay()">
+          <fa-icon icon="angle-left"></fa-icon>
+        </button>
+        <h3>{{ viewDateLocal | date: 'EEEE d.M.yy' }}</h3>
+        <button mat-button class="arrow-right" (click)="nextDay()">
+          <fa-icon icon="angle-right"></fa-icon>
+        </button>
+      </div>
+      <mat-list class="word-wrap">
+        <p4ba-daily-lectures-list
+          [viewDateLocal]="viewDateLocal"
+        ></p4ba-daily-lectures-list>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </div>

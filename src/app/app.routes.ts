@@ -9,9 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { LinksComponent } from './links/links.component';
 
-export const authProviders = [
-  AuthGuard
-];
+export const authProviders = [AuthGuard];
 
 export const routes: Routes = [
   {
@@ -21,37 +19,37 @@ export const routes: Routes = [
       {
         path: '',
         redirectTo: '/home',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'home',
         component: HomeComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard]
       },
       {
         path: 'calendar',
         component: CalendarComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard]
       },
       {
         path: 'meals',
         component: MealsComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard]
       },
       {
         path: 'links',
         component: LinksComponent,
-        canActivate: [AuthGuard],
+        canActivate: [AuthGuard]
       },
       {
         path: 'settings',
         component: SettingsComponent,
-        canActivate: [AuthGuard],
-      },
+        canActivate: [AuthGuard]
+      }
     ]
   },
   {
     path: 'login',
-    component: LoginComponent,
-  },
+    component: LoginComponent
+  }
 ];

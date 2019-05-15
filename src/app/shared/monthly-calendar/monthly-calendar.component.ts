@@ -21,9 +21,7 @@ export class MonthlyCalendarComponent {
   @Input() viewDateLocal: Date = new Date();
   @Output() dayClicked = new EventEmitter<Date>();
 
-  constructor(
-    private lecturesService: LecturesService
-  ) {
+  constructor(private lecturesService: LecturesService) {
     this.lecturesService.getData().subscribe((lectures: Lecture[]) => {
       if (lectures) {
         this.events = lectures.map((lecture: Lecture) => {
@@ -37,17 +35,20 @@ export class MonthlyCalendarComponent {
           }
           let colorCode: string;
           if (lecture.color.indexOf('#') === 0 && lecture.color.length < 7) {
-            colorCode = '#' + '0'.repeat(7 - lecture.color.length) + lecture.color.split('#')[1];
+            colorCode =
+              '#' +
+              '0'.repeat(7 - lecture.color.length) +
+              lecture.color.split('#')[1];
           } else {
             colorCode = lecture.color;
           }
-          return <CalendarEvent>({
+          return {
             start: startDate,
             end: endDate,
             title: lecture.description,
-            color: {primary: colorCode},
-            allDay: lecture.allDay,
-          });
+            color: { primary: colorCode },
+            allDay: lecture.allDay
+          } as CalendarEvent;
         });
       } else {
         this.events = [];

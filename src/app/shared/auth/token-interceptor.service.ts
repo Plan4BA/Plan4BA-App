@@ -1,5 +1,10 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpErrorResponse
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map, switchMap, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -12,12 +17,10 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class TokenInterceptorService {
-
   authService: AuthService;
   router: Router;
 
-  constructor(private injector: Injector) {
-  }
+  constructor(private injector: Injector) {}
 
   intercept(
     request: HttpRequest<any>,
@@ -38,8 +41,8 @@ export class TokenInterceptorService {
           })
         );
       } else if (
-        request.headers.has('Authorization')
-        || request.url.indexOf(environment.apiUrl + 'info') === 0
+        request.headers.has('Authorization') ||
+        request.url.indexOf(environment.apiUrl + 'info') === 0
       ) {
         return next.handle(request);
       } else {
@@ -59,7 +62,9 @@ export class TokenInterceptorService {
               return this.authService.authTokenData.pipe(
                 filter(tokenData => !!tokenData),
                 switchMap(tokenData => {
-                  return next.handle(this.addAuthToken(request, tokenData.token));
+                  return next.handle(
+                    this.addAuthToken(request, tokenData.token)
+                  );
                 })
               );
             } else {
@@ -73,7 +78,10 @@ export class TokenInterceptorService {
     }
   }
 
-  private addAuthToken(request: HttpRequest<any>, authToken: string): HttpRequest<any> {
+  private addAuthToken(
+    request: HttpRequest<any>,
+    authToken: string
+  ): HttpRequest<any> {
     if (!authToken) {
       return request;
     }

@@ -1,6 +1,7 @@
 MIT License
 
-Copyright (c) 2018 
+Copyright (c) 2018
+
 - Maximilian Schädlich
 - Robert Beier
 - Eric Mäuer

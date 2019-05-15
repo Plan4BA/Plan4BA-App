@@ -8,7 +8,6 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements AfterViewInit {
-
   viewDateLocal: Date;
   @ViewChild('monthlyCalendar') monthlyCalendar;
   @ViewChild('dailyCalendar') dailyCalendar;
@@ -17,14 +16,14 @@ export class CalendarComponent implements AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute,
-    ) {
+    private route: ActivatedRoute
+  ) {
     this.viewDateLocal = new Date();
     this.viewDateLocal.setHours(0, 0, 0, 0);
-    }
+  }
 
   ngAfterViewInit() {
-    this.route.fragment.subscribe((fragment: String) => {
+    this.route.fragment.subscribe((fragment: string) => {
       if (!this.blockScroll) {
         if (fragment === 'dailyCalendar') {
           this.dailyCalendar.nativeElement.scrollIntoView(true);
@@ -34,7 +33,6 @@ export class CalendarComponent implements AfterViewInit {
       }
     });
   }
-
 
   dayClickedListener(date: Date): void {
     this.viewDateLocal = date;
@@ -69,5 +67,4 @@ export class CalendarComponent implements AfterViewInit {
     this.viewDateLocal.setUTCDate(this.viewDateLocal.getUTCDate() + 1);
     this.viewDateLocal = new Date(this.viewDateLocal.getTime());
   }
-
 }

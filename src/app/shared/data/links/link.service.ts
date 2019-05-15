@@ -12,20 +12,21 @@ import { Link } from './link.model';
   providedIn: 'root'
 })
 export class LinksService {
-
   private storageKey = 'links';
   private data: BehaviorSubject<Link[]>;
   private version = 1;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    ) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     // load data from storage
     let initialData: Link[];
     try {
-      const storedData: Link[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
+      const storedData: Link[] = JSON.parse(
+        localStorage.getItem(this.storageKey)
+      );
+      if (
+        parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) ===
+        this.version
+      ) {
         initialData = storedData;
       }
     } catch (error) {
@@ -36,7 +37,10 @@ export class LinksService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
-        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
+        localStorage.setItem(
+          `${this.storageKey}.version`,
+          this.version.toString()
+        );
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -44,7 +48,9 @@ export class LinksService {
 
     this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn) {
-        const loadDataSubscription = this.loadData().subscribe(() => loadDataSubscription.unsubscribe());
+        const loadDataSubscription = this.loadData().subscribe(() =>
+          loadDataSubscription.unsubscribe()
+        );
       } else {
         this.data.next(null);
       }
@@ -55,20 +61,22 @@ export class LinksService {
     return this.data;
   }
 
-  loadData(): Observable<Link[]|HttpErrorResponse> {
-    return this.http.get<Link[]>(
-      environment.apiUrl + 'links',
-      { headers: {
-        'Content-Type': 'application/json'
-      } }
-    )
-    .pipe(
-      tap((data: Link[]) => this.data.next(data)),
-      catchError(this.handleErrors)
-    );
+  loadData(): Observable<Link[] | HttpErrorResponse> {
+    return this.http
+      .get<Link[]>(environment.apiUrl + 'links', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(
+        tap((data: Link[]) => this.data.next(data)),
+        catchError(this.handleErrors)
+      );
   }
 
-  private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
+  private handleErrors(
+    error: HttpErrorResponse
+  ): Observable<HttpErrorResponse> {
     console.log(JSON.stringify(error));
     return throwError(error);
   }

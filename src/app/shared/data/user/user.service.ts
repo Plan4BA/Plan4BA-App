@@ -15,15 +15,17 @@ export class UserService {
   private data: BehaviorSubject<User>;
   private version = 1;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    ) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     // load data from storage
     let initialData: User;
     try {
-      const storedData: User = JSON.parse(localStorage.getItem(this.storageKey));
-      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
+      const storedData: User = JSON.parse(
+        localStorage.getItem(this.storageKey)
+      );
+      if (
+        parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) ===
+        this.version
+      ) {
         initialData = storedData;
       }
     } catch (error) {
@@ -34,7 +36,10 @@ export class UserService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
-        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
+        localStorage.setItem(
+          `${this.storageKey}.version`,
+          this.version.toString()
+        );
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -42,7 +47,9 @@ export class UserService {
 
     this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn) {
-        const loadDataSubscription = this.loadData().subscribe(() => loadDataSubscription.unsubscribe());
+        const loadDataSubscription = this.loadData().subscribe(() =>
+          loadDataSubscription.unsubscribe()
+        );
       } else {
         this.data.next(null);
       }
@@ -53,33 +60,36 @@ export class UserService {
     return this.data;
   }
 
-  loadData(): Observable<User|HttpErrorResponse> {
-    return this.http.get<User>(
-      environment.apiUrl + 'user',
-      { headers: {
-        'Content-Type': 'application/json'
-      } }
-    )
-    .pipe(
-      tap((data: User) => this.data.next(data)),
-      catchError(this.handleErrors)
-    );
+  loadData(): Observable<User | HttpErrorResponse> {
+    return this.http
+      .get<User>(environment.apiUrl + 'user', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(
+        tap((data: User) => this.data.next(data)),
+        catchError(this.handleErrors)
+      );
   }
 
-  delete(username: string, password: string): Observable<any|HttpErrorResponse> {
-    return this.http.delete(
-      environment.apiUrl + 'user/delete',
-      { headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(`${username}:${password}`)
-      } }
-    )
-    .pipe(
-      catchError(this.handleErrors)
-    );
+  delete(
+    username: string,
+    password: string
+  ): Observable<any | HttpErrorResponse> {
+    return this.http
+      .delete(environment.apiUrl + 'user/delete', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(`${username}:${password}`)
+        }
+      })
+      .pipe(catchError(this.handleErrors));
   }
 
-  private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
+  private handleErrors(
+    error: HttpErrorResponse
+  ): Observable<HttpErrorResponse> {
     console.log(JSON.stringify(error));
     return throwError(error);
   }

@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <a href="https://plan4ba.ba-leipzig.de">
     <img src="logo.png" alt="Logo" width=280 height=280>
@@ -8,12 +6,12 @@
 <p align="center">
   <a href="https://angular.io/">
     <img src="angular.svg" alt="Logo" width=72 height=72>
-  </a>   
+  </a>
   <a href="https://www.typescriptlang.org/">
     <img src="typescript.svg" alt="Logo" width=72 height=72>
-  </a>  
+  </a>
 </p>
-                                                                                     
+
 # Plan4BA
 
 Plan4BA provides a personalized lecture plan and meal plan for students of the universities that are part of [Berufsakademie Sachsen](https://www.ba-sachsen.de/) (BA) in Saxony, Germany.
@@ -41,8 +39,8 @@ To send api requests to the backend, you can use the [integrated proxy](https://
 ## Maintainers
 
 | [<img alt="mgechev" src="https://avatars0.githubusercontent.com/u/30528168?s=460&v=4" width="117">](https://github.com/Robert-Beier) | [<img alt="wKoza" src="https://avatars2.githubusercontent.com/u/6908978?s=460&v=4" width="117">](https://github.com/DDKFM) |
-| :---------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
-|                                             [Robert-Beier](https://github.com/Robert-Beier)                                             |                                              [DDKFM](https://github.com/DDKFM)                                              |
+| :----------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: |
+|                                           [Robert-Beier](https://github.com/Robert-Beier)                                            |                                             [DDKFM](https://github.com/DDKFM)                                              |
 
 Robert Beier is maintaining the Angular Web-Application. DDKFM is maintaining the server-side microservices. You can find them in our Github organization [Plan4BA](https://github.com/Plan4BA).
 

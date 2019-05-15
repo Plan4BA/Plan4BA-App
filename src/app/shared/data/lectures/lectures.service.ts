@@ -12,20 +12,21 @@ import { TokenData } from '../../auth/token-data.model';
   providedIn: 'root'
 })
 export class LecturesService {
-
   private storageKey = 'lectures';
   private data: BehaviorSubject<Lecture[]>;
   private version = 1;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    ) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     // load data from storage
     let initialData: Lecture[];
     try {
-      const storedData: Lecture[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
+      const storedData: Lecture[] = JSON.parse(
+        localStorage.getItem(this.storageKey)
+      );
+      if (
+        parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) ===
+        this.version
+      ) {
         initialData = storedData;
       }
     } catch (error) {
@@ -36,7 +37,10 @@ export class LecturesService {
     this.data.subscribe(data => {
       if (!!data) {
         localStorage.setItem(this.storageKey, JSON.stringify(data));
-        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
+        localStorage.setItem(
+          `${this.storageKey}.version`,
+          this.version.toString()
+        );
       } else {
         localStorage.removeItem(this.storageKey);
       }
@@ -44,7 +48,9 @@ export class LecturesService {
 
     this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
       if (isLoggedIn) {
-        const loadDataSubscription = this.loadData().subscribe(() => loadDataSubscription.unsubscribe());
+        const loadDataSubscription = this.loadData().subscribe(() =>
+          loadDataSubscription.unsubscribe()
+        );
       } else {
         this.data.next(null);
       }
@@ -55,20 +61,22 @@ export class LecturesService {
     return this.data;
   }
 
-  loadData(): Observable<Lecture[]|HttpErrorResponse> {
-    return this.http.get<Lecture[]>(
-      environment.apiUrl + 'lectures',
-      { headers: {
-        'Content-Type': 'application/json'
-      } }
-    )
-    .pipe(
-      tap((data: Lecture[]) => this.data.next(data)),
-      catchError(this.handleErrors)
-    );
+  loadData(): Observable<Lecture[] | HttpErrorResponse> {
+    return this.http
+      .get<Lecture[]>(environment.apiUrl + 'lectures', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(
+        tap((data: Lecture[]) => this.data.next(data)),
+        catchError(this.handleErrors)
+      );
   }
 
-  private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
+  private handleErrors(
+    error: HttpErrorResponse
+  ): Observable<HttpErrorResponse> {
     console.log(JSON.stringify(error));
     return throwError(error);
   }

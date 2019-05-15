@@ -1,102 +1,102 @@
 {
-    "login": {
-        "iAcceptPrivacyPolicy": "Ich bin mit den Datenschutzbestimmungen einverstanden",
-        "privacyPolicy": "Datenschutzbestimmungen",
-        "storeCredentials": "Stundenplan aktualisieren",
-        "useYourCDLogin": "Benutze deinen Campus Dual Login",
-        "password": "Passwort",
-        "username": "Benutzername",
-        "login": "Login"
+  "login": {
+    "iAcceptPrivacyPolicy": "Ich bin mit den Datenschutzbestimmungen einverstanden",
+    "privacyPolicy": "Datenschutzbestimmungen",
+    "storeCredentials": "Stundenplan aktualisieren",
+    "useYourCDLogin": "Benutze deinen Campus Dual Login",
+    "password": "Passwort",
+    "username": "Benutzername",
+    "login": "Login"
+  },
+  "errorMessages": {
+    "usernamePasswordRequired": "Die Eingabe von Benutzername und Passwort ist nötig!",
+    "acceptingPrivacyPolicyRequired": "Das Akzeptieren der Datenschutzbestimmungen ist nötig!",
+    "usernamePasswordNotMatching": "Diese Kombination von Benutzernamen und Passwort gehören zu keinem Account!",
+    "unknownError": "Ein unbekannter Fehler ist aufgetreten!",
+    "refreshPage": "Bitte aktualisiere die Webseite!"
+  },
+  "home": {
+    "lecturesToday": "Vorlesungen heute",
+    "mealsToday": "Essen heute"
+  },
+  "menuItems": {
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "calendar": "Kalender",
+    "meals": "Essen",
+    "links": "Links",
+    "settings": "Einstellungen"
+  },
+  "meals": {
+    "meals": "Essen",
+    "emptyMenu": "Der Speiseplan ist leer."
+  },
+  "settings": {
+    "settings": "Einstellungen",
+    "matriculationNumber": "Matrikelnummer",
+    "tutorialGroup": "Seminargruppe",
+    "university": "Universität",
+    "credentialsStored": "Anmeldedaten gespeichert",
+    "yes": "Ja",
+    "no": "Nein",
+    "lastLecturePolling": "Letzter Abruf Stundenplan",
+    "refresh": "Aktualisieren",
+    "deleteUserdata": "Benutzerdaten löschen",
+    "deleteUserDialog": {
+      "title": "Login Daten erforderlich",
+      "contentText": "Die Login Daten sind erforderlich, um die Benutzerdaten zu löschen. Es werden keine Daten im Campus Dual System gelöscht, nur auf den Servern der Plan4BA Anwendung.",
+      "buttonName": "Benutzerdaten löschen"
     },
-    "errorMessages": {
-        "usernamePasswordRequired": "Die Eingabe von Benutzername und Passwort ist nötig!",
-        "acceptingPrivacyPolicyRequired": "Das Akzeptieren der Datenschutzbestimmungen ist nötig!",
-        "usernamePasswordNotMatching": "Diese Kombination von Benutzernamen und Passwort gehören zu keinem Account!",
-        "unknownError": "Ein unbekannter Fehler ist aufgetreten!",
-        "refreshPage": "Bitte aktualisiere die Webseite!"
+    "pollLecturesDialog": {
+      "title": "Login Daten erforderlich",
+      "contentText": "Um den Stundenplan aus dem Campus Dual zu laden, sind Login Daten nötig. Um den Stundenplan zu aktualisieren ohne immer deine Daten eingeben zu müssen, kannst du die Option 'Anmeldedaten speichern' aktivieren.",
+      "buttonName": "Stundenplan laden"
     },
-    "home": {
-        "lecturesToday": "Vorlesungen heute",
-        "mealsToday": "Essen heute"
+    "changeStoreCredentials": {
+      "title": "Login Daten erforderlich",
+      "contentText": "Um diese Einstellung zu bearbeiten, ist eine erneute Eingabe der Campus Dual Login Daten erforderlich.",
+      "storeCredentials": "Anmeldedaten speichern",
+      "deleteCredentials": "Anmeldedaten löschen"
     },
-    "menuItems": {
-        "logout": "Logout",
-        "dashboard": "Dashboard",
-        "calendar": "Kalender",
-        "meals": "Essen",
-        "links": "Links",
-        "settings": "Einstellungen"
-    },
-    "meals": {
-        "meals": "Essen",
-        "emptyMenu": "Der Speiseplan ist leer."
-    },
-    "settings": {
-        "settings": "Einstellungen",
-        "matriculationNumber": "Matrikelnummer",
-        "tutorialGroup": "Seminargruppe",
-        "university": "Universität",
-        "credentialsStored": "Anmeldedaten gespeichert",
-        "yes": "Ja",
-        "no": "Nein",
-        "lastLecturePolling": "Letzter Abruf Stundenplan",
-        "refresh": "Aktualisieren",
-        "deleteUserdata": "Benutzerdaten löschen",
-        "deleteUserDialog": {
-            "title": "Login Daten erforderlich",
-            "contentText": "Die Login Daten sind erforderlich, um die Benutzerdaten zu löschen. Es werden keine Daten im Campus Dual System gelöscht, nur auf den Servern der Plan4BA Anwendung.",
-            "buttonName": "Benutzerdaten löschen"
-        },
-        "pollLecturesDialog": {
-            "title": "Login Daten erforderlich",
-            "contentText": "Um den Stundenplan aus dem Campus Dual zu laden, sind Login Daten nötig. Um den Stundenplan zu aktualisieren ohne immer deine Daten eingeben zu müssen, kannst du die Option 'Anmeldedaten speichern' aktivieren.",
-            "buttonName": "Stundenplan laden"
-        },
-        "changeStoreCredentials": {
-            "title": "Login Daten erforderlich",
-            "contentText": "Um diese Einstellung zu bearbeiten, ist eine erneute Eingabe der Campus Dual Login Daten erforderlich.",
-            "storeCredentials": "Anmeldedaten speichern",
-            "deleteCredentials": "Anmeldedaten löschen"
-        },
-        "language": "Sprache",
-        "change": "Ändern"
-    },
-    "dailyLecturesList": {
-        "to": "bis",
-        "lecturer": "Dozent",
-        "room": "Raum",
-        "noLectures": "Keine Vorlesungen"
-    },
-    "dailyMealsList": {
-        "vegetarian": "Vegetarisch",
-        "vegan": "Vegan",
-        "noFood": "Kein Essen"
-    },
-    "pollingService": {
-        "startPollingLectures": "Wir laden gerade den Stundenplan aus dem Campus Dual. Das kann durchaus eine Minute dauern.",
-        "lecturesPollingFinished": "Der Stundenplan wurde geladen!"
-    },
-    "privacyPolicyDialog": {
-        "privacyPolicy": "Datenschutzerklärung",
-        "close": "Schließen"
-    },
-    "storeCredentialsDialog": {
-        "storeCredentials": "Stundenplan automatisch aktualisieren",
-        "close": "Schließen"
-    },
-    "userCredentialsDialog": {
-        "close": "Schließen",
-        "password": "Passwort",
-        "username": "Benutzername"
-    },
-    "languages": {
-        "de": "Deutsch",
-        "en": "Englisch"
-    },
-    "links": {
-        "links": "Links"
-    },
-    "notifications": {
-        "lectureChanged": "Der Stundenplan hat sich geändert!"
-    }
+    "language": "Sprache",
+    "change": "Ändern"
+  },
+  "dailyLecturesList": {
+    "to": "bis",
+    "lecturer": "Dozent",
+    "room": "Raum",
+    "noLectures": "Keine Vorlesungen"
+  },
+  "dailyMealsList": {
+    "vegetarian": "Vegetarisch",
+    "vegan": "Vegan",
+    "noFood": "Kein Essen"
+  },
+  "pollingService": {
+    "startPollingLectures": "Wir laden gerade den Stundenplan aus dem Campus Dual. Das kann durchaus eine Minute dauern.",
+    "lecturesPollingFinished": "Der Stundenplan wurde geladen!"
+  },
+  "privacyPolicyDialog": {
+    "privacyPolicy": "Datenschutzerklärung",
+    "close": "Schließen"
+  },
+  "storeCredentialsDialog": {
+    "storeCredentials": "Stundenplan automatisch aktualisieren",
+    "close": "Schließen"
+  },
+  "userCredentialsDialog": {
+    "close": "Schließen",
+    "password": "Passwort",
+    "username": "Benutzername"
+  },
+  "languages": {
+    "de": "Deutsch",
+    "en": "Englisch"
+  },
+  "links": {
+    "links": "Links"
+  },
+  "notifications": {
+    "lectureChanged": "Der Stundenplan hat sich geändert!"
+  }
 }

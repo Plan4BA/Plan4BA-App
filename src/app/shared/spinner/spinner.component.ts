@@ -16,12 +16,14 @@ import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'p4ba-spinner',
-  template: `<div class="preloader" *ngIf="isSpinnerVisible">
-        <div class="spinner">
-          <div class="double-bounce1"></div>
-          <div class="double-bounce2"></div>
-        </div>
-    </div>`,
+  template: `
+    <div class="preloader" *ngIf="isSpinnerVisible">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+    </div>
+  `,
   encapsulation: ViewEncapsulation.None
 })
 export class SpinnerComponent implements OnDestroy {

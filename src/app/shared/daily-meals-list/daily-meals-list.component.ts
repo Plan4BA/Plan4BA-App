@@ -8,13 +8,10 @@ import { Food } from '../data/meals/food.model';
   styleUrls: ['./daily-meals-list.component.scss']
 })
 export class DailyMealsListComponent implements OnInit {
-
   @Output() tapEvent = new EventEmitter<any>();
   @Input() dailyMeals: Food[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

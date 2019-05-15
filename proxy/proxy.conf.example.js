@@ -19,27 +19,26 @@ function handleDelete(req) {
   }
 }
 
-
 const PROXY_CONFIG = {
   '/api': {
-      'target': 'http://192.168.0.2:8080',
-      'secure': false,
-      'logLevel': 'debug',
-      'bypass': function (req, res, proxyOptions) {
-        switch (req.method) {
-          case 'GET':
-            return handleGet(req);
-            break;
+    target: 'http://192.168.0.2:8080',
+    secure: false,
+    logLevel: 'debug',
+    bypass: function(req, res, proxyOptions) {
+      switch (req.method) {
+        case 'GET':
+          return handleGet(req);
+          break;
 
-          case 'DELETE':
-            return handleDelete(req);
-            break;
+        case 'DELETE':
+          return handleDelete(req);
+          break;
 
-          default:
-            break;
-        }
+        default:
+          break;
       }
+    }
   }
-}
+};
 
 module.exports = PROXY_CONFIG;

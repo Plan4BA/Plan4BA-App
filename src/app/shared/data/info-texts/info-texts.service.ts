@@ -10,20 +10,22 @@ import { environment } from '../../../../environments/environment';
   providedIn: 'root'
 })
 export class InfoTextsService {
-
   private storageKey = 'info';
   private data: BehaviorSubject<InfoText[]>;
   private structuredData: BehaviorSubject<any>;
   private version = 1;
 
-  constructor(
-    private http: HttpClient,
-    ) {
+  constructor(private http: HttpClient) {
     // load data from storage
     let initialData: InfoText[];
     try {
-      const storedData: InfoText[] = JSON.parse(localStorage.getItem(this.storageKey));
-      if (parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) === this.version) {
+      const storedData: InfoText[] = JSON.parse(
+        localStorage.getItem(this.storageKey)
+      );
+      if (
+        parseInt(localStorage.getItem(`${this.storageKey}.version`), 0) ===
+        this.version
+      ) {
         initialData = storedData;
       }
     } catch (error) {
@@ -34,19 +36,29 @@ export class InfoTextsService {
 
     this.data.subscribe(data => {
       if (!!data) {
-        this.structuredData.next(data.reduce(
-          (structured: any, infoText: InfoText) => ({...structured, [infoText.key]: infoText.description}),
-          {}
-        ));
+        this.structuredData.next(
+          data.reduce(
+            (structured: any, infoText: InfoText) => ({
+              ...structured,
+              [infoText.key]: infoText.description
+            }),
+            {}
+          )
+        );
         localStorage.setItem(this.storageKey, JSON.stringify(data));
-        localStorage.setItem(`${this.storageKey}.version`, this.version.toString());
+        localStorage.setItem(
+          `${this.storageKey}.version`,
+          this.version.toString()
+        );
       } else {
         this.structuredData.next(null);
         localStorage.removeItem(this.storageKey);
       }
     });
 
-    const loadDataSubscription = this.loadData().subscribe(() => loadDataSubscription.unsubscribe());
+    const loadDataSubscription = this.loadData().subscribe(() =>
+      loadDataSubscription.unsubscribe()
+    );
   }
 
   getData(): BehaviorSubject<InfoText[]> {
@@ -57,20 +69,22 @@ export class InfoTextsService {
     return this.structuredData;
   }
 
-  loadData(): Observable<InfoText[]|HttpErrorResponse> {
-    return this.http.get<InfoText[]>(
-      environment.apiUrl + 'info',
-      { headers: {
-        'Content-Type': 'application/json'
-      } }
-    )
-    .pipe(
-      tap((data: InfoText[]) => this.data.next(data)),
-      catchError(this.handleErrors)
-    );
+  loadData(): Observable<InfoText[] | HttpErrorResponse> {
+    return this.http
+      .get<InfoText[]>(environment.apiUrl + 'info', {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(
+        tap((data: InfoText[]) => this.data.next(data)),
+        catchError(this.handleErrors)
+      );
   }
 
-  private handleErrors(error: HttpErrorResponse): Observable<HttpErrorResponse> {
+  private handleErrors(
+    error: HttpErrorResponse
+  ): Observable<HttpErrorResponse> {
     console.log(JSON.stringify(error));
     return throwError(error);
   }

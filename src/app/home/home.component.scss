@@ -1,10 +1,10 @@
 .dashboard-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 
-    mat-card {
-        min-width: 290px;
-        flex-grow: 1;
-    }
+  mat-card {
+    min-width: 290px;
+    flex-grow: 1;
+  }
 }
