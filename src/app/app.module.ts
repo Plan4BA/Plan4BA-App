@@ -1,13 +1,5 @@
 import { NgModule, LOCALE_ID, Injectable, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faCoffee,
-  faAngleLeft,
-  faAngleRight,
-  faLeaf
-} from '@fortawesome/free-solid-svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   HttpClientModule,
@@ -63,9 +55,6 @@ import { environment } from '../environments/environment';
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
 
-// Add an icon to the library for convenient access in other components
-library.add(faCoffee, faAngleLeft, faAngleRight, faLeaf);
-
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -119,7 +108,6 @@ export class SentryErrorHandler implements ErrorHandler {
     FormsModule,
     AppRoutingModule,
     MaterialModule,
-    FontAwesomeModule,
     BrowserAnimationsModule,
     HttpClientModule,
     CalendarModule.forRoot({

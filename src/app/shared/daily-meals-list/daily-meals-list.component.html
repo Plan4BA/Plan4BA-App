@@ -10,12 +10,13 @@
   <p *ngIf="meal.additionalInformation.length > 0" matLine class="text-muted" `>
     {{ meal.additionalInformation }}
   </p>
-  <fa-icon
-    class="list-right-icon"
+  <img
+    src="./assets/images/leaf.svg"
     *ngIf="meal.vegetarian || meal.vegan"
-    icon="leaf"
+    class="leaf-icon list-right-icon"
+    alt="My Awesome SVG"
     [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"
-  ></fa-icon>
+  />
 </mat-list-item>
 <mat-list-item *ngIf="dailyMeals.length === 0">
   <h3 matLine>{{ 'dailyMealsList.noFood' | translate }}</h3>
