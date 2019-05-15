@@ -19,7 +19,7 @@ import { AuthService } from '../../../shared/auth/auth.service';
 @Component({
   selector: 'p4ba-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: []
+  styleUrls: ['./sidebar.component.scss']
 })
 export class AppSidebarComponent implements OnDestroy {
   @Output() close = new EventEmitter<any>();

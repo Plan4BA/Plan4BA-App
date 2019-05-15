@@ -1,0 +1,341 @@
+// template
+
+.mat-drawer-container {
+  background: $bodycolor;
+}
+
+// own
+
+.mat-snack-bar-container {
+  margin: 25px !important;
+}
+
+@media (max-width: 767px) {
+  .mat-list.no-x-padding-mobile {
+    .mat-list-item-content {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+
+    .mat-subheader {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+  }
+}
+
+.mat-checkbox.word-wrap {
+  .mat-checkbox-label {
+    word-wrap: break-word !important;
+    white-space: pre-wrap !important;
+  }
+}
+
+// mat form template
+
+.form-control {
+  border: 0px;
+  line-height: 25px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.mat-form-field-underline {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+// mat card template
+
+.mat-card {
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05) !important;
+  -webkit-box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.05) !important;
+  margin: 15px;
+  padding: 0px !important;
+  border-radius: 4px;
+
+  .mat-card-content {
+    font-size: 1rem;
+    line-height: 23px;
+    padding: 24px;
+  }
+  .mat-card-image {
+    width: calc(100% + 0px);
+    margin: 0 0px 0px 0px;
+  }
+  .mat-card-header {
+    padding: 12px;
+    border-radius: 4px 4px 0 0;
+    .mat-card-title {
+      margin-bottom: 2px;
+      font-size: 20px;
+    }
+    .mat-card-subtitle,
+    .mat-card-subtitle:not(:first-child) {
+      margin-bottom: 0px;
+      margin-top: 0px;
+      font-size: 14px;
+    }
+    &.text-white {
+      .mat-card-title {
+        color: #fff;
+      }
+      .mat-card-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+  .mat-card-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  .mat-card-subtitle {
+    margin-bottom: 20px;
+  }
+  .mat-card-actions {
+    margin: 0px !important;
+  }
+}
+
+// mat card own
+
+.mat-card {
+  .mat-card-title.left-icon {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+
+    span {
+      padding-left: 10px;
+    }
+  }
+
+  .mat-list.word-wrap {
+    .mat-list-item {
+      height: initial !important;
+
+      h3,
+      p {
+        word-wrap: break-word;
+        white-space: pre-wrap;
+      }
+
+      .list-right-icon {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+// mat toolbar template
+
+mat-toolbar {
+  box-shadow: 1px 0px 10px rgba(0, 0, 0, 0.5);
+
+  &.topbar {
+    padding: 0px 15px;
+  }
+  .navbar-header {
+    text-align: center;
+    .navbar-brand {
+      display: flex;
+      line-height: 18px;
+
+      align-items: center;
+      .dark-logo {
+        display: none;
+      }
+      b {
+        margin-right: 5px;
+      }
+      img {
+      }
+    }
+  }
+
+  .app-search {
+    display: none;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    position: absolute;
+    .form-control {
+      line-height: 42px;
+    }
+    .cl-srh-btn {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      font-size: 15px;
+      color: $bodytext;
+      cursor: pointer;
+    }
+  }
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+  }
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 56px;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+// mat toolbar own
+
+mat-toolbar {
+  .navbar-header {
+    .navbar-brand {
+      .light-logo {
+        width: 50px;
+      }
+      .dark-logo {
+        width: 50px;
+      }
+
+      span {
+        color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  mat-toolbar {
+    .navbar-header {
+      .navbar-brand {
+        span {
+          display: none;
+        }
+      }
+    }
+  }
+  .mat-toolbar-single-row {
+    height: 64px !important;
+  }
+}
+
+// mat sidenav template
+
+mat-sidenav {
+  width: 240px;
+  padding-top: 0px;
+}
+#snav {
+  box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+  .mat-list-item {
+    height: auto;
+    &:hover {
+      background: none;
+    }
+
+    .mat-list-item-content {
+      display: block;
+      padding: 0px 15px;
+      &:hover {
+        background: none;
+        > a {
+          color: $themecolor;
+        }
+      }
+    }
+
+    a {
+      height: 45px;
+      padding: 0 10px;
+      margin-bottom: 10px;
+      align-items: center;
+      display: flex;
+      font-size: 15px;
+      white-space: nowrap;
+      color: $sidebar-text;
+      mat-icon:not(.dd-icon) {
+        margin-right: 8px;
+      }
+      mat-icon {
+        color: $sidebar-icons;
+      }
+      .dd-icon {
+        font-size: 16px;
+        width: 16px;
+        transition: 0.2s ease-in;
+        margin: 5px 0 5px 5px;
+        height: 16px;
+      }
+    }
+    &.selected > .mat-list-item-content > a {
+      background: $themecolor-alt;
+      border-radius: 4px;
+      color: #fff;
+
+      mat-icon {
+        color: #fff;
+      }
+      .dd-icon {
+        -webkit-transform: rotate(-180deg);
+        transform: rotate(-180deg);
+      }
+    }
+    &.selected .sub-item .mat-list-item-content a.selected {
+      background: transparent;
+      color: $inverse;
+      font-weight: 500;
+    }
+  }
+  .sub-item {
+    display: none;
+    margin-top: -15px;
+    a {
+      padding-left: 28px;
+      height: 50px;
+      margin-bottom: 0px;
+    }
+  }
+  .saperator {
+    cursor: text;
+    font-size: 13px;
+    margin-bottom: 15px;
+    margin-top: 25px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .selected {
+    .sub-item {
+      display: block;
+    }
+  }
+}
+
+// mat sidenav own
+
+.mat-sidenav {
+  position: fixed !important;
+  top: 64px !important;
+}
+
+#snav {
+  .mat-list-item {
+    &.selected > .mat-list-item-content > a {
+      background-color: mat-color($plan4ba-accent);
+    }
+
+    .logout-menu-item {
+      background-color: mat-color($plan4ba-warn);
+    }
+  }
+}
+
+// move away

@@ -32,7 +32,7 @@
               "src/site.webmanifest",
               "src/assets"
             ],
-            "styles": ["src/assets/styles/style.scss", "src/styles.scss"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {

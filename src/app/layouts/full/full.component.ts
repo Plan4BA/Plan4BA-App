@@ -17,8 +17,8 @@ import { AppSidebarComponent } from './sidebar/sidebar.component';
 /** @title Responsive sidenav */
 @Component({
   selector: 'p4ba-full-layout',
-  templateUrl: 'full.component.html',
-  styleUrls: []
+  templateUrl: './full.component.html',
+  styleUrls: ['./full.component.scss']
 })
 export class FullComponent implements OnDestroy, AfterViewInit {
   mobileQuery: MediaQueryList;
