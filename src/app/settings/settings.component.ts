@@ -5,10 +5,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from '../shared/data/user/user.service';
 import { User } from '../shared/data/user/user.model';
-import { StoreCredentialsInfoDialog } from '../shared/dialogs/store-credentials-info/store-credentials-info.dialog';
+import { StoreCredentialsInfoDialogComponent } from '../shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
 import { LecturesPollingService } from '../shared/data/lectures/lectures-polling.service';
 import { AuthService } from '../shared/auth/auth.service';
-import { UserCredentialsDialog } from '../shared/dialogs/user-credentials/user-credentials.dialog';
+import { UserCredentialsDialogComponent } from '../shared/dialogs/user-credentials/user-credentials-dialog.component';
 
 @Component({
   selector: 'p4ba-settings',
@@ -16,7 +16,6 @@ import { UserCredentialsDialog } from '../shared/dialogs/user-credentials/user-c
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-
   selectableLangs;
   _selectedLang;
   user: User;
@@ -28,9 +27,9 @@ export class SettingsComponent implements OnInit {
     private lecturesPollingService: LecturesPollingService,
     private authService: AuthService,
     private router: Router,
-    private translate: TranslateService,
+    private translate: TranslateService
   ) {
-    this.userService.getData().subscribe((user: User) => this.user = user);
+    this.userService.getData().subscribe((user: User) => (this.user = user));
     this._selectedLang = localStorage.getItem('usedLanguage') || 'de';
     this.selectableLangs = this.translate.getLangs();
   }
@@ -46,17 +45,16 @@ export class SettingsComponent implements OnInit {
     this._selectedLang = lang;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   openHashHelpDialog(): void {
-    const dialogRef = this.dialog.open(StoreCredentialsInfoDialog, {
+    const dialogRef = this.dialog.open(StoreCredentialsInfoDialogComponent, {
       maxWidth: 600
     });
   }
 
   deleteUser(): void {
-    const dialogRef = this.dialog.open(UserCredentialsDialog, {
+    const dialogRef = this.dialog.open(UserCredentialsDialogComponent, {
       maxWidth: 600,
       data: {
         title: 'settings.deleteUserDialog.title',
@@ -68,25 +66,33 @@ export class SettingsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.username && result.password) {
-        this.userService.delete(result.username, result.password).subscribe(data => {
-          if (data && data.code === 200) {
-            this.authService.logout();
-            this.router.navigate(['/login']);
-          } else {
-            throw new Error('deleteUser failed');
+        this.userService.delete(result.username, result.password).subscribe(
+          data => {
+            if (data && data.code === 200) {
+              this.authService.logout();
+              this.router.navigate(['/login']);
+            } else {
+              throw new Error('deleteUser failed');
+            }
+          },
+          err => {
+            if (err && err.status === 401) {
+              this.snackBar.open(
+                this.translate.instant(
+                  'errorMessages.usernamePasswordNotMatching'
+                ),
+                'OK',
+                {
+                  duration: 5000,
+                  verticalPosition: 'top'
+                }
+              );
+            } else {
+              console.log(err);
+              throw err;
+            }
           }
-        },
-        err => {
-          if (err && err.status === 401) {
-            this.snackBar.open(this.translate.instant('errorMessages.usernamePasswordNotMatching'), 'OK', {
-              duration: 5000,
-              verticalPosition: 'top'
-            } );
-          } else {
-            console.log(err);
-            throw err;
-          }
-        });
+        );
       }
     });
   }
@@ -95,7 +101,7 @@ export class SettingsComponent implements OnInit {
     if (this.user.hashStored) {
       this.lecturesPollingService.pollLecturesManually();
     } else {
-      const dialogRef = this.dialog.open(UserCredentialsDialog, {
+      const dialogRef = this.dialog.open(UserCredentialsDialogComponent, {
         maxWidth: 600,
         data: {
           title: 'settings.pollLecturesDialog.title',
@@ -107,28 +113,33 @@ export class SettingsComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result && result.username && result.password) {
-          this.lecturesPollingService.pollLecturesManually(result.username, result.password);
+          this.lecturesPollingService.pollLecturesManually(
+            result.username,
+            result.password
+          );
         }
       });
     }
   }
 
   changeStoreCredentials() {
-    const dialogRef = this.dialog.open(UserCredentialsDialog, {
+    const dialogRef = this.dialog.open(UserCredentialsDialogComponent, {
       maxWidth: 600,
       data: {
         title: 'settings.changeStoreCredentials.title',
         contentText: 'settings.changeStoreCredentials.contentText',
-        buttonName: 'settings.changeStoreCredentials.' + (this.user.hashStored ? 'deleteCredentials' : 'storeCredentials'),
+        buttonName:
+          'settings.changeStoreCredentials.' +
+          (this.user.hashStored ? 'deleteCredentials' : 'storeCredentials'),
         buttonWarn: false
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && result.username && result.password) {
-        const loginSub = this.authService.login(result.username, result.password, !this.user.hashStored).subscribe(
-          () => loginSub.unsubscribe()
-        );
+        const loginSub = this.authService
+          .login(result.username, result.password, !this.user.hashStored)
+          .subscribe(() => loginSub.unsubscribe());
       }
     });
   }

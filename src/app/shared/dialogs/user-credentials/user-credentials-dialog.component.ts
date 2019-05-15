@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { InfoTextsService } from '../../data/info-texts/info-texts.service';
 
@@ -12,11 +12,10 @@ export interface DialogParameter {
 
 @Component({
   selector: 'p4ba-user-credentials',
-  templateUrl: './user-credentials.dialog.html',
-  styleUrls: ['./user-credentials.dialog.scss']
+  templateUrl: './user-credentials-dialog.component.html',
+  styleUrls: ['./user-credentials-dialog.component.scss']
 })
-export class UserCredentialsDialog implements OnInit {
-
+export class UserCredentialsDialogComponent implements OnInit {
   title = '';
   contentText = '';
   buttonName = '';
@@ -25,9 +24,9 @@ export class UserCredentialsDialog implements OnInit {
   password = '';
 
   constructor(
-    public dialogRef: MatDialogRef<UserCredentialsDialog>,
+    public dialogRef: MatDialogRef<UserCredentialsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogParameter
-    ) {
+  ) {
     if (data) {
       this.title = data.title;
       this.contentText = data.contentText;
@@ -36,11 +35,9 @@ export class UserCredentialsDialog implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   submit() {
-    this.dialogRef.close({username: this.username, password: this.password});
+    this.dialogRef.close({ username: this.username, password: this.password });
   }
-
 }

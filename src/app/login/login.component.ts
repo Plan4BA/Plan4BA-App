@@ -4,8 +4,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
 import { AuthService } from '../shared/auth/auth.service';
-import { StoreCredentialsInfoDialog } from '../shared/dialogs/store-credentials-info/store-credentials-info.dialog';
-import { PrivacyPolicyDialog } from '../shared/dialogs/privacy-policy/privacy-policy.dialog';
+import { StoreCredentialsInfoDialogComponent } from '../shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
+import { PrivacyPolicyDialogComponent } from '../shared/dialogs/privacy-policy/privacy-policy-dialog.component';
 
 @Component({
   selector: 'p4ba-login',
@@ -13,7 +13,6 @@ import { PrivacyPolicyDialog } from '../shared/dialogs/privacy-policy/privacy-po
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
   private _isAuthenticating = false;
 
   selectableLangs;
@@ -30,10 +29,10 @@ export class LoginComponent {
     private router: Router,
     private dialog: MatDialog,
     private translate: TranslateService,
-    private snackBar: MatSnackBar,
+    private snackBar: MatSnackBar
   ) {
-      this._selectedLang = localStorage.getItem('usedLanguage') || 'de';
-      this.selectableLangs = this.translate.getLangs();
+    this._selectedLang = localStorage.getItem('usedLanguage') || 'de';
+    this.selectableLangs = this.translate.getLangs();
   }
 
   get isAuthenticating(): boolean {
@@ -57,33 +56,46 @@ export class LoginComponent {
 
   login() {
     if (!this.username || !this.password) {
-      this.snackBar.open(this.translate.instant('errorMessages.usernamePasswordRequired'), 'OK', {
-        duration: 5000,
-        verticalPosition: 'top'
-      } );
+      this.snackBar.open(
+        this.translate.instant('errorMessages.usernamePasswordRequired'),
+        'OK',
+        {
+          duration: 5000,
+          verticalPosition: 'top'
+        }
+      );
       return;
     }
     if (!this.acceptPrivacy) {
-      this.snackBar.open(this.translate.instant('errorMessages.acceptingPrivacyPolicyRequired'), 'OK', {
-        duration: 5000,
-        verticalPosition: 'top'
-      } );
+      this.snackBar.open(
+        this.translate.instant('errorMessages.acceptingPrivacyPolicyRequired'),
+        'OK',
+        {
+          duration: 5000,
+          verticalPosition: 'top'
+        }
+      );
       return;
     }
     this.isAuthenticating = true;
-    const loginSub = this.authService.login(this.username, this.password, this.storeHash)
+    const loginSub = this.authService
+      .login(this.username, this.password, this.storeHash)
       .subscribe(
         () => {
           this.isAuthenticating = false;
           loginSub.unsubscribe();
           this.router.navigate(['/']);
         },
-        (error) => {
+        error => {
           // status code 401 means "unauthorized"
           this.isAuthenticating = false;
           loginSub.unsubscribe();
           if (error.status === 401) {
-            alert(this.translate.instant('errorMessages.usernamePasswordNotMatching'));
+            alert(
+              this.translate.instant(
+                'errorMessages.usernamePasswordNotMatching'
+              )
+            );
           } else {
             alert(this.translate.instant('errorMessages.unknownError'));
           }
@@ -92,13 +104,13 @@ export class LoginComponent {
   }
 
   openHashHelpDialog(): void {
-    const dialogRef = this.dialog.open(StoreCredentialsInfoDialog, {
+    const dialogRef = this.dialog.open(StoreCredentialsInfoDialogComponent, {
       maxWidth: 600
     });
   }
 
   openLoginInfoDialog(): void {
-    const dialogRef = this.dialog.open(PrivacyPolicyDialog, {
+    const dialogRef = this.dialog.open(PrivacyPolicyDialogComponent, {
       maxWidth: 600
     });
   }

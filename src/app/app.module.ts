@@ -2,16 +2,29 @@ import { NgModule, LOCALE_ID, Injectable, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCoffee, faAngleLeft, faAngleRight, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCoffee,
+  faAngleLeft,
+  faAngleRight,
+  faLeaf
+} from '@fortawesome/free-solid-svg-icons';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+  HttpClient
+} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
+import {
+  TranslateModule,
+  TranslateLoader,
+  TranslateService
+} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import * as Sentry from '@sentry/browser';
 
@@ -30,8 +43,8 @@ import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-l
 import { TokenInterceptorService } from './shared/auth/token-interceptor.service';
 import { MealsComponent } from './meals/meals.component';
 import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
-import { StoreCredentialsInfoDialog } from './shared/dialogs/store-credentials-info/store-credentials-info.dialog';
-import { PrivacyPolicyDialog } from './shared/dialogs/privacy-policy/privacy-policy.dialog';
+import { StoreCredentialsInfoDialogComponent } from './shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
+import { PrivacyPolicyDialogComponent } from './shared/dialogs/privacy-policy/privacy-policy-dialog.component';
 import { MaterialModule } from './material-module';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { AppHeaderComponent } from './layouts/full/header/header.component';
@@ -41,7 +54,7 @@ import { MenuItems } from './shared/menu-items/menu-items';
 import { UserService } from './shared/data/user/user.service';
 import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
 import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
-import { UserCredentialsDialog } from './shared/dialogs/user-credentials/user-credentials.dialog';
+import { UserCredentialsDialogComponent } from './shared/dialogs/user-credentials/user-credentials-dialog.component';
 import { LinksComponent } from './links/links.component';
 import { LinksService } from './shared/data/links/link.service';
 import { NotificationsService } from './shared/data/notifications/notifications.service';
@@ -60,7 +73,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 if (environment.production) {
   Sentry.init({
-    dsn: 'https://a16c84b452b04e7298dacf3e9ef127f0@sentry.plan4ba.ba-leipzig.de//2',
+    dsn:
+      'https://a16c84b452b04e7298dacf3e9ef127f0@sentry.plan4ba.ba-leipzig.de//2',
     environment: environment.production ? 'prod' : 'dev',
     release: 'plan4ba@0.3.0'
   });
@@ -89,16 +103,16 @@ export class SentryErrorHandler implements ErrorHandler {
     DailyLecturesListComponent,
     MealsComponent,
     DailyMealsListComponent,
-    StoreCredentialsInfoDialog,
-    PrivacyPolicyDialog,
+    StoreCredentialsInfoDialogComponent,
+    PrivacyPolicyDialogComponent,
     SpinnerComponent,
-    UserCredentialsDialog,
-    LinksComponent,
+    UserCredentialsDialogComponent,
+    LinksComponent
   ],
   entryComponents: [
-    StoreCredentialsInfoDialog,
-    PrivacyPolicyDialog,
-    UserCredentialsDialog,
+    StoreCredentialsInfoDialogComponent,
+    PrivacyPolicyDialogComponent,
+    UserCredentialsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -118,18 +132,25 @@ export class SentryErrorHandler implements ErrorHandler {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
+    })
   ],
   providers: [
     AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
-    { provide: LOCALE_ID,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
+    {
+      provide: LOCALE_ID,
       useFactory: (translate: TranslateService) => {
         return translate.currentLang;
       },
       deps: [TranslateService]
     },
-    ...(environment.production ? [{ provide: ErrorHandler, useClass: SentryErrorHandler }] : []),
+    ...(environment.production
+      ? [{ provide: ErrorHandler, useClass: SentryErrorHandler }]
+      : []),
     LecturesService,
     MealsService,
     authProviders,
@@ -138,8 +159,8 @@ export class SentryErrorHandler implements ErrorHandler {
     LecturesPollingService,
     InfoTextsService,
     LinksService,
-    NotificationsService,
+    NotificationsService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
