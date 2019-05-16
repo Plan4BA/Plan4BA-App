@@ -1,5 +1,4 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,11 +12,7 @@ export class CalendarComponent implements AfterViewInit {
   @ViewChild('dailyCalendar') dailyCalendar;
   private blockScroll = false;
 
-  constructor(
-    public dialog: MatDialog,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.viewDateLocal = new Date();
     this.viewDateLocal.setHours(0, 0, 0, 0);
   }

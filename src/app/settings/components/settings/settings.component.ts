@@ -3,12 +3,12 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { UserService } from '../shared/data/user/user.service';
-import { User } from '../shared/data/user/user.model';
-import { StoreCredentialsInfoDialogComponent } from '../shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
-import { LecturesPollingService } from '../shared/data/lectures/lectures-polling.service';
-import { AuthService } from '../shared/auth/auth.service';
-import { UserCredentialsDialogComponent } from '../shared/dialogs/user-credentials/user-credentials-dialog.component';
+import { UserService } from '@app/shared/data/user/user.service';
+import { User } from '@app/shared/data/user/user.model';
+import { StoreCredentialsInfoDialogComponent } from '@app/shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
+import { LecturesPollingService } from '@app/shared/data/lectures/lectures-polling.service';
+import { AuthService } from '@app/shared/auth/auth.service';
+import { UserCredentialsDialogComponent } from '@app/shared/dialogs/user-credentials/user-credentials-dialog.component';
 
 @Component({
   selector: 'p4ba-settings',

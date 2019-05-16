@@ -1,25 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 
-import { MealsService } from '../shared/data/meals/meals.service';
-import { Meal } from '../shared/data/meals/meal.model';
-import { Food } from '../shared/data/meals/food.model';
+import { Food } from '@app/shared/data/meals/food.model';
+import { MealsService } from '@app/shared/data/meals/meals.service';
+import { Meal } from '@app/shared/data/meals/meal.model';
 
 @Component({
-  selector: 'p4ba-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'p4ba-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   today: Date;
   todaysMeals: Food[] = [];
 
-  constructor(
-    private dialog: MatDialog,
-    private router: Router,
-    private mealsService: MealsService
-  ) {
+  constructor(private router: Router, private mealsService: MealsService) {
     this.today = new Date();
     this.today.setHours(0, 0, 0, 0);
 

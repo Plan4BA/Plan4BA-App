@@ -1,5 +1,4 @@
 import { NgModule, LOCALE_ID, Injectable, ErrorHandler } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   HttpClientModule,
@@ -7,8 +6,6 @@ import {
   HttpClient
 } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
@@ -22,19 +19,12 @@ import * as Sentry from '@sentry/browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
 import { authProviders } from './app.routes';
 import { AuthService } from './shared/auth/auth.service';
 import { LecturesService } from './shared/data/lectures/lectures.service';
 import { MealsService } from './shared/data/meals/meals.service';
-import { MonthlyCalendarComponent } from './shared/monthly-calendar/monthly-calendar.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { DailyLecturesListComponent } from './shared/daily-lectures-list/daily-lectures-list.component';
 import { TokenInterceptorService } from './shared/auth/token-interceptor.service';
-import { MealsComponent } from './meals/meals.component';
-import { DailyMealsListComponent } from './shared/daily-meals-list/daily-meals-list.component';
 import { StoreCredentialsInfoDialogComponent } from './shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
 import { PrivacyPolicyDialogComponent } from './shared/dialogs/privacy-policy/privacy-policy-dialog.component';
 import { MaterialModule } from './material-module';
@@ -47,10 +37,10 @@ import { UserService } from './shared/data/user/user.service';
 import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
 import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
 import { UserCredentialsDialogComponent } from './shared/dialogs/user-credentials/user-credentials-dialog.component';
-import { LinksComponent } from './links/links.component';
 import { LinksService } from './shared/data/links/link.service';
 import { NotificationsService } from './shared/data/notifications/notifications.service';
 import { environment } from '../environments/environment';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeEn);
@@ -84,19 +74,11 @@ export class SentryErrorHandler implements ErrorHandler {
     FullComponent,
     AppHeaderComponent,
     AppSidebarComponent,
-    HomeComponent,
-    SettingsComponent,
     LoginComponent,
-    CalendarComponent,
-    MonthlyCalendarComponent,
-    DailyLecturesListComponent,
-    MealsComponent,
-    DailyMealsListComponent,
     StoreCredentialsInfoDialogComponent,
     PrivacyPolicyDialogComponent,
     SpinnerComponent,
-    UserCredentialsDialogComponent,
-    LinksComponent
+    UserCredentialsDialogComponent
   ],
   entryComponents: [
     StoreCredentialsInfoDialogComponent,
@@ -104,16 +86,12 @@ export class SentryErrorHandler implements ErrorHandler {
     UserCredentialsDialogComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
+    SharedModule,
     FormsModule,
     AppRoutingModule,
     MaterialModule,
-    BrowserAnimationsModule,
     HttpClientModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

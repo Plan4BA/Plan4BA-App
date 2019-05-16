@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
-import { Link } from '../shared/data/links/link.model';
-import { LinksService } from '../shared/data/links/link.service';
+import { Link } from '@app/shared/data/links/link.model';
+import { LinksService } from '@app/shared/data/links/link.service';
 
 @Component({
   selector: 'p4ba-links',

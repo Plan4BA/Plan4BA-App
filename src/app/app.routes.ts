@@ -1,13 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { FullComponent } from './layouts/full/full.component';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './shared/auth/auth.guard';
-import { CalendarComponent } from './calendar/calendar.component';
-import { MealsComponent } from './meals/meals.component';
-import { SettingsComponent } from './settings/settings.component';
 import { LoginComponent } from './login/login.component';
-import { LinksComponent } from './links/links.component';
 
 export const authProviders = [AuthGuard];
 
@@ -23,27 +18,27 @@ export const routes: Routes = [
       },
       {
         path: 'home',
-        component: HomeComponent,
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
         canActivate: [AuthGuard]
       },
       {
         path: 'calendar',
-        component: CalendarComponent,
+        loadChildren: './calendar/calendar.module#CalendarModule',
         canActivate: [AuthGuard]
       },
       {
         path: 'meals',
-        component: MealsComponent,
+        loadChildren: './meals/meals.module#MealsModule',
         canActivate: [AuthGuard]
       },
       {
         path: 'links',
-        component: LinksComponent,
+        loadChildren: './links/links.module#LinksModule',
         canActivate: [AuthGuard]
       },
       {
         path: 'settings',
-        component: SettingsComponent,
+        loadChildren: './settings/settings.module#SettingsModule',
         canActivate: [AuthGuard]
       }
     ]
