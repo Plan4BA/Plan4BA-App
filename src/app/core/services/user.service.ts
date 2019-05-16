@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../auth/auth.service';
-import { Lecture } from './lecture.model';
-import { TokenData } from '../../auth/token-data.model';
+import { User } from '@app/core/models/user.model';
+import { AuthService } from '@app/core/services/auth.service';
+import { environment } from '../../../environments/environment';
+import { CoreModule } from '@app/core/core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
-export class LecturesService {
-  private storageKey = 'lectures';
-  private data: BehaviorSubject<Lecture[]>;
+export class UserService {
+  private storageKey = 'user';
+  private data: BehaviorSubject<User>;
   private version = 1;
 
   constructor(private http: HttpClient, private authService: AuthService) {
     // load data from storage
-    let initialData: Lecture[];
+    let initialData: User;
     try {
-      const storedData: Lecture[] = JSON.parse(
+      const storedData: User = JSON.parse(
         localStorage.getItem(this.storageKey)
       );
       if (
@@ -32,7 +32,7 @@ export class LecturesService {
     } catch (error) {
       console.log(JSON.stringify(error));
     }
-    this.data = new BehaviorSubject<Lecture[]>(initialData);
+    this.data = new BehaviorSubject<User>(initialData);
 
     this.data.subscribe(data => {
       if (!!data) {
@@ -57,21 +57,35 @@ export class LecturesService {
     });
   }
 
-  getData(): BehaviorSubject<Lecture[]> {
+  getData(): BehaviorSubject<User> {
     return this.data;
   }
 
-  loadData(): Observable<Lecture[] | HttpErrorResponse> {
+  loadData(): Observable<User | HttpErrorResponse> {
     return this.http
-      .get<Lecture[]>(environment.apiUrl + 'lectures', {
+      .get<User>(environment.apiUrl + 'user', {
         headers: {
           'Content-Type': 'application/json'
         }
       })
       .pipe(
-        tap((data: Lecture[]) => this.data.next(data)),
+        tap((data: User) => this.data.next(data)),
         catchError(this.handleErrors)
       );
+  }
+
+  delete(
+    username: string,
+    password: string
+  ): Observable<any | HttpErrorResponse> {
+    return this.http
+      .delete(environment.apiUrl + 'user/delete', {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Basic ' + btoa(`${username}:${password}`)
+        }
+      })
+      .pipe(catchError(this.handleErrors));
   }
 
   private handleErrors(

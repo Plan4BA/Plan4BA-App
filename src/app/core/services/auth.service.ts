@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError, Observable, BehaviorSubject } from 'rxjs';
-import { tap, catchError, filter, map, switchMap } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import * as Sentry from '@sentry/browser';
 
 import { environment } from '../../../environments/environment';
-import { TokenData } from './token-data.model';
+import { TokenData } from '@app/core/models/token-data.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   private _isLoggedIn: BehaviorSubject<boolean>;
   private storageKeyLogin = 'login';

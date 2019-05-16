@@ -1,20 +1,15 @@
 import {
   ChangeDetectorRef,
   Component,
-  NgZone,
   OnDestroy,
-  ViewChild,
-  HostListener,
-  Directive,
-  AfterViewInit,
   Output,
   EventEmitter
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 
-import { MenuItems } from '../../../shared/menu-items/menu-items';
-import { AuthService } from '../../../shared/auth/auth.service';
+import { AuthService } from '@app/core/services/auth.service';
+import { MenuItem, MENUITEMS } from './menu-items';
 
 @Component({
   selector: 'p4ba-sidebar',
@@ -24,13 +19,13 @@ import { AuthService } from '../../../shared/auth/auth.service';
 export class AppSidebarComponent implements OnDestroy {
   @Output() close = new EventEmitter<any>();
   mobileQuery: MediaQueryList;
+  menuItems: MenuItem[] = MENUITEMS;
 
   private _mobileQueryListener: () => void;
 
   constructor(
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
-    public menuItems: MenuItems,
     private authService: AuthService,
     private router: Router
   ) {

@@ -5,13 +5,13 @@ import { tap, catchError, map } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 import { TranslateService } from '@ngx-translate/core';
 
-import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../auth/auth.service';
-import { TokenData } from '../../auth/token-data.model';
-import { Notification } from './notification.model';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '@app/core/services/auth.service';
+import { Notification } from '@app/core/models/notification.model';
+import { CoreModule } from '@app/core/core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
 export class NotificationsService {
   private data: BehaviorSubject<Notification[]>;

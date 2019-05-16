@@ -1,28 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { throwError, of, Observable, timer } from 'rxjs';
-import {
-  switchMap,
-  catchError,
-  map,
-  shareReplay,
-  retryWhen,
-  mergeMap,
-  finalize,
-  tap,
-  delayWhen
-} from 'rxjs/operators';
+import { timer } from 'rxjs';
+import { map, shareReplay, retryWhen, delayWhen } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 import { LecturesService } from './lectures.service';
-import { UserService } from '../user/user.service';
-import { User } from '../user/user.model';
-import { environment } from '../../../../environments/environment';
-import { NotificationsService } from '../notifications/notifications.service';
+import { UserService } from './user.service';
+import { User } from '../models/user.model';
+import { environment } from '../../../environments/environment';
+import { NotificationsService } from './notifications.service';
+import { CoreModule } from '../core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
 export class LecturesPollingService {
   private isPolling = false;

@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { map, tap, catchError } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
-import { InfoText } from './info-text.model';
-import { environment } from '../../../../environments/environment';
+import { InfoText } from '../models/info-text.model';
+import { environment } from '../../../environments/environment';
+import { CoreModule } from '../core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
 export class InfoTextsService {
   private storageKey = 'info';

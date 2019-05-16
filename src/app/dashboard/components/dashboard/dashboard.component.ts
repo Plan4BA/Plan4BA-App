@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Food } from '@app/shared/data/meals/food.model';
-import { MealsService } from '@app/shared/data/meals/meals.service';
-import { Meal } from '@app/shared/data/meals/meal.model';
+import { Food } from '@app/core/models/food.model';
+import { MealsService } from '@app/core/services/meals.service';
+import { Meal } from '@app/core/models/meal.model';
 
 @Component({
   selector: 'p4ba-dashboard',

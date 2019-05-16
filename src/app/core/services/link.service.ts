@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
-import { tap, catchError, map } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../auth/auth.service';
-import { TokenData } from '../../auth/token-data.model';
-import { Link } from './link.model';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '@app/core/services/auth.service';
+import { Link } from '@app/core/models/link.model';
+import { CoreModule } from '@app/core/core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
 export class LinksService {
   private storageKey = 'links';

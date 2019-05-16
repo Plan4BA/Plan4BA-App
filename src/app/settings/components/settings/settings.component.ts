@@ -3,11 +3,11 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { UserService } from '@app/shared/data/user/user.service';
-import { User } from '@app/shared/data/user/user.model';
+import { UserService } from '@app/core/services/user.service';
+import { User } from '@app/core/models/user.model';
 import { StoreCredentialsInfoDialogComponent } from '@app/shared/dialogs/store-credentials-info/store-credentials-info-dialog.component';
-import { LecturesPollingService } from '@app/shared/data/lectures/lectures-polling.service';
-import { AuthService } from '@app/shared/auth/auth.service';
+import { LecturesPollingService } from '@app/core/services/lectures-polling.service';
+import { AuthService } from '@app/core/services/auth.service';
 import { UserCredentialsDialogComponent } from '@app/shared/dialogs/user-credentials/user-credentials-dialog.component';
 
 @Component({

@@ -3,14 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
 
-import { environment } from '../../../../environments/environment';
-import { AuthService } from '../../auth/auth.service';
-import { Meal } from './meal.model';
-import { Food } from './food.model';
-import { TokenData } from '../../auth/token-data.model';
+import { environment } from '../../../environments/environment';
+import { AuthService } from '@app/core/services/auth.service';
+import { Meal } from '@app/core/models/meal.model';
+import { CoreModule } from '@app/core/core.module';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: CoreModule
 })
 export class MealsService {
   private storageKey = 'meals';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { InfoTextsService } from '../../data/info-texts/info-texts.service';
+import { InfoTextsService } from '@app/core/services/info-texts.service';
 
 @Component({
   selector: 'p4ba-privacy-policy',

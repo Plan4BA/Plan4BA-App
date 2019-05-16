@@ -1,9 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
-import { LecturesPollingService } from './shared/data/lectures/lectures-polling.service';
-import { InfoTextsService } from './shared/data/info-texts/info-texts.service';
-import { NotificationsService } from './shared/data/notifications/notifications.service';
+import { LecturesPollingService } from './core/services/lectures-polling.service';
+import { InfoTextsService } from './core/services/info-texts.service';
+import { NotificationsService } from './core/services/notifications.service';
 
 @Component({
   selector: 'p4ba-root',

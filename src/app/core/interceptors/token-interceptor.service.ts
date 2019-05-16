@@ -6,16 +6,13 @@ import {
   HttpErrorResponse
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, switchMap, filter } from 'rxjs/operators';
+import { catchError, switchMap, filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { TokenData } from './token-data.model';
-import { AuthService } from './auth.service';
+import { AuthService } from '@app/core/services/auth.service';
 import { environment } from '../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TokenInterceptorService {
   authService: AuthService;
   router: Router;

@@ -1,13 +1,11 @@
-import { Injectable } from '@angular/core';
-
-export interface Menu {
+export interface MenuItem {
   state: string;
   translationKey: string;
   type: string;
   icon: string;
 }
 
-const MENUITEMS = [
+export const MENUITEMS: MenuItem[] = [
   {
     state: 'home',
     type: 'link',
@@ -39,10 +37,3 @@ const MENUITEMS = [
     icon: 'settings'
   }
 ];
-
-@Injectable()
-export class MenuItems {
-  getMenuitem(): Menu[] {
-    return MENUITEMS;
-  }
-}

@@ -2,8 +2,8 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { CalendarEvent, CalendarDateFormatter } from 'angular-calendar';
 
 import { CustomDateFormatter } from './custom-date-formatter.provider';
-import { LecturesService } from '@app/shared/data/lectures/lectures.service';
-import { Lecture } from '@app/shared/data/lectures/lecture.model';
+import { LecturesService } from '@app/core/services/lectures.service';
+import { Lecture } from '@app/core/models/lecture.model';
 
 @Component({
   selector: 'p4ba-monthly-calendar',
