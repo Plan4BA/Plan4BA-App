@@ -1,17 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  MatListModule,
-  MatTooltipModule,
-  MatCardModule,
-  MatButtonModule,
-  MatIconModule,
-  MatSelectModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatInputModule
-} from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { DailyLecturesListComponent } from './daily-lectures-list/daily-lectures-list.component';
@@ -20,6 +9,7 @@ import { StoreCredentialsInfoDialogComponent } from './dialogs/store-credentials
 import { PrivacyPolicyDialogComponent } from './dialogs/privacy-policy/privacy-policy-dialog.component';
 import { UserCredentialsDialogComponent } from './dialogs/user-credentials/user-credentials-dialog.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -30,19 +20,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     UserCredentialsDialogComponent,
     SpinnerComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatListModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    TranslateModule
-  ],
+  imports: [CommonModule, FormsModule, TranslateModule, MaterialModule],
   entryComponents: [
     StoreCredentialsInfoDialogComponent,
     PrivacyPolicyDialogComponent,
@@ -51,16 +29,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
   exports: [
     CommonModule,
     FormsModule,
-    MatListModule,
-    MatTooltipModule,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
     TranslateModule,
+    MaterialModule,
     DailyLecturesListComponent,
     DailyMealsListComponent,
     SpinnerComponent

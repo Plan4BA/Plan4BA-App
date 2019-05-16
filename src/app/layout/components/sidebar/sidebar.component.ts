@@ -16,7 +16,7 @@ import { MenuItem, MENUITEMS } from './menu-items';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class AppSidebarComponent implements OnDestroy {
+export class SidebarComponent implements OnDestroy {
   @Output() close = new EventEmitter<any>();
   mobileQuery: MediaQueryList;
   menuItems: MenuItem[] = MENUITEMS;

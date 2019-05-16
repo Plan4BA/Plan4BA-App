@@ -8,11 +8,11 @@ import {
 
 /** @title Responsive sidenav */
 @Component({
-  selector: 'p4ba-full-layout',
-  templateUrl: './full.component.html',
-  styleUrls: ['./full.component.scss']
+  selector: 'p4ba-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
-export class FullComponent implements OnDestroy, AfterViewInit {
+export class LayoutComponent implements OnDestroy, AfterViewInit {
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
