@@ -3,4 +3,5 @@ export class Notification {
   type: string;
   label: string;
   description: string;
+  callback: string;
 }

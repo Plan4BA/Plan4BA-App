@@ -1,0 +1,12 @@
+<h4 class="lecture-title">{{ displayedLecture.description }}</h4>
+<span
+  >{{ displayedLecture.start * 1000 | date: 'shortDate' }}
+  {{ displayedLecture.start * 1000 | date: 'shortTime' }} -
+  {{ sameDay ? '' : (displayedLecture.end * 1000 | date: 'shortTime') }}
+  {{ displayedLecture.end * 1000 | date: 'shortTime' }}</span
+><br />
+<span [class.changed]="roomChanged">{{ displayedLecture.room }}</span
+><br />
+<span [class.changed]="instructorChanged">{{
+  displayedLecture.instructor
+}}</span>

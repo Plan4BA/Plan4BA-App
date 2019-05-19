@@ -52,6 +52,29 @@ export class NotificationsService {
       );
   }
 
+  loadDetails(path: string) {
+    if (path.indexOf('/') === 0) {
+      path = path.substr(1);
+    }
+    return this.http
+      .get<any>(environment.apiUrl + path, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .pipe(
+        map((data: any) => {
+          if (!data) {
+            throw new Error(
+              'Received notifications details data is not valid!'
+            );
+          }
+          return data;
+        }),
+        catchError(this.handleErrors)
+      );
+  }
+
   private loadDataWithTimeout() {
     if (this.loadDataTimeout) {
       clearTimeout(this.loadDataTimeout);

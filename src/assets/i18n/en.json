@@ -93,6 +93,11 @@
     "calendarIntegration": "Calendar integration",
     "close": "Close"
   },
+  "lectureChangesDialogComponent": {
+    "lectureChanges": "Lecture changes",
+    "close": "Close",
+    "delete": "Delete"
+  },
   "languages": {
     "de": "German",
     "en": "English"

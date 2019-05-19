@@ -1,0 +1,12 @@
+:host.deleted {
+  color: red;
+  text-decoration: line-through;
+}
+
+:host.added {
+  color: green;
+}
+
+.changed {
+  color: orange;
+}

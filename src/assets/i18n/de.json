@@ -93,6 +93,11 @@
     "calendarIntegration": "Kalender-Integration",
     "close": "Schließen"
   },
+  "lectureChangesDialogComponent": {
+    "lectureChanges": "Stundenplanänderungen",
+    "close": "Schließen",
+    "delete": "Löschen"
+  },
   "languages": {
     "de": "Deutsch",
     "en": "Englisch"
