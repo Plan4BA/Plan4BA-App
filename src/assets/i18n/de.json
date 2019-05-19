@@ -89,14 +89,27 @@
     "password": "Passwort",
     "username": "Benutzername"
   },
+  "calendarIntegrationDialog": {
+    "calendarIntegration": "Kalender-Integration",
+    "close": "Schließen"
+  },
   "languages": {
     "de": "Deutsch",
     "en": "Englisch"
   },
   "links": {
-    "links": "Links"
+    "links": "Links",
+    "calendarIntegration": "Kalender-Integration",
+    "calendarContent": "Kalender-Inhalt",
+    "copy": "kopieren",
+    "copyManually": "Dieser Button funktioniert auf deinem Gerät leider nicht. Bitte markiere die URL und kopiere sie manuell!"
   },
   "notifications": {
     "lectureChanged": "Der Stundenplan hat sich geändert!"
+  },
+  "caldavContentTypes": {
+    "all": "Vorlesungen + Speiseplan",
+    "lectures": "nur Vorlesungen",
+    "meals": "nur Speiseplan"
   }
 }

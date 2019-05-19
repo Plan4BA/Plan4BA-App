@@ -1,13 +1,63 @@
-<mat-card>
-  <mat-card-content>
-    <mat-card-title class="left-icon"
-      ><mat-icon>link</mat-icon
-      ><span>{{ 'links.links' | translate }}</span></mat-card-title
-    >
-    <mat-list class="word-wrap no-x-padding-mobile">
-      <mat-list-item *ngFor="let link of links">
-        <a mat-button [href]="link.url">{{ link.label }}</a>
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+<div class="links-container">
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title class="left-icon"
+        ><mat-icon>link</mat-icon
+        ><span>{{ 'links.links' | translate }}</span></mat-card-title
+      >
+      <mat-list class="word-wrap no-x-padding-mobile">
+        <mat-list-item *ngFor="let link of links">
+          <a mat-button [href]="link.url">{{ link.label }}</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-content>
+      <mat-card-title class="left-icon right-help"
+        ><mat-icon>calendar_today</mat-icon
+        ><span class="title-text">{{
+          'links.calendarIntegration' | translate
+        }}</span>
+        <mat-icon
+          class="help-icon"
+          (click)="openCalendarIntegrationInfoDialog()"
+          >help</mat-icon
+        >
+      </mat-card-title>
+      <mat-form-field>
+        <mat-label>{{ 'links.calendarContent' | translate }}</mat-label>
+        <mat-select [(value)]="selectedCaldavContentType">
+          <mat-option
+            *ngFor="let caldavContentType of caldavContentTypes"
+            [value]="caldavContentType"
+          >
+            {{ 'caldavContentTypes.' + caldavContentType | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          [value]="
+            apiUrl + selectedCaldavContentType + '?token=' + caldavToken.token
+          "
+          #inputTarget
+          readonly
+        />
+        <button
+          class="mat-raised-button btn-default"
+          type="button"
+          [ngxClipboard]="inputTarget"
+          (cbOnSuccess)="isCopied = true"
+          (cbOnError)="onCopyFailure()"
+          [class.btn-success]="isCopied"
+        >
+          {{ 'links.copy' | translate }}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

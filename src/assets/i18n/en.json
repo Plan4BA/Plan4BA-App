@@ -89,14 +89,27 @@
     "password": "Password",
     "username": "Username"
   },
+  "calendarIntegrationDialog": {
+    "calendarIntegration": "Calendar integration",
+    "close": "Close"
+  },
   "languages": {
     "de": "German",
     "en": "English"
   },
   "links": {
-    "links": "Links"
+    "links": "Links",
+    "calendarIntegration": "Calendar integration",
+    "calendarContent": "Calendar content",
+    "copy": "copy",
+    "copyManually": "This button doesn't work on your device. Please highlight the URL and copy it manually!"
   },
   "notifications": {
     "lectureChanged": "There's a change in the schedule!"
+  },
+  "caldavContentTypes": {
+    "all": "Lectures + Meals",
+    "lectures": "Lectures only",
+    "meals": "Meals only"
   }
 }
