@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, catchError, map } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
 
 import { environment } from '../../../environments/environment';
 import { AuthService } from '@app/core/services/auth.service';
@@ -15,13 +13,9 @@ import { CoreModule } from '@app/core/core.module';
 })
 export class NotificationsService {
   private data: BehaviorSubject<Notification[]>;
+  private loadDataTimeout: number = null;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService,
-    private snackBar: MatSnackBar,
-    private translate: TranslateService
-  ) {
+  constructor(private http: HttpClient, private authService: AuthService) {
     this.data = new BehaviorSubject<Notification[]>(null);
 
     this.authService.isLoggedIn.subscribe((isLoggedIn: boolean) => {
@@ -31,32 +25,6 @@ export class NotificationsService {
         );
       } else {
         this.data.next(null);
-      }
-    });
-
-    this.data.subscribe((notifications: Notification[]) => {
-      if (notifications) {
-        notifications.forEach((notification: Notification, index: number) => {
-          setTimeout(() => {
-            this.snackBar.open(
-              this.translate.instant(
-                notification.type === 'lectureChanged'
-                  ? 'notifications.lectureChanged'
-                  : 'errorMessages.refreshPage'
-              ),
-              'OK',
-              {
-                duration: 10000,
-                verticalPosition: 'top'
-              }
-            );
-            if (notification.type === 'lectureChanged') {
-              const deleteSub = this.delete(notification.id).subscribe(() =>
-                deleteSub.unsubscribe()
-              );
-            }
-          }, index * 10000);
-        });
       }
     });
   }
@@ -74,7 +42,7 @@ export class NotificationsService {
       })
       .pipe(
         map((data: Notification[]) => {
-          if (!this.isDataValid(data)) {
+          if (!data) {
             throw new Error('Received notifications data is not valid!');
           }
           return data;
@@ -84,28 +52,29 @@ export class NotificationsService {
       );
   }
 
-  private delete(notificationId: number): Observable<any | HttpErrorResponse> {
+  private loadDataWithTimeout() {
+    if (this.loadDataTimeout) {
+      clearTimeout(this.loadDataTimeout);
+    }
+    this.loadDataTimeout = (setTimeout(() => {
+      this.loadDataTimeout = null;
+      const loadDataSubscription = this.loadData().subscribe(() =>
+        loadDataSubscription.unsubscribe()
+      );
+    }, 1000) as unknown) as number;
+  }
+
+  public delete(notificationId: number): Observable<any | HttpErrorResponse> {
     return this.http
       .delete<any>(environment.apiUrl + 'notifications/' + notificationId, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
-      .pipe(catchError(this.handleErrors));
-  }
-
-  private isDataValid(data: Notification[]): boolean {
-    return (
-      !!data &&
-      Array.isArray(data) &&
-      data.every((notification: Notification) => {
-        return (
-          !!notification &&
-          Number.isInteger(notification.id) &&
-          typeof notification.type === 'string'
-        );
-      })
-    );
+      .pipe(
+        tap(() => this.loadDataWithTimeout()),
+        catchError(this.handleErrors)
+      );
   }
 
   private handleErrors(
