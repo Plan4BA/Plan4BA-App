@@ -66,6 +66,9 @@ export class LinksService {
       .get<Link[]>(environment.apiUrl + 'links', {
         headers: {
           'Content-Type': 'application/json'
+        },
+        params: {
+          language: localStorage.getItem('usedLanguage') || 'de'
         }
       })
       .pipe(

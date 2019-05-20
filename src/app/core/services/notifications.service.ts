@@ -38,6 +38,9 @@ export class NotificationsService {
       .get<Notification[]>(environment.apiUrl + 'notifications', {
         headers: {
           'Content-Type': 'application/json'
+        },
+        params: {
+          language: localStorage.getItem('usedLanguage') || 'de'
         }
       })
       .pipe(
@@ -60,6 +63,9 @@ export class NotificationsService {
       .get<any>(environment.apiUrl + path, {
         headers: {
           'Content-Type': 'application/json'
+        },
+        params: {
+          language: localStorage.getItem('usedLanguage') || 'de'
         }
       })
       .pipe(

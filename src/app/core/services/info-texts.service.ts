@@ -75,6 +75,9 @@ export class InfoTextsService {
       .get<InfoText[]>(environment.apiUrl + 'info', {
         headers: {
           'Content-Type': 'application/json'
+        },
+        params: {
+          language: localStorage.getItem('usedLanguage') || 'de'
         }
       })
       .pipe(

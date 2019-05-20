@@ -5,7 +5,6 @@ import { NotificationsService } from '@app/core/services/notifications.service';
 import { Notification } from '@app/core/models/notification.model';
 import { LectureChangesDialogComponent } from '@app/notifications/dialogs/lecture-changes/lecture-changes-dialog.component';
 import { AppChangedComponent } from '@app/notifications/dialogs/app-changed/app-changed.component';
-import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'p4ba-notifications',
