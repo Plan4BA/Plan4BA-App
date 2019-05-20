@@ -33,4 +33,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  line-height: 30px;
+  align-self: baseline;
+}
+
+.notification-date {
+  position: absolute;
+  line-height: normal;
+  font-size: 11px;
+  display: inline-block;
+  bottom: 10px;
 }

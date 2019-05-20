@@ -4,4 +4,5 @@ export class Notification {
   label: string;
   description: string;
   callback: string;
+  timestamp: number;
 }

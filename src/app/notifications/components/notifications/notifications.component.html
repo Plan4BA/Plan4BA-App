@@ -16,6 +16,9 @@
     (click)="openNotification(notification)"
   >
     <span class="notification-label">{{ notification.label }}</span>
+    <span class="notification-date">{{
+      notification.timestamp | date: 'shortDate'
+    }}</span>
     <button
       class="delete-button"
       mat-icon-button
