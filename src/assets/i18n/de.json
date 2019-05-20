@@ -98,6 +98,11 @@
     "close": "Schließen",
     "delete": "Löschen"
   },
+  "appChangedComponent": {
+    "appUpdate": "App Update",
+    "close": "Schließen",
+    "delete": "Löschen"
+  },
   "languages": {
     "de": "Deutsch",
     "en": "Englisch"

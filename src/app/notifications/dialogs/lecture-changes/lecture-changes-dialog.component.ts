@@ -25,7 +25,7 @@ export class LectureChangesDialogComponent implements OnInit {
 
   ngOnInit() {
     const loadDetailsSubscription = this.notificationsService
-      .loadDetails(this.data.notification.callback)
+      .loadDetails(this.data.notification.callback, 'application/json')
       .subscribe(data => {
         loadDetailsSubscription.unsubscribe();
         this.lectureChanges = data;

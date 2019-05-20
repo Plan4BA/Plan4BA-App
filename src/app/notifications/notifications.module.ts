@@ -4,14 +4,16 @@ import { NotificationsComponent } from './components/notifications/notifications
 import { SharedModule } from '@app/shared/shared.module';
 import { LectureChangesDialogComponent } from './dialogs/lecture-changes/lecture-changes-dialog.component';
 import { LectureChangeComponent } from './components/lecture-change/lecture-change.component';
+import { AppChangedComponent } from './dialogs/app-changed/app-changed.component';
 
 @NgModule({
   declarations: [
     NotificationsComponent,
     LectureChangesDialogComponent,
-    LectureChangeComponent
+    LectureChangeComponent,
+    AppChangedComponent
   ],
-  entryComponents: [LectureChangesDialogComponent],
+  entryComponents: [LectureChangesDialogComponent, AppChangedComponent],
   imports: [SharedModule],
   exports: [NotificationsComponent]
 })
