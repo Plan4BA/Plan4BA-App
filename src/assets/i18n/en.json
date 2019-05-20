@@ -98,6 +98,11 @@
     "close": "Close",
     "delete": "Delete"
   },
+  "appChangedComponent": {
+    "version": "Version",
+    "close": "Close",
+    "delete": "Delete"
+  },
   "languages": {
     "de": "German",
     "en": "English"
