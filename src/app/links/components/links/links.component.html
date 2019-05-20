@@ -42,7 +42,12 @@
           type="text"
           class="form-control"
           [value]="
-            apiUrl + selectedCaldavContentType + '?token=' + caldavToken.token
+            caldavToken
+              ? apiUrl +
+                selectedCaldavContentType +
+                '?token=' +
+                caldavToken.token
+              : ''
           "
           #inputTarget
           readonly
