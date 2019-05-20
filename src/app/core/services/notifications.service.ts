@@ -52,14 +52,14 @@ export class NotificationsService {
       );
   }
 
-  loadDetails(path: string, contentType: string) {
+  loadDetails(path: string) {
     if (path.indexOf('/') === 0) {
       path = path.substr(1);
     }
     return this.http
       .get<any>(environment.apiUrl + path, {
         headers: {
-          'Content-Type': contentType
+          'Content-Type': 'application/json'
         }
       })
       .pipe(

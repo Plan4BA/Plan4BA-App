@@ -99,7 +99,7 @@
     "delete": "Delete"
   },
   "appChangedComponent": {
-    "appUpdate": "App update",
+    "version": "Version",
     "close": "Close",
     "delete": "Delete"
   },

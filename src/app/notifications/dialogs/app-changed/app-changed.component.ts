@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { NotificationsService } from '@app/core/services/notifications.service';
 import { Notification } from '@app/core/models/notification.model';
+import { AppVersionDetails } from '@app/core/models/app-version-details';
 
 export interface DialogData {
   notification: Notification;
@@ -14,7 +15,7 @@ export interface DialogData {
   styleUrls: ['./app-changed.component.scss']
 })
 export class AppChangedComponent implements OnInit {
-  contentText = '';
+  appVersionDetails: AppVersionDetails;
 
   constructor(
     public dialogRef: MatDialogRef<AppChangedComponent>,
@@ -23,12 +24,11 @@ export class AppChangedComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const loadDetailsSubscription = this.notificationsService
-    //   .loadDetails(this.data.notification.callback, , 'text/html')
-    //   .subscribe(data => {
-    //     loadDetailsSubscription.unsubscribe();
-    //     this.contentText = data;
-    //   });
-    this.contentText = '<h1>Hello World!</h1>';
+    const loadDetailsSubscription = this.notificationsService
+      .loadDetails(this.data.notification.callback)
+      .subscribe(data => {
+        loadDetailsSubscription.unsubscribe();
+        this.appVersionDetails = data;
+      });
   }
 }
