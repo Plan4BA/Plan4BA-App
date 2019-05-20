@@ -15,7 +15,7 @@
     *ngFor="let notification of notifications"
     (click)="openNotification(notification)"
   >
-    <span>{{ notification.label }}</span>
+    <span class="notification-label">{{ notification.label }}</span>
     <button
       class="delete-button"
       mat-icon-button
