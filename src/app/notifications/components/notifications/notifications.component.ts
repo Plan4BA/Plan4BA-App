@@ -35,16 +35,25 @@ export class NotificationsComponent implements OnInit {
   }
 
   openNotification(notification: Notification) {
-    const dialogRef = this.dialog.open(LectureChangesDialogComponent, {
-      maxWidth: 600,
-      data: { notification }
-    });
+    let dialogType: typeof LectureChangesDialogComponent;
+    switch (notification.type) {
+      case 'lectureChanged':
+        dialogType = LectureChangesDialogComponent;
+        break;
+    }
 
-    dialogRef.afterClosed().subscribe(deleteClicked => {
-      if (deleteClicked) {
-        this.deleteNotification(notification.id);
-      }
-    });
+    if (dialogType) {
+      const dialogRef = this.dialog.open(dialogType, {
+        maxWidth: 600,
+        data: { notification }
+      });
+
+      dialogRef.afterClosed().subscribe(deleteClicked => {
+        if (deleteClicked) {
+          this.deleteNotification(notification.id);
+        }
+      });
+    }
   }
 
   ngOnInit() {
