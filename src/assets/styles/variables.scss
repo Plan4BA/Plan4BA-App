@@ -1,0 +1,20 @@
+/** all variables should be defined here
+  * theme colors are defined in `material-theme.scss` and
+  * will be injected into the components in `material-components.scss`
+  */
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700');
+
+$bodyfont: 'Poppins', sans-serif;
+$headingfont: 'Poppins', sans-serif;
+
+$bodytext: #67757c;
+$headingtext: #455a64;
+$themecolor: #1e88e5;
+$sidebar-text: #607d8b;
+$sidebar-icons: #99abb4;
+$themecolor-alt: #26c6da;
+$inverse: #2f3d4a;
+$bodycolor: #eef5f9;
+
+$mini-sidebar-width: 80px;

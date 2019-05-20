@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-import { LecturesService } from '../data/lectures/lectures.service';
-import { Lecture } from '../data/lectures/lecture.model';
+import { LecturesService } from '@app/core/services/lectures.service';
+import { Lecture } from '@app/core/models/lecture.model';
 
 @Component({
   selector: 'p4ba-daily-lectures-list',
@@ -9,7 +9,6 @@ import { Lecture } from '../data/lectures/lecture.model';
   styleUrls: ['./daily-lectures-list.component.scss']
 })
 export class DailyLecturesListComponent implements OnInit {
-
   private _viewDateLocal: Date;
   @Output() tapEvent = new EventEmitter<any>();
   @Output() swipeEvent = new EventEmitter<any>();
@@ -23,11 +22,13 @@ export class DailyLecturesListComponent implements OnInit {
   @Input()
   set viewDateLocal(viewDateLocal: Date) {
     this._viewDateLocal = viewDateLocal;
-    this.filteredLectures = this.filterLecturesByDate(this.lecturesService.getData().getValue(), viewDateLocal);
+    this.filteredLectures = this.filterLecturesByDate(
+      this.lecturesService.getData().getValue(),
+      viewDateLocal
+    );
   }
 
-  constructor(private lecturesService: LecturesService) {
-  }
+  constructor(private lecturesService: LecturesService) {}
 
   ngOnInit() {
     if (!this._viewDateLocal) {
@@ -35,7 +36,10 @@ export class DailyLecturesListComponent implements OnInit {
       this._viewDateLocal.setHours(0, 0, 0, 0);
     }
     this.lecturesService.getData().subscribe((lectures: Lecture[]) => {
-      this.filteredLectures = this.filterLecturesByDate(lectures, this.viewDateLocal);
+      this.filteredLectures = this.filterLecturesByDate(
+        lectures,
+        this.viewDateLocal
+      );
     });
   }
 
@@ -47,10 +51,16 @@ export class DailyLecturesListComponent implements OnInit {
     const nextDay = new Date(date.getTime());
     nextDay.setUTCDate(nextDay.getUTCDate() + 1);
     const nextDayTimestamp = nextDay.getTime();
-    return lectures.filter((lecture: Lecture) => {
-      return lecture.start * 1000 < nextDayTimestamp
-        && lecture.end * 1000 >= dateTimestamp;
-    }).sort((lectureA: Lecture, lectureB: Lecture) =>  lectureA.start - lectureB.start);
+    return lectures
+      .filter((lecture: Lecture) => {
+        return (
+          lecture.start * 1000 < nextDayTimestamp &&
+          lecture.end * 1000 >= dateTimestamp
+        );
+      })
+      .sort(
+        (lectureA: Lecture, lectureB: Lecture) =>
+          lectureA.start - lectureB.start
+      );
   }
-
 }

@@ -37,3 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# proxy and mock data
+proxy/*
+!proxy/proxy.conf.example.js
+!proxy/proxy.conf.example.json

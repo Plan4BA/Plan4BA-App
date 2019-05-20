@@ -1,0 +1,30 @@
+<button
+  mat-icon-button
+  (click)="openPanel()"
+  [matMenuTriggerFor]="notificationsMenu"
+>
+  <mat-icon>notifications</mat-icon>
+</button>
+<span *ngIf="notifications.length > 0" class="notification-counter">{{
+  notifications.length
+}}</span>
+
+<mat-menu #notificationsMenu="matMenu">
+  <div
+    mat-menu-item
+    *ngFor="let notification of notifications"
+    (click)="openNotification(notification)"
+  >
+    <span class="notification-label">{{ notification.label }}</span>
+    <span class="notification-date">{{
+      notification.timestamp | date: 'shortDate'
+    }}</span>
+    <button
+      class="delete-button"
+      mat-icon-button
+      (click)="deleteNotificationListener($event, notification.id)"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-menu>

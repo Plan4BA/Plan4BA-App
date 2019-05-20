@@ -1,0 +1,43 @@
+<!-- ============================================================== -->
+<!-- sidebar -->
+<!-- ============================================================== -->
+
+<mat-nav-list appAccordion>
+  <!-- <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" group="{{menuitem.state}}"> -->
+  <mat-list-item
+    appAccordionLink
+    *ngFor="let menuitem of menuItems"
+    routerLinkActive="selected"
+  >
+    <a
+      class=""
+      appAccordionToggle
+      [routerLink]="['/', menuitem.state]"
+      (click)="itemClick()"
+      *ngIf="menuitem.type === 'link'"
+    >
+      <mat-icon>{{ menuitem.icon }}</mat-icon>
+      <span>{{ menuitem.translationKey | translate }}</span>
+      <span fxFlex></span>
+      <span
+        class="label label-{{ badge.type }}"
+        *ngFor="let badge of menuitem.badge"
+        >{{ badge.value }}</span
+      >
+    </a>
+  </mat-list-item>
+
+  <mat-list-item>
+    <a
+      (click)="logout()"
+      class="logout-menu-item"
+      style="
+        border-radius: 4px;
+        color: #ffffff;"
+    >
+      <mat-icon style="color: #ffffff;">{{ 'exit_to_app' }}</mat-icon>
+      <span>{{ 'menuItems.logout' | translate }}</span>
+      <span fxFlex></span>
+    </a>
+  </mat-list-item>
+</mat-nav-list>

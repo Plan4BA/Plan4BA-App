@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
-import { Food } from '../data/meals/food.model';
+import { Food } from '@app/core/models/food.model';
 
 @Component({
   selector: 'p4ba-daily-meals-list',
@@ -8,13 +8,10 @@ import { Food } from '../data/meals/food.model';
   styleUrls: ['./daily-meals-list.component.scss']
 })
 export class DailyMealsListComponent implements OnInit {
-
   @Output() tapEvent = new EventEmitter<any>();
   @Input() dailyMeals: Food[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

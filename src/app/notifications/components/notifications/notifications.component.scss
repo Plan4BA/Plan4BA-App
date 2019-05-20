@@ -1,0 +1,46 @@
+.notification-counter {
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 9px;
+  background: #f44336;
+  color: #fff;
+  min-width: 20px;
+  padding: 0 5px;
+  height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 19px;
+  display: block;
+}
+
+.delete-button {
+  width: auto;
+
+  .mat-icon {
+    margin-right: 0px;
+  }
+}
+
+.mat-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-label {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 30px;
+  align-self: baseline;
+}
+
+.notification-date {
+  position: absolute;
+  line-height: normal;
+  font-size: 11px;
+  display: inline-block;
+  bottom: 10px;
+}

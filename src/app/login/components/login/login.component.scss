@@ -1,0 +1,62 @@
+:host {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to top, #29b6f6 0%, #1565c0 100%);
+}
+
+.lang-select {
+  position: absolute;
+  width: 100px;
+  background-color: white;
+  padding: 10px;
+  top: 0px;
+  left: 0px;
+}
+
+.login-card {
+  max-width: 320px;
+  margin: 30px;
+  margin-top: 70px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.action-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+a.link {
+  color: #428bca;
+}
+
+.section {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.small-font {
+  font-size: 14px;
+  line-height: 14px;
+}
+
+.button-spinner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.mat-progress-spinner {
+  margin-left: 10px;
+}

@@ -1,0 +1,27 @@
+// angular-calendar
+
+mwl-calendar-month-cell,
+mwl-calendar-day-view-hour-segment,
+mwl-calendar-week-view-hour-segment {
+  touch-action: auto !important;
+}
+
+.cal-day-badge {
+  display: none !important;
+}
+
+.cal-month-view .cal-cell-top {
+  min-height: 50px !important;
+}
+
+.cal-month-view .cal-day-cell.cal-weekend .cal-day-number {
+  color: inherit !important;
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: rgba(mat-color($plan4ba-primary), 0.2);
+}
+
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+  font-size: 1.2em;
+}

@@ -1,11 +1,23 @@
 <mat-list-item *ngFor="let meal of dailyMeals">
   <h3 matLine>{{ meal.description }}</h3>
   <p matLine class="text-muted">{{ meal.prices }}</p>
-  <p *ngIf="meal.vegetarian" matLine class="text-muted">{{ 'dailyMealsList.vegetarian' | translate }}</p>
-  <p *ngIf="meal.vegan" matLine class="text-muted">{{ 'dailyMealsList.vegan' | translate }}</p>
-  <p *ngIf="meal.additionalInformation.length > 0" matLine class="text-muted"`>{{ meal.additionalInformation }}</p>
-  <fa-icon class="list-right-icon" *ngIf="meal.vegetarian || meal.vegan" icon="leaf" [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"></fa-icon>
+  <p *ngIf="meal.vegetarian" matLine class="text-muted">
+    {{ 'dailyMealsList.vegetarian' | translate }}
+  </p>
+  <p *ngIf="meal.vegan" matLine class="text-muted">
+    {{ 'dailyMealsList.vegan' | translate }}
+  </p>
+  <p *ngIf="meal.additionalInformation.length > 0" matLine class="text-muted" `>
+    {{ meal.additionalInformation }}
+  </p>
+  <img
+    src="./assets/images/leaf.svg"
+    *ngIf="meal.vegetarian || meal.vegan"
+    class="leaf-icon list-right-icon"
+    alt="My Awesome SVG"
+    [matTooltip]="meal.vegetarian ? 'vegetarian' : 'vegan'"
+  />
 </mat-list-item>
 <mat-list-item *ngIf="dailyMeals.length === 0">
-  <h3 matLine >{{ 'dailyMealsList.noFood' | translate }}</h3>
+  <h3 matLine>{{ 'dailyMealsList.noFood' | translate }}</h3>
 </mat-list-item>
