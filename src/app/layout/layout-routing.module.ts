@@ -38,6 +38,11 @@ const routes: Routes = [
         path: 'settings',
         loadChildren: '@app/settings/settings.module#SettingsModule',
         canActivate: [AuthGuard]
+      },
+      {
+        path: 'demo',
+        loadChildren: '@app/demo/demo.module#DemoModule',
+        canActivate: [AuthGuard]
       }
     ]
   }
